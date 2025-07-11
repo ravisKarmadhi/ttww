@@ -1,0 +1,33 @@
+footer {
+    .footer-slider-content{
+        border-radius: 0px 0px 30px 30px;
+    }
+    .footer-img {
+        height: 257px;
+    }
+
+    .footer-logo {
+        width: 96px;
+    }
+
+    .footer-main {
+        .footer-brand-logo {
+            .logo-bg {
+                height: 72px;
+                width: 112px;
+
+                .brand-img {
+                    height: 60px;
+                }
+            }
+        }
+
+        ul {
+            li {
+                &:last-child {
+                    margin-right: 0 !important;
+                }
+            }
+        }
+    }
+}

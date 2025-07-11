@@ -1,0 +1,18 @@
+.left-content-section {
+    .pattern-img {
+        height: 499px;
+        right: -8%;
+        transform: translate(35px, -25px);
+
+        @media screen and (max-width:1440px) {
+            right: -10%;
+            transform: translate(35px, -25px);
+        }
+    }
+}
+
+.left-right-hero-section {
+    .left-right-hero-img {
+        height: 562px;
+    }
+}

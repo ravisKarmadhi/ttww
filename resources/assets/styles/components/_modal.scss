@@ -1,0 +1,49 @@
+.modal {
+    &.project-modal {
+        .modal-dialog {
+            max-width: 1260px !important;
+
+            .modal-content {
+                padding: 65px 50px 70px;
+
+                .carousel {
+                    .carousel-inner {
+                        .carousel-item {
+                            height: 546px;
+                        }
+                    }
+
+                    .prev-arrow,
+                    .next-arrow {
+                        width: 45px;
+                        height: 45px;
+                        background-color: $color-1B2995;
+                    }
+
+                    .prev-arrow {
+                        img {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.offcanvas {
+    width: 720px !important;
+
+    .offcanvas-body {
+        padding: 55px 50px 55px 60px;
+
+        .close-btn {
+            width: 45px;
+            height: 45px;
+        }
+
+        .offcanvas-img {
+            height: 230px;
+        }
+    }
+}

@@ -1,0 +1,357 @@
+.bg-1B2995 {
+    background-color: $color-1B2995;
+}
+
+.bg-191919 {
+    background-color: $color-191919;
+}
+
+.bg-858AB5 {
+    background-color: $color-858AB5;
+}
+
+.bg-0F1964 {
+    background-color: $color-0F1964;
+}
+
+.bg-FDFEFF {
+    background-color: $color-FDFEFF;
+}
+
+.text-1B2995 {
+    color: $color-1B2995;
+}
+
+.text-191919 {
+    color: $color-191919;
+}
+
+.text-858AB5 {
+    color: $color-858AB5;
+}
+
+.text-0F1964 {
+    color: $color-0F1964;
+}
+
+.text-FDFEFF {
+    color: $color-FDFEFF;
+}
+
+.font12 {
+    font-size: $font12;
+}
+
+.font14 {
+    font-size: $font14;
+}
+
+.font16 {
+    font-size: $font16;
+}
+
+.font18 {
+    font-size: $font18;
+}
+
+.font20 {
+    font-size: $font20;
+}
+
+.font22 {
+    font-size: $font22;
+}
+
+.font24 {
+    font-size: $font24;
+}
+
+.font26 {
+    font-size: $font26;
+}
+
+.font30 {
+    font-size: $font30;
+}
+
+.font32 {
+    font-size: $font32;
+}
+
+.font36 {
+    font-size: $font36;
+}
+
+.font38 {
+    font-size: $font38;
+}
+
+.font42 {
+    font-size: $font42;
+}
+
+.font52 {
+    font-size: $font52;
+}
+
+.font57 {
+    font-size: $font57;
+}
+
+.font72 {
+    font-size: $font72;
+}
+
+.font89 {
+    font-size: $font89;
+}
+
+.space-0_9 {
+    letter-spacing: $space-0_9;
+}
+
+.space-0_12 {
+    letter-spacing: $space-0_12;
+}
+
+.space-0_16 {
+    letter-spacing: $space-0_16;
+}
+
+.space-0_36 {
+    letter-spacing: $space-0_36;
+}
+
+.space-0_42 {
+    letter-spacing: $space-0_42;
+}
+
+.space-0_48 {
+    letter-spacing: $space-0_48;
+}
+
+.space-0_54 {
+    letter-spacing: $space-0_54;
+}
+
+.space-0_72 {
+    letter-spacing: $space-0_72;
+}
+
+.space-1_44 {
+    letter-spacing: $space-1_44;
+}
+
+.space-1_78 {
+    letter-spacing: $space-1_78;
+}
+
+.leading20 {
+    line-height: $leading20;
+}
+
+.leading24 {
+    line-height: $leading24;
+}
+
+.leading26 {
+    line-height: $leading26;
+}
+
+.leading36 {
+    line-height: $leading36;
+}
+
+.leading38 {
+    line-height: $leading38;
+}
+
+.leading55 {
+    line-height: $leading55;
+}
+
+.leading67 {
+    line-height: $leading67;
+}
+
+.leading85 {
+    line-height: $leading85;
+}
+
+.leading95 {
+    line-height: $leading95;
+}
+
+.radius4 {
+    border-radius: $radius4;
+}
+
+.radius5 {
+    border-radius: $radius5;
+}
+
+.radius8 {
+    border-radius: $radius8;
+}
+
+.radius10 {
+    border-radius: $radius10;
+}
+
+.radius15 {
+    border-radius: $radius15;
+}
+
+.opacity36 {
+    opacity: $opacity36;
+}
+
+@include media-breakpoint-down(lg) {
+    .res-font12 {
+        font-size: $font12;
+    }
+
+    .res-font14 {
+        font-size: $font14;
+    }
+
+    .res-font16 {
+        font-size: $font16;
+    }
+
+    .res-font18 {
+        font-size: $font18;
+    }
+
+    .res-font20 {
+        font-size: $font20;
+    }
+
+    .res-font22 {
+        font-size: $font22;
+    }
+
+    .res-font24 {
+        font-size: $font24;
+    }
+
+    .res-font30 {
+        font-size: $font30;
+    }
+
+    .res-font36 {
+        font-size: $font36;
+    }
+
+    .res-font38 {
+        font-size: $font38;
+    }
+
+    .res-font42 {
+        font-size: $font42;
+    }
+
+    .res-font52 {
+        font-size: $font52;
+    }
+
+    .res-font57 {
+        font-size: $font57;
+    }
+
+    .res-font72 {
+        font-size: $font72;
+    }
+
+    .res-font89 {
+        font-size: $font89;
+    }
+
+    .res-space-0_9 {
+        letter-spacing: $space-0_9;
+    }
+
+    .res-space-0_12 {
+        letter-spacing: $space-0_12;
+    }
+
+    .res-space-0_16 {
+        letter-spacing: $space-0_16;
+    }
+
+    .res-space-0_36 {
+        letter-spacing: $space-0_36;
+    }
+
+    .res-space-0_42 {
+        letter-spacing: $space-0_42;
+    }
+
+    .res-space-0_48 {
+        letter-spacing: $space-0_48;
+    }
+
+    .res-space-0_54 {
+        letter-spacing: $space-0_54;
+    }
+
+    .res-space-0_72 {
+        letter-spacing: $space-0_72;
+    }
+
+    .res-space-1_78 {
+        letter-spacing: $space-1_78;
+    }
+
+    .res-leading20 {
+        line-height: $leading20;
+    }
+
+    .res-leading24 {
+        line-height: $leading24;
+    }
+
+    .res-leading26 {
+        line-height: $leading26;
+    }
+
+    .res-leading36 {
+        line-height: $leading36;
+    }
+
+    .res-leading38 {
+        line-height: $leading38;
+    }
+
+    .res-leading55 {
+        line-height: $leading55;
+    }
+
+    .res-leading85 {
+        line-height: $leading85;
+    }
+
+    .res-leading95 {
+        line-height: $leading95;
+    }
+
+    .res-radius4 {
+        border-radius: $radius4;
+    }
+
+    .res-radius5 {
+        border-radius: $radius5;
+    }
+
+    .res-radius8 {
+        border-radius: $radius8;
+    }
+
+    .res-radius10 {
+        border-radius: $radius10;
+    }
+
+    .res-radius15 {
+        border-radius: $radius15;
+    }
+}

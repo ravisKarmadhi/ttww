@@ -1,0 +1,155 @@
+/*******************************************************************************
+******************************* COLOUR VARIABLES *******************************
+*******************************************************************************/
+$color-1B2995:#1B2995;
+$color-191919:#191919;
+$color-858AB5:#858AB5;
+$color-0F1964:#0F1964;
+$color-FDFEFF:#FDFEFF;
+$color-E6E6E6:#E6E6E6;
+$color-707070:#707070;
+
+/*******************************************************************************
+******************************* FONTS VARIABLES *******************************
+*******************************************************************************/
+$font12: 12px;
+$font14: 14px;
+$font16: 16px;
+$font18: 18px;
+$font20: 20px;
+$font22: 22px;
+$font24: 24px;
+$font26: 26px;
+$font30: 30px;
+$font32: 32px;
+$font36: 36px;
+$font38: 38px;
+$font42: 42px;
+$font52: 52px;
+$font57: 57px;
+$font72: 72px;
+$font89: 89px;
+
+/*******************************************************************************
+******************************* LINE HEIGHT *******************************
+*******************************************************************************/
+$leading20: 20px;
+$leading24: 24px;
+$leading26: 26px;
+$leading36: 36px;
+$leading38: 38px;
+$leading55: 55px;
+$leading67: 67px;
+$leading85: 85px;
+$leading95: 95px;
+/*******************************************************************************
+******************************* LETTER SPACING *******************************
+*******************************************************************************/
+$space-0_9: -0.9px;
+$space-0_12: -0.12px;
+$space-0_16: -0.16px;
+$space-0_36: -0.36px;
+$space-0_42: -0.42px;
+$space-0_48: -0.48px;
+$space-0_54: -0.54px;
+$space-0_72: -0.72px;
+$space-1_44: -1.44px;
+$space-1_78: -1.78px;
+
+/*******************************************************************************
+******************************* RADIUS ****************************
+*******************************************************************************/
+
+$radius4: 4px;
+$radius5: 5px;
+$radius8: 8px;
+$radius10: 10px;
+$radius15: 15px;
+
+/*******************************************************************************
+******************************* OPACITY ****************************
+*******************************************************************************/
+
+$opacity36: 36%;
+
+/*******************************************************************************
+******************************* ANIMATION VARIABLES ****************************
+*******************************************************************************/
+@mixin generate-transition($name, $duration, $type) {
+  -webkit-transition: $name $duration $type;
+  /* Safari 4+ */
+  -moz-transition: $name $duration $type;
+  /* Fx 5+ */
+  -o-transition: $name $duration $type;
+  /* Opera 12+ */
+  transition: $name $duration $type;
+  /* IE 10+, Fx 29+ */
+}
+
+@mixin generate-animation-delay($seconds) {
+  -webkit-animation-delay: $seconds;
+  /* Safari 4+ */
+  -moz-animation-delay: $seconds;
+  /* Fx 5+ */
+  -o-animation-delay: $seconds;
+  /* Opera 12+ */
+  animation-delay: $seconds;
+  /* IE 10+, Fx 29+ */
+}
+
+@mixin generate-placeholder($color, $fontsize) {
+  &::-webkit-input-placeholder {
+    color: $color;
+    font-size: $fontsize;
+  }
+
+  &:-moz-placeholder {
+    /* Firefox 18- */
+    color: $color;
+    font-size: $fontsize;
+  }
+
+  &::-moz-placeholder {
+    /* Firefox 19+ */
+    color: $color;
+    font-size: $fontsize;
+  }
+
+  &:-ms-input-placeholder {
+    color: $color;
+    font-size: $fontsize;
+  }
+}
+
+@mixin generate-scale-transition() {
+  -webkit-transform: scale(1.1);
+  /* Safari and Chrome */
+  -moz-transform: scale(1.1);
+  /* Firefox */
+  -ms-transform: scale(1.1);
+  /* IE 9 */
+  -o-transform: scale(1.1);
+  /* Opera */
+  transform: scale(1.1);
+}
+
+@mixin generate-transform($transform) {
+  -webkit-transform: $transform;
+  /* Safari and Chrome */
+  -moz-transform: $transform;
+  /* Firefox */
+  -ms-transform: $transform;
+  /* IE 9 */
+  -o-transform: $transform;
+  /* Opera */
+  transform: $transform;
+}
+
+@mixin generate-filter($filter) {
+  -webkit-filter: $filter;
+  filter: $filter;
+  -moz-filter: $filter;
+  -o-filter: $filter;
+}
+
+$enable-negative-margins: true;

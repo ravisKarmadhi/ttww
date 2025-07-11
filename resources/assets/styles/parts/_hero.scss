@@ -1,0 +1,29 @@
+.hero-section {
+  background: linear-gradient(to bottom, #1B2995 calc(100% - 350px), white 350px);
+
+
+    .hero-img {
+        height: 694px;
+    }
+
+    .pattern-img {
+        // z-index: -1;
+        height: 647px;
+        right: -8%;
+        transform: translateX(35px);
+
+        @media screen and (max-width:1440px) {
+            right: -10%;
+            transform: translateX(35px);
+        }
+    }
+}
+
+.sub-hero-section {
+    height: 678px;
+}
+
+.location-img,
+.banner-img {
+    height: 360px;
+}

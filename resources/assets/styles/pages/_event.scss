@@ -1,0 +1,36 @@
+.single-event-section {
+    .single-event-links {
+        height: calc(100vh - 350px);
+    }
+
+    .single-img {
+        height: 583px;
+    }
+
+    .single-list {
+        li {
+            padding-left: 18px;
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 6px;
+                left: 0;
+                background-image: url('/wp-content/themes/ttww/templates/images/list-polygon.svg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                width: 9px;
+                height: 11px;
+            }
+        }
+    }
+}
+
+.upcoming-slider-section {
+    &.upcoming-white {
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        padding-top: 105px;
+        padding-bottom: 35px;
+    }
+}

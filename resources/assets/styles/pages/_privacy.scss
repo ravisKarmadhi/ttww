@@ -1,0 +1,33 @@
+.privcy-policy {
+    .left-inner-content {
+        // top: 225px;
+            // height: calc(100vh - 200px);
+
+        ul {
+            li {
+                &.active {
+                    a {
+                        background-color: $color-858AB5;
+                        opacity: 100% !important;
+                    }
+                }
+            }
+        }
+    }
+
+    .single-content {
+        &:first-child {
+            padding-top: 0 !important;
+        }
+    }
+
+    .pattern-img {
+        bottom: -32%;
+        left: 1%;
+        transform: translate(-50%, -0%);
+
+        img {
+            transform: rotate(90deg);
+        }
+    }
+}
