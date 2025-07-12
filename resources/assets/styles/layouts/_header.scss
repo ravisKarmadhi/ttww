@@ -6,6 +6,10 @@ header {
         .clock-img {
             img {
                 height: 17px;
+
+                @include media-breakpoint-down(lg) {
+                    height: 12px;
+                }
             }
         }
     }
@@ -13,6 +17,44 @@ header {
     .header-main {
         .white-logo {
             width: 137px;
+
+            @include media-breakpoint-down(lg) {
+                width: 105px;
+            }
+        }
+
+        .menu-toggle {
+            .menu-bar-bg {
+                border: 1px solid $white;
+                height: 35px;
+                width: 35px;
+
+                .menu-bar {
+                    width: 15px;
+                }
+            }
+
+            &.activate{
+                .close-bar{
+                    display: block!important;
+                }
+                .menu-bar{
+                    display: none!important;
+                }
+            }
+        }
+
+
+        .navigation {
+            @include media-breakpoint-down(lg) {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                height: 100vh;
+                background-color: $color-1B2995;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
         }
     }
 
@@ -30,7 +72,7 @@ header {
             .mega-menu {
                 opacity: 1 !important;
                 visibility: visible !important;
-                
+
             }
 
             .menu-link {
@@ -44,5 +86,7 @@ header {
     .mega-menu {
         width: max-content;
         top: 100px;
+        opacity: 0;
+        visibility: hidden;
     }
 }
