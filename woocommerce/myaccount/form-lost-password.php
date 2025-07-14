@@ -21,9 +21,9 @@ do_action( 'woocommerce_before_lost_password_form' );
 ?>
 <div class="col-lg-6 h-100 mx-auto">
 <div class="w-100 h-100 d-flex align-items-center justify-content-center">
-<form method="post" class="woocommerce-ResetPassword lost_reset_password w-100 m-0 border-0 bg-EAF2F9 px-4 px-lg-5 dpt-50 dpb-50 radius20">
+<form method="post" class="woocommerce-ResetPassword lost_reset_password w-100 m-0 border-0 px-4 px-lg-5 dpt-50 dpb-50 radius20">
 
-	<p class="bradon-regular font17 res-font16 leading26 text-505050 dmb-20"><?php echo apply_filters( 'woocommerce_lost_password_message', esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'woocommerce' ) ); ?></p><?php // @codingStandardsIgnoreLine ?>
+	<p class="sans-normal font17 res-font16 leading26 text-505050 dmb-20"><?php echo apply_filters( 'woocommerce_lost_password_message', esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'woocommerce' ) ); ?></p><?php // @codingStandardsIgnoreLine ?>
 
 	<p class="woocommerce-form-row woocommerce-form-row--first form-row w-100 form-row-first">
 		<label for="user_login"><?php esc_html_e( 'Username or email', 'woocommerce' ); ?>&nbsp;<span class="required" aria-hidden="true">*</span><span class="screen-reader-text"><?php esc_html_e( 'Required', 'woocommerce' ); ?></span></label>

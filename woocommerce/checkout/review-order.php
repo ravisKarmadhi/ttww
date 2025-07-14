@@ -20,13 +20,13 @@ defined('ABSPATH') || exit;
 ?>
 <div class="shop_table woocommerce-checkout-review-order-table">
 	<div>
-		<div class="d-flex justify-content-end align-items-center row">
-			<div class="product-name col-8"><?php esc_html_e('', 'woocommerce'); ?></div>
-			<div class="product-total col-2 bradon-regular font17 leading26 text-505050 text-center"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
-			<div class="product-total col-2 bradon-regular font17 leading26 text-505050 text-end"><?php esc_html_e('Price', 'woocommerce'); ?></div>
+		<div class="d-flex justify-content-end align-items-center row tmb-45 dmb-30">
+			<div class="product-name col-9 col-lg-8 sans-normal font17 leading26 text-191919 text-capitalize"><?php esc_html_e('product', 'woocommerce'); ?></div>
+			<div class="product-total col-1 col-lg-2 sans-normal font17 leading26 text-191919 text-capitalize text-center"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
+			<div class="product-total col-2 sans-normal font17 leading26 text-191919 text-capitalize text-end"><?php esc_html_e('Price', 'woocommerce'); ?></div>
 		</div>
 	</div>
-	<div class="main-producr-your-order">
+	<div class="main-producr-your-order tmb-55 dmb-45">
 		<?php
 		do_action('woocommerce_review_order_before_cart_contents');
 
@@ -36,8 +36,8 @@ defined('ABSPATH') || exit;
 			if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_checkout_cart_item_visible', true, $cart_item, $cart_item_key)) {
 		?>
 				<div class="d-flex align-items-center dmb-20 <?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
-					<div class="product-name col-8 d-flex align-items-center">
-						<div class="product-img radius5 overflow-hidden col-4 ms-lg-2 me-3">
+					<div class="product-name col-9 col-lg-8 d-flex align-items-center">
+						<div class="product-img radius5 overflow-hidden me-3 me-lg-5">
 
 							<?php
 							$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
@@ -51,18 +51,18 @@ defined('ABSPATH') || exit;
 
 						</div>
 
-						<div class="bradon-regular font17 leading26 res-font15 text-505050">
+						<div class="sans-normal font16 leading26 text-191919 pe-2 pe-lg-0">
 							<?php echo wp_kses_post(apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key)) . '&nbsp;'; ?>
 						</div>
 
 						<?php echo wc_get_formatted_cart_item_data($cart_item); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						?>
 					</div>
-					<div class="col-2 text-center">
-						<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <div class="product-quantity bradon-regular font17 leading26 res-font15 text-505050">' . sprintf('%s', $cart_item['quantity']) . '</div>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
+					<div class="col-1 col-lg-2 text-center">
+						<?php echo apply_filters('woocommerce_checkout_cart_item_quantity', ' <div class="product-quantity sans-normal font16 leading26 text-191919">' . sprintf('%s', $cart_item['quantity']) . '</div>', $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						?>
 					</div>
-					<div class="product-total col-2 text-end bradon-regular font17 leading26 res-font15 text-505050">
+					<div class="product-total col-2 text-end sans-normal font16 leading26 text-191919">
 						<?php echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped 
 						?>
 					</div>
@@ -74,7 +74,7 @@ defined('ABSPATH') || exit;
 		do_action('woocommerce_review_order_after_cart_contents');
 		?>
 	</div>
-	<div class="bradon-regular font17 leading26 text-505050 dmt-25 dmb-25">
+	<div class="border-top border-BCBCBC dpt-50 ">
 		<div class="shipping-section">
 			<?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
 				<?php do_action('woocommerce_review_order_before_shipping'); ?>
@@ -106,8 +106,8 @@ defined('ABSPATH') || exit;
 
 
 		<div class="cart-subtotal d-flex justify-content-between dmb-15">
-			<div class="bradon-regular font17 leading26 text-505050"><?php esc_html_e('Subtotal', 'woocommerce'); ?></div>
-			<div class="bradon-regular font17 leading26 text-505050"><?php wc_cart_totals_subtotal_html(); ?></div>
+			<div class="sans-normal font16 leading26 text-707070"><?php esc_html_e('Subtotal', 'woocommerce'); ?></div>
+			<div class="sans-normal font16 leading26 text-707070"><?php wc_cart_totals_subtotal_html(); ?></div>
 		</div>
 
 
@@ -121,8 +121,8 @@ defined('ABSPATH') || exit;
 
 		<?php do_action('woocommerce_review_order_before_order_total'); ?>
 		<div class="order-total d-flex justify-content-between dmb-15">
-			<div class="bradon-regular font21 leading26 text-505050"><?php esc_html_e('Total', 'woocommerce'); ?></div>
-			<div class="bradon-regular font21 leading26 text-505050"><?php wc_cart_totals_order_total_html(); ?></div>
+			<div class="sans-normal font16 leading26 text-182132"><?php esc_html_e('Total', 'woocommerce'); ?></div>
+			<div class="sans-normal font16 leading26 text-182132"><?php wc_cart_totals_order_total_html(); ?></div>
 		</div>
 		<?php do_action('woocommerce_review_order_after_order_total'); ?>
 

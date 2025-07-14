@@ -4,8 +4,8 @@
   padding-right: 50px;
 
   @include media-breakpoint-down(lg) {
-    padding-left: 22px;
-    padding-right: 22px;
+    padding-left: 15px;
+    padding-right: 15px;
   }
 }
 
@@ -72,8 +72,12 @@
   }
 
   .px-p-p {
-    padding-left: 25px !important;
-    padding-right: 25px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  .ps-p-p {
+    padding-left: 15px !important;
   }
 
   .mx-m-0 {

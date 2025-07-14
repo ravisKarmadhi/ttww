@@ -104,7 +104,7 @@ defined('ABSPATH') || exit;
 						<div class="container">
 							<div class="col-lg-6 col-12 h-100">
 								<div class="aptly-bold font77 leading85 text-707070 dmb-25 res-font40 res-leading50 text-uppercase tmb-20">order complete</div>
-								<div class="bradon-regular font17 leading26 res-font16 res-leading24 text-707070">Your order number #<?php echo $order->get_id(); ?> and will be with you soon.</div>
+								<div class="sans-normal font17 leading26 res-font16 res-leading24 text-707070">Your order number #<?php echo $order->get_id(); ?> and will be with you soon.</div>
 								<div class="d-lg-flex d-block align-items-center justify-content-center btn-group dmt-40 tmt-35">
 									<a href="<?php echo get_home_url(); ?>" class="text-decoration-none btnA bg-F9AFBD-btn aptly-bold font22 leading83  res-w-100 text-uppercase text-505050 radius8 transition d-inline-flex align-items-center justify-content-center me-lg-3">
 										CONTINUE TO HOMEPAGE

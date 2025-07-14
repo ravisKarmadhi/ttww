@@ -27,7 +27,7 @@ if (wc_get_page_id('shop') > 0) : ?>
 	<div class="d-block">
 
 		<div class="return-to-shop">
-			<a class="btnA text-decoration-none aptly-bold font22 leading26 text-505050 bg-88B3DA-btn d-inline-flex justify-content-center px-4 w-100 align-items-center radius8 text-uppercase transition<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>" href="<?php echo esc_url(apply_filters('woocommerce_return_to_shop_redirect', wc_get_page_permalink('shop'))); ?>">
+			<a class="btnA bg-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition<?php echo esc_attr(wc_wp_theme_get_element_class_name('button') ? ' ' . wc_wp_theme_get_element_class_name('button') : ''); ?>" href="<?php echo esc_url(apply_filters('woocommerce_return_to_shop_redirect', wc_get_page_permalink('shop'))); ?>">
 				<?php
 				/**
 				 * Filter "Return To Shop" text.
@@ -37,7 +37,7 @@ if (wc_get_page_id('shop') > 0) : ?>
 				 */
 				echo esc_html(apply_filters('woocommerce_return_to_shop_text', __('Return to shop', 'woocommerce')));
 				?>
-		</a>
+			</a>
 		</div>
 	</div>
 <?php endif; ?>

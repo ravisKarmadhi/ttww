@@ -8,7 +8,7 @@ $schedule = get_field('schedule', 'option');
 
 ?>
 
-<header class="header position-fixed top-0 transition w-100">
+<!-- <header class="header position-fixed top-0 transition w-100">
     <div class="header-top bg-white py-2">
         <div class="container">
             <div class="row justify-content-between">
@@ -146,4 +146,4 @@ $schedule = get_field('schedule', 'option');
             </div>
         </div>
     </div>
-</header>
+</header> -->

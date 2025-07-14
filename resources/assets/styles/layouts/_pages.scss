@@ -13,6 +13,11 @@
 .arrow-icon {
     width: 45px;
     height: 45px;
+
+    @include media-breakpoint-down(lg) {
+        width: 35px;
+        height: 35px;
+    }
 }
 
 .get-in-touch-section {
@@ -81,6 +86,50 @@
         .social-img {
             img {
                 height: 18px;
+            }
+        }
+    }
+}
+
+.quantity {
+    max-width: 84px;
+
+    .input-text {
+        width: 100% !important;
+        border-radius: 27px;
+        border: 0;
+        background-color: rgba($color: $color-858AB5 , $alpha: 0.2);
+        font-family: "dmsans-medium";
+        font-size: $font16;
+        line-height: $leading26;
+        letter-spacing: $space-0_48;
+        color: $color-191919;
+
+        &::placeholder {
+            font-family: "dmsans-medium";
+            font-size: $font16;
+            line-height: $leading26;
+            letter-spacing: $space-0_48;
+            color: $color-191919;
+        }
+    }
+}
+
+
+.shop-accordion {
+    .accordion-item {
+        border-top: 1px solid #CCCCCC;
+
+        .closet-header {
+            .accordion-arrow {
+                height: 11px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            &.active {
+                .accordion-arrow {
+                    transform: rotate(180deg);
+                }
             }
         }
     }

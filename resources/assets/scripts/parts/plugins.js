@@ -5,10 +5,12 @@ export class Plugins {
   init() {
     this.UpcomingSlider();
     this.LeftRightSlider();
+    this.RelatedProductSlider();
     this.BrandLogoSlider();
     this.FullImageSlider();
     this.HistorySlider();
     this.FooterSlider();
+    this.ProductsSlider();
   }
 
   UpcomingSlider() {
@@ -62,6 +64,57 @@ export class Plugins {
       });
     });
   }
+  RelatedProductSlider() {
+    $(document).ready(function () {
+      $(".related-product-slider").slick({
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        arrows: false,
+        fade: false,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
+      });
+    });
+  }
+  ProductsSlider() {
+    $(document).ready(function () {
+      $(".woocommerce-product-gallery__wrapper").slick({
+        dots: false,
+        infinite: false,
+        speed: 300,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: true,
+        fade: true,
+        prevArrow: '.product-images .prev-arrow',
+        nextArrow: '.product-images .next-arrow',
+      });
+    });
+  }
   BrandLogoSlider() {
     $(document).ready(function () {
       $(".brand-logo-slider").slick({
@@ -76,7 +129,7 @@ export class Plugins {
     });
   }
   HistorySlider() {
-    $(document).ready(function () { 
+    $(document).ready(function () {
       $(".history-slider").slick({
         dots: false,
         infinite: false,
@@ -91,7 +144,7 @@ export class Plugins {
     });
   }
   FullImageSlider() {
-    $(document).ready(function () { 
+    $(document).ready(function () {
       $(".full-image-slider").slick({
         dots: false,
         infinite: false,

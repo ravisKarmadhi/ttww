@@ -24,7 +24,7 @@ do_action( 'woocommerce_before_account_navigation' );
 
 <div class="col-lg-4">
 	<nav class="woocommerce-MyAccount-navigation w-100" aria-label="<?php esc_html_e( 'Account pages', 'woocommerce' ); ?>">
-		<div class="col-lg-10 bg-EAF2F9 dpt-50 dpb-50 px-4 px-lg-5 radius20">
+		<div class="col-lg-10 dpt-50 dpb-50 px-4 px-lg-5 radius20">
 			<ul class="list-none ps-0 mb-0" >
 				<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
 					<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?> dmb-15">

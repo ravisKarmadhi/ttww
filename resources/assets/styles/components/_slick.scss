@@ -4,6 +4,11 @@
         height: 45px;
         background-color: $color-1B2995;
 
+        @include media-breakpoint-down(lg) {
+            width: 35px;
+            height: 35px;
+        }
+
         img {
             height: 16px;
             width: 13px;
@@ -37,10 +42,15 @@
     }
 }
 
+.related-product-slider,
 .upcoming-slider {
     .slick-list {
         margin-left: -8px;
         margin-right: -8px;
+
+        @include media-breakpoint-down(lg) {
+            overflow: visible;
+        }
 
         .slick-slide {
             padding-left: 8px;
@@ -64,6 +74,10 @@
 
 .left-right-slider {
     height: 633px;
+
+    @include media-breakpoint-down(lg) {
+        height: 345px;
+    }
 }
 
 .full-image-slider {
@@ -94,6 +108,22 @@
         .slick-slide {
             padding-left: 12px;
             padding-right: 12px;
+        }
+    }
+}
+
+.product-images {
+    .woocommerce-product-gallery__wrapper {
+        div {
+            height: 100%;
+        }
+    }
+
+    .slick-arrows {
+        .next-arrow {
+            img {
+                transform: rotate(180deg);
+            }
         }
     }
 }

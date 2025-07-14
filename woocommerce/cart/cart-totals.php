@@ -37,8 +37,8 @@ defined('ABSPATH') || exit;
 					$method = $available_methods[$chosen_method];
 			?>
 					<div class="shipping d-flex justify-content-between dmb-15">
-						<div class="bradon-regular font17 leading26 text-505050"><?php esc_html_e('Delivery', 'woocommerce'); ?></div>
-						<div class="bradon-regular font17 leading26 text-505050" data-title="<?php esc_attr_e('Delivery', 'woocommerce'); ?>">
+						<div class="sans-normal font17 leading26 text-505050"><?php esc_html_e('Delivery', 'woocommerce'); ?></div>
+						<div class="sans-normal font17 leading26 text-505050" data-title="<?php esc_attr_e('Delivery', 'woocommerce'); ?>">
 							<?php echo wc_price($method->cost); ?>
 						</div>
 					</div>
@@ -50,8 +50,8 @@ defined('ABSPATH') || exit;
 
 		
 		<div class="cart-subtotal d-flex justify-content-between dmb-20">
-			<div class="bradon-regular font17 leading26 text-505050"><?php esc_html_e('Subtotal', 'woocommerce'); ?></div>
-			<div class="bradon-regular font17 leading26 text-505050" data-title="<?php esc_attr_e('Subtotal', 'woocommerce'); ?>"><?php wc_cart_totals_subtotal_html(); ?></div>
+			<div class="sans-normal font17 leading26 text-505050"><?php esc_html_e('Subtotal', 'woocommerce'); ?></div>
+			<div class="sans-normal font17 leading26 text-505050" data-title="<?php esc_attr_e('Subtotal', 'woocommerce'); ?>"><?php wc_cart_totals_subtotal_html(); ?></div>
 		</div>
 
 
@@ -86,8 +86,8 @@ defined('ABSPATH') || exit;
 		<?php do_action('woocommerce_cart_totals_before_order_total'); ?>
 
 		<div class="order-total d-flex justify-content-between dmb-35">
-			<div class="bradon-regular font21 leading28 text-2F2F2F"><?php esc_html_e('Total', 'woocommerce'); ?></div>
-			<div class="bradon-regular font21 leading28 text-2F2F2F" data-title="<?php esc_attr_e('Total', 'woocommerce'); ?>"><?php wc_cart_totals_order_total_html(); ?></div>
+			<div class="sans-normal font21 leading28 text-2F2F2F"><?php esc_html_e('Total', 'woocommerce'); ?></div>
+			<div class="sans-normal font21 leading28 text-2F2F2F" data-title="<?php esc_attr_e('Total', 'woocommerce'); ?>"><?php wc_cart_totals_order_total_html(); ?></div>
 		</div>
 
 		<?php do_action('woocommerce_cart_totals_after_order_total'); ?>

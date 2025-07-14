@@ -1,26 +1,41 @@
 .hero-section {
-  background: linear-gradient(to bottom, #1B2995 calc(100% - 350px), white 350px);
+    background: linear-gradient(to bottom, #1B2995 calc(100% - 350px), white 350px);
 
+    @include media-breakpoint-down(lg) {
+        background: linear-gradient(to bottom, #1B2995 calc(100% - 150px), white 150px);
+    }
 
     .hero-img {
         height: 694px;
+
+        @include media-breakpoint-down(lg) {
+            height: 275px;
+        }
     }
 
     .pattern-img {
         // z-index: -1;
         height: 647px;
         right: -8%;
-        transform: translateX(35px);
+        transform: translate(35px, 0px);
+
+        @include media-breakpoint-down(lg) {
+            height: 262px;
+            transform: translate(35px, 80%);
+        }
 
         @media screen and (max-width:1440px) {
             right: -10%;
-            transform: translateX(35px);
         }
     }
 }
 
 .sub-hero-section {
     height: 678px;
+
+    @include media-breakpoint-down(lg) {
+        height: 420px;
+    }
 }
 
 .location-img,

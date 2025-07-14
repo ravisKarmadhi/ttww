@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single Product title
  *
@@ -15,8 +16,8 @@
  * @version    1.6.4
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
-the_title( '<div class="col-lg-10"> <h1 class="product_title entry-title aptly-bold font77 leading85 res-font40 res-leading50 text-88B3DA text-uppercase dmb-10">', '</h1></div>' );
+the_title('<h1 class="product_title entry-title garamond font36 leading55 space-0_72 res-font30 res-leading36 res-space-0_6 text-1B2995 tmb-5 dmb-10">', '</h1>');

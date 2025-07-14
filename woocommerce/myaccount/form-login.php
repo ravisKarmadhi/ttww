@@ -33,7 +33,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 <div class="col-lg-6 h-100 mx-lg-auto">
 	<div class="w-100 h-100 d-flex align-items-center justify-content-center">
 
-	<form class="woocommerce-form woocommerce-form-login login w-100 m-0 border-0 bg-EAF2F9" method="post" novalidate>
+	<form class="woocommerce-form woocommerce-form-login login w-100 m-0 border-0" method="post" novalidate>
 
 		<h2 class="aptly-bold font77 leading83 text-88B3DA text-uppercase text-center dmb-30"><?php esc_html_e( 'Login', 'woocommerce' ); ?></h2>
 		
@@ -59,7 +59,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 				<button type="submit" class="woocommerce-button btnA bg-88B3DA-btn aptly-bold font22 leading27 radius8 text-505050 d-inline-flex justify-content-center align-items-center text-uppercase text-decoration-none transition woocommerce-form-login__submit me-0<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>"><?php esc_html_e( 'Log in', 'woocommerce' ); ?></button>
 			</p>
 			<p class="woocommerce-LostPassword text-center lost_password dmt-10">
-				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" class="bradon-regular font17 leading26 text-2F2F2F"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>
+				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>" class="sans-normal font17 leading26 text-2F2F2F"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>
 			</p>
 			
 			<?php do_action( 'woocommerce_login_form_end' ); ?>

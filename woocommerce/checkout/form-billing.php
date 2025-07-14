@@ -26,14 +26,14 @@ defined('ABSPATH') || exit;
 
 	<?php else : ?>
 
-		<div class="d-flex align-items-center justify-content-between dmb-30">
-			<div class="aptly-medium font32 leading37 text-505050 text-uppercase"><?php esc_html_e('Billing details', 'woocommerce'); ?></div>
+		<div class="d-flex align-items-center justify-content-between dmb-20">
+			<div class="garamond font36 leading38 text-1B2995 text-capitalize"><?php esc_html_e('Delivery Address', 'woocommerce'); ?></div>
 			<?php if (! is_user_logged_in()) : ?>
 				<div class="my-account-link">
-					<a href="/my-account/" class="bradon-regular font21 text-2F2F2F">Login</a>
+					<a href="/my-account/" class="sans-normal font21 text-2F2F2F">Login</a>
 				</div>
-				<?php endif; ?>
-			</div>
+			<?php endif; ?>
+		</div>
 
 
 	<?php endif; ?>
@@ -81,4 +81,3 @@ defined('ABSPATH') || exit;
 		<?php do_action('woocommerce_after_checkout_registration_form', $checkout); ?>
 	</div>
 <?php endif; ?>
-

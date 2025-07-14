@@ -1,0 +1,28 @@
+.single-product-custom-layout {
+    .woocommerce-product-gallery {
+        .woocommerce-product-gallery__wrapper {
+            height: 615px;
+
+            @include media-breakpoint-down(lg) {
+                height: 300px;
+            }
+        }
+    }
+
+    .product-info {
+        .price {
+            color: $color-858AB5 !important;
+            font-size: 24px !important;
+        }
+
+        .add-to-cart-wrapper {
+            form {
+                margin-bottom: 45px !important;
+            }
+
+            #wc-stripe-express-checkout-element {
+                display: none !important;
+            }
+        }
+    }
+}

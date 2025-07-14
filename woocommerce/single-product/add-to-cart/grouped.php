@@ -117,7 +117,7 @@ do_action( 'woocommerce_before_add_to_cart_form' ); ?>
 
 		<?php do_action( 'woocommerce_before_add_to_cart_button' ); ?>
 
-		<button type="submit" class="single_add_to_cart_button btnA text-decoration-none aptly-bold font22 leading26 text-505050 bg-FDE5E9-btn w-100 text-nowrap d-inline-flex justify-content-center align-items-center radius8 transition alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
+		<button type="submit" class="single_add_to_cart_button btnA bg-1B2995-btn text-decoration-none sans-medium font16 leading24 space-0_48 w-100 text-nowrap d-inline-flex justify-content-center align-items-center rounded-pill transition text-nowrap alt<?php echo esc_attr( wc_wp_theme_get_element_class_name( 'button' ) ? ' ' . wc_wp_theme_get_element_class_name( 'button' ) : '' ); ?>"><?php echo esc_html( $product->single_add_to_cart_text() ); ?></button>
 
 		<?php do_action( 'woocommerce_after_add_to_cart_button' ); ?>
 

@@ -23,13 +23,18 @@ if (! defined('ABSPATH')) {
 if ($related_products) : ?>
 
 	<section class="related products overflow-hidden">
-		<div class="container">
+		<div class="d-flex align-items-end justify-content-between tmb-25 dmb-35 px-p-p">
 			<?php
 			$heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
 			if ($heading) : ?>
-				<h2 class="aptly-bold font77 leading85 res-font40 res-leading50 text-88B3DA text-uppercase tmb-35 dmb-60"><?php echo esc_html($heading); ?></h2>
+				<h2 class="garamond font57 leading67 res-font30 res-leading38 text-1B2995"><?php echo esc_html($heading); ?></h2>
 			<?php endif; ?>
-			<div class="col-8 col-md-12">
+			<div class="d-none d-lg-flex">
+				<a href="" class="btnA bg-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition">Back to all</a>
+			</div>
+		</div>
+		<div class="ps-p-p">
+			<div class="col-10 col-md-12 ">
 				<div class="related-product-slider">
 					<?php foreach ($related_products as $related_product) :
 						$post_object = get_post($related_product->get_id());
@@ -37,6 +42,9 @@ if ($related_products) : ?>
 						wc_get_template_part('content', 'product');
 					endforeach; ?>
 				</div>
+			</div>
+			<div class="d-flex d-lg-none tmt-55">
+				<a href="" class="btnA bg-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition">Back to all</a>
 			</div>
 		</div>
 	</section>

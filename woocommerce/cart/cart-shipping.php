@@ -54,7 +54,7 @@ $calculator_text          = '';
 	$label = str_replace( ':', '', $label );
 
 	printf(
-		'<label class="d-flex justify-content-between bradon-regular font17 leading26 text-505050 dmb-15 dmt-15" for="shipping_method_%1$s_%2$s">%3$s</label>',
+		'<label class="d-flex justify-content-between sans-normal font16 leading26 text-707070 dmb-15" for="shipping_method_%1$s_%2$s">%3$s</label>',
 		$index,
 		esc_attr( sanitize_title( $method->id ) ),
 		$label

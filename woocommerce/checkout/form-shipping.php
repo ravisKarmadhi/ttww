@@ -22,12 +22,13 @@ defined('ABSPATH') || exit;
 <div class="woocommerce-shipping-fields">
 	<?php if (true === WC()->cart->needs_shipping_address()) : ?>
 
-			<div class="dmb-10 tmb-" id="ship-to-different-address">
-				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox-container checkbox d-flex align-items-center cursor-pointer">
-					<input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox d-none" <?php checked(apply_filters('woocommerce_ship_to_different_address_checked', 'shipping' === get_option('woocommerce_ship_to_destination') ? 1 : 0), 1); ?> type="checkbox" name="ship_to_different_address" value="1" /> <div class="bradon-regular font17 leading26 text-505050"><?php esc_html_e('Deliver to a different address?', 'woocommerce'); ?></div>
-					<span class="checkmark position-relative cursor-pointer d-block ms-1" type="checkbox" name="" id="">
-				</label>
-			</div>
+		<div class="dmt-30 tmt-20" id="ship-to-different-address">
+			<label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox-container checkbox d-flex align-items-center cursor-pointer">
+				<input id="ship-to-different-address-checkbox" class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox d-none" <?php checked(apply_filters('woocommerce_ship_to_different_address_checked', 'shipping' === get_option('woocommerce_ship_to_destination') ? 1 : 0), 1); ?> type="checkbox" name="ship_to_different_address" value="1" />
+				<div class="sans-normal font16 leading24 text-191919"><?php esc_html_e('Is your billing address the same as the delivery', 'woocommerce'); ?></div>
+				<span class="checkmark position-relative cursor-pointer d-block ms-1" type="checkbox" name="" id="">
+			</label>
+		</div>
 
 		<div class="shipping_address">
 
@@ -56,7 +57,7 @@ defined('ABSPATH') || exit;
 
 		<?php if (! WC()->cart->needs_shipping() || wc_ship_to_billing_address_only()) : ?>
 
-			<div class="bradon-regular font17 leading26 text-505050"><?php esc_html_e('Additional information', 'woocommerce'); ?></div>
+			<div class="sans-normal font17 leading26 text-505050"><?php esc_html_e('Additional information', 'woocommerce'); ?></div>
 
 		<?php endif; ?>
 
@@ -75,22 +76,23 @@ defined('ABSPATH') || exit;
 <?php
 $selected = WC()->session->get('custom_delivery_option');
 ?>
-<div class="delivery-method-options dmb-25">
-	<label>
-		<input type="checkbox" name="delivery_method" value="home" checked> Home
+<div class="delivery-method-options dmt-60">
+	<label class="form-checkbox sans-normal font16 leading24 text-191919">
+		<input type="checkbox" name="delivery_method" value="home" checked>
+		<span class="checkmark position-absolute top-50 start-0"></span>
+		Home
 		<?php
-			WC()->cart->calculate_shipping();
-			$delivery_label = 'Delivery';
-			$delivery_cost = 0;
-			foreach (WC()->shipping->get_packages()[0]['rates'] as $rate) {
-				if (stripos($rate->get_label(), $delivery_label) !== false) {
-					$delivery_cost = $rate->get_cost();
-					break;
-				}
+		WC()->cart->calculate_shipping();
+		$delivery_label = 'Delivery';
+		$delivery_cost = 0;
+		foreach (WC()->shipping->get_packages()[0]['rates'] as $rate) {
+			if (stripos($rate->get_label(), $delivery_label) !== false) {
+				$delivery_cost = $rate->get_cost();
+				break;
 			}
-			echo $delivery_label . ' ' . wc_price($delivery_cost) . '';
-	?>
+		}
+		echo $delivery_label . ' ' . wc_price($delivery_cost) . '';
+		?>
 	</label>
-	
-</div>
 
+</div>

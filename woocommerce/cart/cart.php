@@ -13,6 +13,7 @@
 defined('ABSPATH') || exit;
 
 do_action('woocommerce_before_cart'); ?>
+
 <div class="bg-white">
 	<div class="cart-section">
 		<div class="container">
@@ -24,13 +25,13 @@ do_action('woocommerce_before_cart'); ?>
 							<?php do_action('woocommerce_before_cart_table'); ?>
 
 							<div class="shop_table shop_table_responsive cart woocommerce-cart-form__contents row" cellspacing="0">
-								<div class="col-12 aptly-medium font32 leading37 text-505050 text-uppercase dpb-15 tpb-25 border-bottom boder-BCBCBC">
+								<div class="col-12 garamond font32 leading38 text-1B2995 text-capitalize dpb-15 tpb-25 border-bottom boder-BCBCBC">
 									Your Basket [<span class="cart-count"><?php echo WC()->cart->cart_contents_count; ?></span>]
 								</div>
 								<div class="d-flex align-items-center dpt-20">
 									<div class="product-name col-8"><?php esc_html_e('', 'woocommerce'); ?></div>
-									<div class="product-quantity col-2 text-center"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
-									<div class="product-subtotal col-2 text-center"><?php esc_html_e('Price', 'woocommerce'); ?></div>
+									<div class="product-quantity col-2 text-center sans-normal font16 leading20 text-191919"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
+									<div class="product-subtotal col-2 text-center sans-normal font16 leading20 text-191919"><?php esc_html_e('Price', 'woocommerce'); ?></div>
 								</div>
 
 								<?php do_action('woocommerce_before_cart_contents'); ?>
@@ -55,7 +56,7 @@ do_action('woocommerce_before_cart'); ?>
 												if (!$product_permalink) {
 													echo wp_kses_post($product_name . '&nbsp;');
 												} else {
-													echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a class="bradon-regular font17 leading26 res-font16 text-505050 text-decoration-none" href="%s">%s</a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
+													echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a class="sans-normal font20 leading26 res-font16 text-191919 text-decoration-none" href="%s">%s</a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
 												}
 
 												do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
@@ -94,12 +95,12 @@ do_action('woocommerce_before_cart'); ?>
 
 								<?php do_action('woocommerce_cart_contents'); ?>
 
-								<div class="d-flex justify-content-end border-top border-bottom border-BCBCBC-46 dpt-5 dpb-5">
-									<a class="bradon-regular font21 res-font16 res-leading30 text-2F2F2F text-capitalize text-decoration-none ms-3" href="<?php echo get_home_url(); ?>/shop">
+								<div class="d-flex justify-content-end border-top border-bottom border-BCBCBC dpt-5 dpb-5">
+									<a class="sans-normal font20 res-font16 res-leading30 text-191919 text-capitalize text-decoration-none ms-3" href="<?php echo get_home_url(); ?>/shop">
 										Continue Shopping
 									</a>
 									<button type="submit" id="delayed-submit"
-										class="bradon-regular font21  res-font16 res-leading30 text-2F2F2F text-decoration-none text-capitalize border-0 bg-transparent ms-3"
+										class="sans-normal font20 res-font16 res-leading30 text-191919 text-decoration-none text-capitalize border-0 bg-transparent ms-3"
 										name="update_cart"
 										value="<?php esc_attr_e('Update basket', 'woocommerce'); ?>">
 										<?php esc_html_e('Update basket', 'woocommerce'); ?>
@@ -136,7 +137,7 @@ do_action('woocommerce_before_cart'); ?>
 										<div class="position-relative">
 											<input type="text" name="coupon_code" class="coupon-input radius8 w-100 px-3" id="coupon_code" value="" placeholder="<?php esc_attr_e('Enter promo code', 'woocommerce'); ?>" />
 											<div class="position-absolute top-center end-0">
-												<button type="submit" class="btnA text-decoration-none bg-FDE5E9-btn aptly-bold font22 leading26 text-505050 d-inline-flex justify-content-center px-4 align-items-center radius8 transition me-2" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">
+												<button type="submit" class="btnA bg-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition me-2" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">
 													<?php esc_html_e('Apply coupon', 'woocommerce'); ?>
 												</button>
 											</div>
@@ -152,7 +153,7 @@ do_action('woocommerce_before_cart'); ?>
 				<?php do_action('woocommerce_before_cart_collaterals'); ?>
 
 				<div class="col-lg-5">
-					<div class="cart-collaterals bg-EAF2F9 dpt-65 px-4 px-lg-5 dpb-40 radius40 res-radius20">
+					<div class="cart-collaterals dpt-65 px-4 px-lg-5 dpb-40 radius40 res-radius20">
 						<?php
 						/**
 						 * Cart collaterals hook.

@@ -13,7 +13,9 @@
 defined('ABSPATH') || exit;
 ?>
 <main class="woocommerce-shop">
-  <?php woocommerce_content(); ?>
+	<div class="container">
+		<?php woocommerce_content(); ?>
+	</div>
 </main>
 <?php
 $shop_page_content = get_field("shop_page_content", "option");
@@ -30,7 +32,7 @@ $shop_page_content_descriptions = $shop_page_content['descriptions'];
 			<?php echo $shop_page_content_heading; ?>
 		</div>
 		<div
-			class="font21 leading28 res-font16 res-leading26 bradon-regular col-lg-6 px-2 mx-auto mt-lg-3 tmt-15 text-center text-2F2F2F" data-wow-duration="1.5s"><?php echo $shop_page_content_descriptions; ?></div>
+			class="font21 leading28 res-font16 res-leading26 sans-normal col-lg-6 px-2 mx-auto mt-lg-3 tmt-15 text-center text-2F2F2F" data-wow-duration="1.5s"><?php echo $shop_page_content_descriptions; ?></div>
 		<div class="tpt-100 dpt-80"></div>
 
 		<?php if (woocommerce_product_loop()) : ?>

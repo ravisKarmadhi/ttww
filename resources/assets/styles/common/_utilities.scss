@@ -38,6 +38,10 @@
     color: $color-FDFEFF;
 }
 
+.text-707070 {
+    color: $color-707070;
+}
+
 .font12 {
     font-size: $font12;
 }
@@ -206,6 +210,10 @@
     opacity: $opacity36;
 }
 
+.border-BCBCBC {
+    border-color: #BCBCBC;
+}
+
 @include media-breakpoint-down(lg) {
     .res-font12 {
         font-size: $font12;
@@ -313,6 +321,10 @@
 
     .res-space-1_78 {
         letter-spacing: $space-1_78;
+    }
+
+    .res-space-0_6 {
+        letter-spacing: $res-space-0_6;
     }
 
     .res-leading20 {

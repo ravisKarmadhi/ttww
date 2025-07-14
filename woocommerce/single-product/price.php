@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Single Product Price
  *
@@ -15,11 +16,11 @@
  * @version 3.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
 global $product;
 
 ?>
-<p class="<?php echo esc_attr( apply_filters( 'woocommerce_product_price_class', 'price' ) ); ?> bradon-regular font21 leading30 text-505050 dmb-30"><?php echo $product->get_price_html(); ?></p>
+<p class="<?php echo esc_attr(apply_filters('woocommerce_product_price_class', 'price')); ?> sans-medium font24 leading36 space-0_72 res-font20 res-leading26 res-space-0_6  text-858AB5 dmb-15"><?php echo $product->get_price_html(); ?></p>
