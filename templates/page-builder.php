@@ -90,37 +90,81 @@
             $image = get_sub_field("image");
             $heading = get_sub_field("heading");
             $content = get_sub_field("content");
-            $link = get_sub_field("link");
-            $button_2 = get_sub_field("button_2");
+
+            $buttons = get_sub_field("buttons");
             ?>
-
-            <section class="left-right-section position-relative bg-white z-3">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-7 pe-2">
-                            <div class="left-right-slider-section position-relative">
-                                <div class="left-right-slider">
-                                    <div class="left-right-img position-relative z-2 radius10 overflow-hidden">
-                                        <img src="<?php echo $image['sizes']['fullscreen']; ?>" alt=""
-                                            class="w-100 h-100 object-cover">
+            <?php if ($image_position == 'left'): ?>
+                <section class="left-right-section position-relative bg-white z-3">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-7 pe-2">
+                                <div class="left-right-slider-section position-relative">
+                                    <div class="left-right-slider">
+                                        <div class="left-right-img position-relative z-2 radius10 overflow-hidden">
+                                            <img src="<?php echo $image['sizes']['fullscreen']; ?>" alt=""
+                                                class="w-100 h-100 object-cover">
+                                        </div>
                                     </div>
-                                </div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-5">
-                            <div class="col-10 pe-3 ms-auto">
-                                <div class="garamond font57 leading67 text-1B2995 dmb-25"><?php echo $heading; ?></div>
-                                <div class="sans-normal font18 leading24 text-191919 dmb-30"><?php echo $content; ?></div>
-                                <a href="<?php echo $link['url']; ?>"
-                                    class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition">
-                                    <?php echo $link['title']; ?>
-                                </a>
+                            <div class="col-5">
+                                <div class="col-10 pe-3 ms-auto">
+                                    <div class="garamond font57 leading67 text-1B2995 dmb-25"><?php echo $heading; ?></div>
+                                    <div class="sans-normal font18 leading24 text-191919 dmb-30"><?php echo $content; ?></div>
+                                    <?php foreach ($buttons as $links_item):
+                                        $link = $links_item['link'];
+                                        ?>
+                                        <?php if (!empty($link['url'])):
+                                            $target_2 = ($link['target'] == '_blank') ? "_blank" : ""; ?>
+                                            <a href="<?php echo $link['url']; ?>" target="<?php echo $target_2; ?>"
+                                                class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3">
+                                                <?php echo $link['title']; ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            <?php endif; ?>
+
+
+            <?php if ($image_position == 'right'): ?>
+                <section class="left-right-hero-section">
+                    <div class="container">
+                        <div class="row align-items-center">
+                            <div class="col-6">
+                                <div class="garamond font72 leading95 space-1_44 text-1B2995 dmb-15"><?php echo $heading; ?></div>
+                                <div class="col-8">
+                                    <div class="sans-normal font18 leading24 text-191919 dmb-30 pe-5">
+                                        <?php echo $content; ?>
+                                    </div>
+                                </div>
+                                <div>
+                                    <?php foreach ($buttons as $links_item):
+                                        $link = $links_item['link'];
+                                        ?>
+                                        <?php if (!empty($link['url'])):
+                                            $target_2 = ($link['target'] == '_blank') ? "_blank" : ""; ?>
+                                            <a href="<?php echo $link['url']; ?>" target="<?php echo $target_2; ?>"
+                                                class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3">
+                                                <?php echo $link['title']; ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                            <div class="col-6 ps-2">
+                                <div class="left-right-hero-img radius10 overflow-hidden">
+                                    <img src="<?php echo $image['sizes']['fullscreen']; ?>" alt="" class="w-100 h-100 object-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <?php endif; ?>
 
         <?php elseif (get_row_layout() == "events_cards"):
             $heading = get_sub_field("heading");
@@ -237,7 +281,7 @@
                                 <div class="two-cards">
                                     <?php if ($single_banner_item_link_slection == "link"): ?>
                                         <a href=" <?php echo $single_banner_item_links['url']; ?>"
-                                            class="two-card text-decoration-none d-inline-flex">
+                                            class="two-card text-decoration-none w-100">
                                             <div class="card-hover h-100 radius15 overflow-hidden position-relative">
                                                 <img src="<?php echo $single_banner_item_image['sizes']['medium']; ?>" alt=""
                                                     class="w-100 h-100 object-cover img">
@@ -259,7 +303,7 @@
                                     <?php if ($single_banner_item_link_slection == "modal"): ?>
                                         <a data-bs-toggle="offcanvas" href="#offcanvasExample-<?php echo $key; ?>" role="button"
                                             aria-controls="offcanvasExample-<?php echo $key; ?>"
-                                            class="two-card text-decoration-none d-inline-flex">
+                                            class="two-card text-decoration-none w-100">
                                             <div class="card-hover h-100 radius15 overflow-hidden position-relative">
                                                 <img src="<?php echo $single_banner_item_image['sizes']['medium']; ?>" alt=""
                                                     class="w-100 h-100 object-cover img">
@@ -357,16 +401,16 @@
                                     <?php echo $heading; ?>
                                 </div>
                                 <div>
-                                    <?php foreach($links as $links_item):
+                                    <?php foreach ($links as $links_item):
                                         $link = $links_item['link'];
                                         ?>
-                                    <?php if (!empty($link['url'])):
-                                        $target_2 = ($link['target'] == '_blank') ? "_blank" : ""; ?>
-                                        <a href="<?php echo $link['url']; ?>" target="<?php echo $target_2; ?>"
-                                            class="text-decoration-none btnA white-black-border-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition mx-2">
-                                        <?php echo $link['title']; ?>
-                                        </a>
-                                    <?php endif; ?>
+                                        <?php if (!empty($link['url'])):
+                                            $target_2 = ($link['target'] == '_blank') ? "_blank" : ""; ?>
+                                            <a href="<?php echo $link['url']; ?>" target="<?php echo $target_2; ?>"
+                                                class="text-decoration-none btnA white-black-border-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition mx-2">
+                                                <?php echo $link['title']; ?>
+                                            </a>
+                                        <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
@@ -375,7 +419,232 @@
                 </div>
             </section>
 
+        <?php elseif (get_row_layout() == "location_section"):
+            $heading = get_sub_field("heading");
+            $description = get_sub_field("description");
+            $button = get_sub_field("button");
+            $schedule = get_field('schedule', 'option');
+            $map_image = get_field('map_image', 'option');
 
+            ?>
+
+
+            <section id="locationSection" class="location-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-7 pe-2">
+                            <div class="location-img radius10 overflow-hidden">
+                                <img src="<?php echo $map_image; ?>" alt="">
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="col-10 pe-3 ms-auto">
+                                <div class="garamond font57 leading67 text-1B2995 dmb-25"><?php echo $heading; ?></div>
+                                <div class="sans-normal font18 leading24 text-191919 dmb-15"><?php echo $description; ?></div>
+                                <ul class="list-none ps-0 mb-0">
+                                    <?php foreach ($schedule as $schedule_item):
+                                        $schedule_item_day = $schedule_item['day'];
+                                        $schedule_item_time = $schedule_item['time'];
+
+                                        ?>
+                                        <li class="sans-normal font18 leading24 text-191919 dmb-10"><?php echo $schedule_item_day; ?>
+                                            <?php echo $schedule_item_time; ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+
+                                <?php if (!empty($button['url'])):
+                                    $target_2 = ($button['target'] == '_blank') ? "_blank" : ""; ?>
+
+                                    <a href="<?php echo $button['url']; ?>" target="<?php echo $target_2; ?>"
+                                        class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition dmt-20">
+                                        <?php echo $button['title']; ?>
+                                    </a>
+
+                                <?php endif; ?>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <?php elseif (get_row_layout() == "left_content_section"):
+
+            $heading = get_sub_field("heading");
+            $description = get_sub_field("description");
+            $button = get_sub_field("button");
+
+            ?>
+            <section class="left-content-section position-relative overflow-hidden">
+                <div class="container">
+                    <div class="col-8 pe-2">
+                        <div class="garamond font57 leading67 text-1B2995 dmb-25"><?php echo $heading; ?></div>
+                        <div class="sans-normal font18 leading24 text-191919">
+                            <?php echo $description; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="pattern-img position-absolute top-0">
+                    <img src="<?php echo get_template_directory_uri(); ?>/templates/images/pattern-2.svg" alt="" class="h-100">
+                </div>
+            </section>
+
+        <?php elseif (get_row_layout() == "get_in_touch"):
+
+            $heading = get_sub_field("heading");
+
+
+            ?>
+
+            <section id="getInTouchSection" class="get-in-touch-section position-relative">
+                <div class="container">
+                    <div class="col-8 mx-auto">
+                        <div class="garamond font57 leading67 text-1B2995 text-center dmb-20">
+                            <?php echo $heading; ?>
+                        </div>
+                        <?php echo do_shortcode('[contact-form-7 id="fc3afcf" title="Get in Touch"]'); ?>
+                    </div>
+                </div>
+                <div class="pattern-img position-absolute bottom-0">
+                    <img src="<?php echo get_template_directory_uri(); ?>/templates/images/pattern-3.svg" alt="" class="h-100">
+                </div>
+            </section>
+
+        <?php elseif (get_row_layout() == "left_right_hero_section"):
+
+            $right_image = get_sub_field("right_image");
+            $prefix = get_sub_field("prefix");
+            $heading = get_sub_field("heading");
+            $description = get_sub_field("description");
+            $buttons = get_sub_field("buttons");
+
+
+
+
+            ?>
+
+
+
+            <section class="left-right-hero-section">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-6">
+                            <div
+                                class="label bg-858AB5-label sans-medium font14 leading20 space-0_42 text-1B2995 radius8 d-inline-flex align-items-center justify-content-center px-3">
+                                <?php echo $prefix; ?>
+                            </div>
+                            <div class="garamond font72 leading95 space-1_44 text-1B2995 dmb-15"> <?php echo $heading; ?></div>
+                            <div class="col-8">
+                                <div class="sans-normal font18 leading24 text-191919 dmb-30 pe-5">
+                                    <?php echo $description; ?>
+                                </div>
+                            </div>
+                            <div>
+                                <?php foreach ($buttons as $button):
+                                    $button_single = $button['link'];
+                                    ?>
+                                    <?php if (!empty($button_single['url'])):
+                                        $target_2 = ($button_single['target'] == '_blank') ? "_blank" : ""; ?>
+                                        <a href="<?php echo $button_single['url']; ?>" target="<?php echo $target_2; ?>"
+                                            class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3">
+                                            <?php echo $button_single['title']; ?>
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <div class="col-6 ps-2">
+                            <div class="left-right-hero-img radius10 overflow-hidden">
+                                <img src="<?php echo $right_image['sizes']['medium']; ?>" alt="" class="w-100 h-100 object-cover">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        <?php elseif (get_row_layout() == "two_card_section"):
+            $two_card_group = get_sub_field("two_card_group");
+            ?>
+
+            <section class="two-card-section position-relative bg-white z-3">
+                <div class="container">
+                    <div class="row row8">
+                        <?php foreach ($two_card_group as $one_card_group):
+                            $one_card_group_image = $one_card_group["image"];
+                            $one_card_group_link = $one_card_group["link"];
+
+
+                            ?>
+                            <div class="col-6">
+                                <div class="two-cards">
+                                    <a href="<?php echo $one_card_group_link['url']; ?>" class="two-card text-decoration-none w-100">
+                                        <div class="card-hover h-100 radius15 overflow-hidden position-relative">
+                                            <img src="<?php echo $one_card_group_image['sizes']['fullscreen']; ?>" alt=""
+                                                class="w-100 h-100 object-cover img">
+                                            <div class="two-card-layer position-absolute bottom-0 start-0 w-100 z-2">
+                                            </div>
+                                            <div
+                                                class="two-card-content position-absolute bottom-0 start-0 w-100 d-flex align-items-center justify-content-between z-3 dmb-30">
+                                                <div class="garamond font38 leading55 text-white text-capitalize">
+                                                    <?php echo $one_card_group_link['title']; ?>
+                                                </div>
+                                                <div class="arrow-icon d-inline-flex">
+                                                    <img src="<?php echo get_template_directory_uri(); ?>/templates/images/polygon-arrow.svg"
+                                                        alt="" class="w-100 h-100 object-cover">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </section>
+
+
+        <?php elseif (get_row_layout() == "banner_section"):
+            $banner_image = get_sub_field("banner_image");
+            $heading = get_sub_field("heading");
+            $description = get_sub_field("description");
+            $buttons = get_sub_field("buttons");
+            ?>
+            <section class="banner-section">
+                <div class="container">
+                    <div class="banner-img radius15 overflow-hidden position-relative">
+                        <img src="<?php echo $banner_image['sizes']['medium']; ?>" alt="" class="w-100 h-100 object-cover">
+                        <div class="position-absolute top-0 start-0 h-100 w-100 px-5 d-flex align-items-center">
+                            <div class="col-5 pe-4">
+                                <div class="ps-5 pe-4 banner-content bg-white radius10 dpt-40 dpb-40">
+                                    <div class="garamond font42 leading55 text-1B2995 mb-2">
+                                        <?php echo $heading; ?>
+                                    </div>
+                                    <div class="sans-normal font16 leading24 text-191919 dmb-20">
+                                        <?php echo $description; ?>
+                                    </div>
+
+
+
+                                    <?php foreach ($buttons as $button):
+                                        $button_single = $button['link'];
+                                        ?>
+                                        <?php if (!empty($button_single['url'])):
+                                            $target_2 = ($button_single['target'] == '_blank') ? "_blank" : ""; ?>
+                                            <a href="<?php echo $button_single['url']; ?>" target="<?php echo $target_2; ?>"
+                                                class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3">
+                                                <?php echo $button_single['title']; ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
         <?php elseif (get_row_layout() == "spacing"):
             $desktop = get_sub_field("desktop");
