@@ -26,9 +26,33 @@
         left: -22%;
         transform: translate(35px, 48%);
 
+        @include media-breakpoint-down(lg) {
+            height: 262px;
+            left: -48% !important;
+            transform: translate(35px, 75%) !important;
+        }
+
         @media screen and (max-width:1440px) {
             left: -30%;
             transform: translate(35px, 48%);
+        }
+    }
+
+    .wpcf7 {
+        form {
+            .wpcf7-form-control-wrap {
+                width: 100% !important;
+
+                .wpcf7-form-control {
+                    width: 100% !important;
+                }
+
+                .wpcf7-textarea {
+                    @include media-breakpoint-down(lg) {
+                        width: 100%;
+                    }
+                }
+            }
         }
     }
 }

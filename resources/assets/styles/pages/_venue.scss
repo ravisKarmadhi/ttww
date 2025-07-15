@@ -9,5 +9,9 @@
 .location-section {
     .location-img {
         height: 633px;
+
+        @include media-breakpoint-down(lg) {
+            height: 300px;
+        }
     }
 }

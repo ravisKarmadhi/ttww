@@ -4,6 +4,12 @@
         right: -8%;
         transform: translate(35px, -25px);
 
+        @include media-breakpoint-down(lg) {
+            height: 262px;
+            top: auto !important;
+            bottom: -25%;
+        }
+
         @media screen and (max-width:1440px) {
             right: -10%;
             transform: translate(35px, -25px);
@@ -14,5 +20,9 @@
 .left-right-hero-section {
     .left-right-hero-img {
         height: 562px;
+
+        @include media-breakpoint-down(lg) {
+            height: 345px;
+        }
     }
 }

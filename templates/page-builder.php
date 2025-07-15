@@ -91,12 +91,12 @@
             $heading = get_sub_field("heading");
             $content = get_sub_field("content");
             $buttons = get_sub_field("buttons");
-            ?>
+        ?>
             <?php if ($image_position == 'left'): ?>
                 <section class="left-right-section position-relative bg-white z-3">
                     <div class="container">
                         <div class="row align-items-center">
-                            <div class="col-7 pe-2">
+                            <div class="col-lg-7 pe-lg-2 tmb-25">
                                 <div class="left-right-slider-section position-relative">
                                     <div class="left-right-slider">
                                         <div class="left-right-img position-relative z-2 radius10 overflow-hidden">
@@ -104,16 +104,15 @@
                                                 class="w-100 h-100 object-cover">
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-                            <div class="col-5">
-                                <div class="col-10 pe-3 ms-auto">
-                                    <div class="garamond font57 leading67 text-1B2995 dmb-25"><?php echo $heading; ?></div>
-                                    <div class="sans-normal font18 leading24 text-191919 dmb-30"><?php echo $content; ?></div>
+                            <div class="col-lg-5">
+                                <div class="col-lg-10 pe-lg-3 ms-auto">
+                                    <div class="garamond font57 leading67 res-font30 res-leading38 text-1B2995 tmb-15 dmb-25"><?php echo $heading; ?></div>
+                                    <div class="sans-normal font18 leading24 res-font16 text-191919 dmb-30 pe-3 pe-lg-0"><?php echo $content; ?></div>
                                     <?php foreach ($buttons as $links_item):
                                         $link = $links_item['link'];
-                                        ?>
+                                    ?>
                                         <?php if (!empty($link['url'])):
                                             $target_2 = ($link['target'] == '_blank') ? "_blank" : ""; ?>
                                             <a href="<?php echo $link['url']; ?>" target="<?php echo $target_2; ?>"
@@ -133,29 +132,29 @@
             <?php if ($image_position == 'right'): ?>
                 <section class="left-right-hero-section">
                     <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-6">
-                                <div class="garamond font72 leading95 space-1_44 text-1B2995 dmb-15"><?php echo $heading; ?></div>
-                                <div class="col-8">
-                                    <div class="sans-normal font18 leading24 text-191919 dmb-30 pe-5">
+                        <div class="row flex-lg-row flex-column flex-column-reverse align-items-center">
+                            <div class="col-lg-6">
+                                <div class="garamond font72 leading95 space-1_44 res-font30 res-leading36 res-space-0_6 text-1B2995 dmb-15"><?php echo $heading; ?></div>
+                                <div class="col-lg-8">
+                                    <div class="sans-normal font18 leading24 res-font16 text-191919 tmb-35 dmb-30 pe-3 pe-lg-5">
                                         <?php echo $content; ?>
                                     </div>
                                 </div>
                                 <div>
                                     <?php foreach ($buttons as $links_item):
                                         $link = $links_item['link'];
-                                        ?>
+                                    ?>
                                         <?php if (!empty($link['url'])):
                                             $target_2 = ($link['target'] == '_blank') ? "_blank" : ""; ?>
                                             <a href="<?php echo $link['url']; ?>" target="<?php echo $target_2; ?>"
-                                                class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3">
+                                                class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-lg-3 tmb-10">
                                                 <?php echo $link['title']; ?>
                                             </a>
                                         <?php endif; ?>
                                     <?php endforeach; ?>
                                 </div>
                             </div>
-                            <div class="col-6 ps-2">
+                            <div class="col-lg-6 ps-lg-2 tmb-25">
                                 <div class="left-right-hero-img radius10 overflow-hidden">
                                     <img src="<?php echo $image['sizes']['fullscreen']; ?>" alt="" class="w-100 h-100 object-cover">
                                 </div>
@@ -191,7 +190,6 @@
                         </div>
                     </div>
                     <div class="col-11 col-lg-12 upcoming-slider">
-
                         <?php
 
                         $events = tribe_get_events([
@@ -264,15 +262,11 @@
             </section>
 
 
-
         <?php elseif (get_row_layout() == "banners"):
             $single_banner = get_sub_field("single_banner");
-
-
         ?>
-
             <!-- two-card-section -->
-            <section class="two-card-section position-relative bg-white z-3">
+            <section class="banners-card-section position-relative bg-white z-3">
                 <div class="container">
                     <div class="row row8">
                         <?php foreach ($single_banner as $key => $single_banner_item):
@@ -286,7 +280,7 @@
                                 <div class="two-cards tmb-15">
                                     <?php if ($single_banner_item_link_slection == "link"): ?>
                                         <a href=" <?php echo $single_banner_item_links['url']; ?>"
-                                            class="two-card text-decoration-none w-100">
+                                            class="two-card text-decoration-none w-100 h-100 d-inline-flex">
                                             <div class="card-hover h-100 radius15 overflow-hidden position-relative">
                                                 <img src="<?php echo $single_banner_item_image['sizes']['medium']; ?>" alt=""
                                                     class="w-100 h-100 object-cover img">
@@ -308,7 +302,7 @@
                                     <?php if ($single_banner_item_link_slection == "modal"): ?>
                                         <a data-bs-toggle="offcanvas" href="#offcanvasExample-<?php echo $key; ?>" role="button"
                                             aria-controls="offcanvasExample-<?php echo $key; ?>"
-                                            class="two-card text-decoration-none w-100">
+                                            class="two-card text-decoration-none w-100 h-100 d-inline-flex">
                                             <div class="card-hover h-100 radius15 overflow-hidden position-relative">
                                                 <img src="<?php echo $single_banner_item_image['sizes']['medium']; ?>" alt=""
                                                     class="w-100 h-100 object-cover img">
@@ -351,18 +345,18 @@
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample-<?php echo $key; ?>"
                     aria-labelledby="offcanvasExampleLabel">
                     <div class="offcanvas-body">
-                        <button type="button" class="close-btn bg-transparent border-0 p-0 d-flex justify-content-end w-100"
+                        <button type="button" class="close-btn bg-transparent border-0 p-0 d-flex justify-content-end w-100 tmb-35"
                             data-bs-dismiss="offcanvas" aria-label="Close">
                             <img src="<?php echo get_template_directory_uri(); ?>/templates/icon/modal-close.svg" alt="">
                         </button>
-                        <div class="garamond font42 leading55 text-1B2995 dmb-25">
+                        <div class="garamond font42 leading55 res-font30 res-leading38 text-1B2995 tmb-30 dmb-25">
                             <?php echo $single_banner_item_heading; ?>
                         </div>
-                        <div class="offcanvas-img w-100 radius15 overflow-hidden dmb-55">
+                        <div class="offcanvas-img w-100 radius15 overflow-hidden tmb-25 dmb-55">
                             <img src="<?php echo $single_banner_item_image['sizes']['fullscreen']; ?>" alt=""
                                 class="w-100 h-100 object-cover">
                         </div>
-                        <div class="sans-normal font18 leading24 text-191919 dmb-25">
+                        <div class="sans-normal font18 leading24 res-font16 text-191919 tmb-35 dmb-25">
                             <?php echo $single_banner_item_modal_content_group_description; ?>
                         </div>
                         <a href="<?php echo $single_banner_item_modal_content_group_button['url']; ?>"
@@ -405,14 +399,14 @@
                                 <div class="garamond font89 leading95 res-font35 res-leading38 res-space-0_72 space-1_78 text-white text-center tmb-20 dmb-15">
                                     <?php echo $heading; ?>
                                 </div>
-                                <div>
+                                <div class="d-flex flex-lg-row flex-column align-items-center">
                                     <?php foreach ($links as $links_item):
                                         $link = $links_item['link'];
-                                        ?>
+                                    ?>
                                         <?php if (!empty($link['url'])):
                                             $target_2 = ($link['target'] == '_blank') ? "_blank" : ""; ?>
                                             <a href="<?php echo $link['url']; ?>" target="<?php echo $target_2; ?>"
-                                                class="text-decoration-none btnA white-black-border-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition mx-2">
+                                                class="text-decoration-none btnA white-black-border-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition mx-2 tmb-10">
                                                 <?php echo $link['title']; ?>
                                             </a>
                                         <?php endif; ?>
@@ -431,28 +425,27 @@
             $schedule = get_field('schedule', 'option');
             $map_image = get_field('map_image', 'option');
 
-            ?>
+        ?>
 
 
             <section id="locationSection" class="location-section">
                 <div class="container">
                     <div class="row align-items-center">
-                        <div class="col-7 pe-2">
+                        <div class="col-lg-7 pe-lg-2 tmb-25">
                             <div class="location-img radius10 overflow-hidden">
-                                <img src="<?php echo $map_image; ?>" alt="">
+                                <img src="<?php echo $map_image; ?>" alt="" class="w-100 h-100 object-cover">
                             </div>
                         </div>
-                        <div class="col-5">
-                            <div class="col-10 pe-3 ms-auto">
-                                <div class="garamond font57 leading67 text-1B2995 dmb-25"><?php echo $heading; ?></div>
-                                <div class="sans-normal font18 leading24 text-191919 dmb-15"><?php echo $description; ?></div>
+                        <div class="col-lg-5">
+                            <div class="col-lg-10 pe-lg-3 ms-auto">
+                                <div class="garamond font57 leading67 res-font30 res-leading38 text-1B2995 tmb-15 dmb-25"><?php echo $heading; ?></div>
+                                <div class="sans-normal font18 leading24 res-font16 text-191919 tmb-20 dmb-15"><?php echo $description; ?></div>
                                 <ul class="list-none ps-0 mb-0">
                                     <?php foreach ($schedule as $schedule_item):
                                         $schedule_item_day = $schedule_item['day'];
                                         $schedule_item_time = $schedule_item['time'];
-
-                                        ?>
-                                        <li class="sans-normal font18 leading24 text-191919 dmb-10"><?php echo $schedule_item_day; ?>
+                                    ?>
+                                        <li class="sans-normal font18 leading24 res-font16 text-191919 dmb-10"><?php echo $schedule_item_day; ?>
                                             <?php echo $schedule_item_time; ?>
                                         </li>
                                     <?php endforeach; ?>
@@ -462,7 +455,7 @@
                                     $target_2 = ($button['target'] == '_blank') ? "_blank" : ""; ?>
 
                                     <a href="<?php echo $button['url']; ?>" target="<?php echo $target_2; ?>"
-                                        class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition dmt-20">
+                                        class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition tmt-40 dmt-20">
                                         <?php echo $button['title']; ?>
                                     </a>
 
@@ -480,17 +473,17 @@
             $description = get_sub_field("description");
             $button = get_sub_field("button");
 
-            ?>
-            <section class="left-content-section position-relative overflow-hidden">
+        ?>
+            <section class="left-content-section position-relative">
                 <div class="container">
-                    <div class="col-8 pe-2">
-                        <div class="garamond font57 leading67 text-1B2995 dmb-25"><?php echo $heading; ?></div>
-                        <div class="sans-normal font18 leading24 text-191919">
+                    <div class="col-lg-8 pe-lg-2 z-3">
+                        <div class="garamond font57 leading67 res-font30 res-leading38 text-1B2995 tmb-15 dmb-25"><?php echo $heading; ?></div>
+                        <div class="sans-normal font18 leading24 res-font16 text-191919">
                             <?php echo $description; ?>
                         </div>
                     </div>
                 </div>
-                <div class="pattern-img position-absolute top-0">
+                <div class="pattern-img position-absolute top-0 z-2">
                     <img src="<?php echo get_template_directory_uri(); ?>/templates/images/pattern-2.svg" alt="" class="h-100">
                 </div>
             </section>
@@ -500,66 +493,58 @@
             $heading = get_sub_field("heading");
 
 
-            ?>
+        ?>
 
             <section id="getInTouchSection" class="get-in-touch-section position-relative">
                 <div class="container">
-                    <div class="col-8 mx-auto">
-                        <div class="garamond font57 leading67 text-1B2995 text-center dmb-20">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="garamond font57 leading67 res-font30 res-leading38 text-1B2995 text-center tmb-40 dmb-20">
                             <?php echo $heading; ?>
                         </div>
                         <?php echo do_shortcode('[contact-form-7 id="fc3afcf" title="Get in Touch"]'); ?>
                     </div>
                 </div>
-                <div class="pattern-img position-absolute bottom-0">
+                <div class="pattern-img position-absolute bottom-0 z-2">
                     <img src="<?php echo get_template_directory_uri(); ?>/templates/images/pattern-3.svg" alt="" class="h-100">
                 </div>
             </section>
 
         <?php elseif (get_row_layout() == "left_right_hero_section"):
-
             $right_image = get_sub_field("right_image");
             $prefix = get_sub_field("prefix");
             $heading = get_sub_field("heading");
             $description = get_sub_field("description");
             $buttons = get_sub_field("buttons");
-
-
-
-
-            ?>
-
-
-
+        ?>
             <section class="left-right-hero-section">
                 <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-6">
+                    <div class="row flex-lg-row flex-column flex-column-reverse align-items-center">
+                        <div class="col-lg-6">
                             <div
-                                class="label bg-858AB5-label sans-medium font14 leading20 space-0_42 text-1B2995 radius8 d-inline-flex align-items-center justify-content-center px-3">
+                                class="label bg-858AB5-label sans-medium font14 leading20 space-0_42 text-1B2995 radius8 d-inline-flex align-items-center justify-content-center px-3 tmb-20">
                                 <?php echo $prefix; ?>
                             </div>
-                            <div class="garamond font72 leading95 space-1_44 text-1B2995 dmb-15"> <?php echo $heading; ?></div>
-                            <div class="col-8">
-                                <div class="sans-normal font18 leading24 text-191919 dmb-30 pe-5">
+                            <div class="garamond font72 leading95 res-font30 res-leading38 res-space-0_6 space-1_44 text-1B2995 dmb-15"> <?php echo $heading; ?></div>
+                            <div class="col-lg-8">
+                                <div class="sans-normal font18 leading24 res-font16 text-191919 tmb-35 dmb-30 pe-3 pe-lg-5">
                                     <?php echo $description; ?>
                                 </div>
                             </div>
                             <div>
                                 <?php foreach ($buttons as $button):
                                     $button_single = $button['link'];
-                                    ?>
+                                ?>
                                     <?php if (!empty($button_single['url'])):
                                         $target_2 = ($button_single['target'] == '_blank') ? "_blank" : ""; ?>
                                         <a href="<?php echo $button_single['url']; ?>" target="<?php echo $target_2; ?>"
-                                            class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3">
+                                            class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3 tmb-10">
                                             <?php echo $button_single['title']; ?>
                                         </a>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <div class="col-6 ps-2">
+                        <div class="col-lg-6 ps-lg-2 tmb-25">
                             <div class="left-right-hero-img radius10 overflow-hidden">
                                 <img src="<?php echo $right_image['sizes']['medium']; ?>" alt="" class="w-100 h-100 object-cover">
                             </div>
@@ -570,7 +555,7 @@
 
         <?php elseif (get_row_layout() == "two_card_section"):
             $two_card_group = get_sub_field("two_card_group");
-            ?>
+        ?>
 
             <section class="two-card-section position-relative bg-white z-3">
                 <div class="container">
@@ -578,12 +563,10 @@
                         <?php foreach ($two_card_group as $one_card_group):
                             $one_card_group_image = $one_card_group["image"];
                             $one_card_group_link = $one_card_group["link"];
-
-
-                            ?>
-                            <div class="col-6">
-                                <div class="two-cards">
-                                    <a href="<?php echo $one_card_group_link['url']; ?>" class="two-card text-decoration-none w-100">
+                        ?>
+                            <div class="col-lg-6">
+                                <div class="two-cards tmb-15">
+                                    <a href="<?php echo $one_card_group_link['url']; ?>" class="two-card text-decoration-none w-100 h-100 d-inline-flex">
                                         <div class="card-hover h-100 radius15 overflow-hidden position-relative">
                                             <img src="<?php echo $one_card_group_image['sizes']['fullscreen']; ?>" alt=""
                                                 class="w-100 h-100 object-cover img">
@@ -591,7 +574,7 @@
                                             </div>
                                             <div
                                                 class="two-card-content position-absolute bottom-0 start-0 w-100 d-flex align-items-center justify-content-between z-3 dmb-30">
-                                                <div class="garamond font38 leading55 text-white text-capitalize">
+                                                <div class="garamond font38 leading55 res-font28 res-leading36 text-white text-capitalize">
                                                     <?php echo $one_card_group_link['title']; ?>
                                                 </div>
                                                 <div class="arrow-icon d-inline-flex">
@@ -614,18 +597,18 @@
             $heading = get_sub_field("heading");
             $description = get_sub_field("description");
             $buttons = get_sub_field("buttons");
-            ?>
+        ?>
             <section class="banner-section">
                 <div class="container">
                     <div class="banner-img radius15 overflow-hidden position-relative">
                         <img src="<?php echo $banner_image['sizes']['medium']; ?>" alt="" class="w-100 h-100 object-cover">
-                        <div class="position-absolute top-0 start-0 h-100 w-100 px-5 d-flex align-items-center">
-                            <div class="col-5 pe-4">
-                                <div class="ps-5 pe-4 banner-content bg-white radius10 dpt-40 dpb-40">
-                                    <div class="garamond font42 leading55 text-1B2995 mb-2">
+                        <div class="banner-data position-absolute top-0 start-0 h-100 w-100 px-3 px-lg-5 d-flex align-items-center tmb-15">
+                            <div class="col-lg-5 pe-lg-4">
+                                <div class="ps-lg-5 pe-lg-4 banner-content bg-white radius10 tpt-30 tpb-30 dpt-40 dpb-40">
+                                    <div class="garamond font42 leading55 res-font30 res-leading38 text-1B2995 tmb-15 mb-2">
                                         <?php echo $heading; ?>
                                     </div>
-                                    <div class="sans-normal font16 leading24 text-191919 dmb-20">
+                                    <div class="sans-normal font16 leading24 text-191919 tmb-25 dmb-20">
                                         <?php echo $description; ?>
                                     </div>
 
@@ -633,11 +616,11 @@
 
                                     <?php foreach ($buttons as $button):
                                         $button_single = $button['link'];
-                                        ?>
+                                    ?>
                                         <?php if (!empty($button_single['url'])):
                                             $target_2 = ($button_single['target'] == '_blank') ? "_blank" : ""; ?>
                                             <a href="<?php echo $button_single['url']; ?>" target="<?php echo $target_2; ?>"
-                                                class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-3">
+                                                class="text-decoration-none btnA bg-1B2995-btn sans-medium font16 leading26 space-0_48 d-inline-flex align-items-center justify-content-center rounded-pill transition me-lg-3 tmb-10">
                                                 <?php echo $button_single['title']; ?>
                                             </a>
                                         <?php endif; ?>

@@ -43,13 +43,13 @@
 }
 
 .two-cards {
+    height: 335px !important;
+
+    @include media-breakpoint-down(lg) {
+        height: 300px !important;
+    }
+
     .two-card {
-        height: 335px;
-
-        @include media-breakpoint-down(lg) {
-            height: 300px;
-        }
-
         .two-card-layer {
             height: 140px;
             background-image: linear-gradient(180deg, #00000000, #000000);
@@ -69,6 +69,26 @@
                 padding-right: 16px;
                 margin-bottom: 24px;
             }
+        }
+    }
+}
+
+.banners-card-section {
+    .two-cards {
+        height: 506px !important;
+
+        @include media-breakpoint-down(lg) {
+            height: 300px !important;
+        }
+    }
+}
+
+.two-card-section {
+    .two-cards {
+        height: 353px !important;
+
+        @include media-breakpoint-down(lg) {
+            height: 225px !important;
         }
     }
 }

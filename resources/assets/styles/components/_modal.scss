@@ -33,13 +33,23 @@
 
 .offcanvas {
     width: 720px !important;
+    border-left: 0px !important;
 
     .offcanvas-body {
         padding: 55px 50px 55px 60px;
 
+        @include media-breakpoint-down(lg) {
+            padding: 15px 15px 55px 15px;
+        }
+
         .close-btn {
             width: 45px;
             height: 45px;
+
+            @include media-breakpoint-down(lg) {
+                width: 35px;
+                height: 35px;
+            }
         }
 
         .offcanvas-img {

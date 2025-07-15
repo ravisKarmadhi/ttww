@@ -166,7 +166,7 @@ function copy_custom_fields_script()
 ?>
   <script type="text/javascript">
     jQuery(function($) {
-   
+
       function copyHouseNumber() {
         if ($('#ship-to-different-address-checkbox').length && !$('#ship-to-different-address-checkbox').is(':checked')) {
           let billingHouse = $('input[name="house_number"]').val();
@@ -174,7 +174,7 @@ function copy_custom_fields_script()
         }
       }
 
-   
+
       copyHouseNumber();
 
 
@@ -182,7 +182,7 @@ function copy_custom_fields_script()
         copyHouseNumber();
       });
 
-  
+
       $('input[name="house_number"]').on('input', function() {
         if (!$('#ship-to-different-address-checkbox').is(':checked')) {
           $('input[name="shipping_house_number"]').val($(this).val());
@@ -297,42 +297,44 @@ function custom_return_to_cart_text($url)
 
 
 // Remove the Order Comments field from checkout
-function remove_order_comments_field( $fields ) {
-  unset( $fields['order']['order_comments'] );
+function remove_order_comments_field($fields)
+{
+  unset($fields['order']['order_comments']);
   return $fields;
 }
-add_filter( 'woocommerce_checkout_fields', 'remove_order_comments_field' );
+add_filter('woocommerce_checkout_fields', 'remove_order_comments_field');
 
 
 add_filter('woocommerce_product_single_add_to_cart_text', 'custom_add_to_basket_button_text'); // Single product page
 add_filter('woocommerce_product_add_to_cart_text', 'custom_add_to_basket_button_text'); // Archive product page
-function custom_add_to_basket_button_text() {
+function custom_add_to_basket_button_text()
+{
   return __('Add to basket', 'woocommerce');
 }
 
 
-add_action('woocommerce_checkout_update_order_review', function($post_data) {
-	parse_str($post_data, $parsed_data);
+add_action('woocommerce_checkout_update_order_review', function ($post_data) {
+  parse_str($post_data, $parsed_data);
 
-	$method = isset($parsed_data['delivery_method']) ? sanitize_text_field($parsed_data['delivery_method']) : null;
+  $method = isset($parsed_data['delivery_method']) ? sanitize_text_field($parsed_data['delivery_method']) : null;
 
-	if ($method) {
-		WC()->session->set('selected_delivery_method', $method);
-	} else {
-		WC()->session->__unset('selected_delivery_method');
-	}
+  if ($method) {
+    WC()->session->set('selected_delivery_method', $method);
+  } else {
+    WC()->session->__unset('selected_delivery_method');
+  }
 });
-add_filter('woocommerce_package_rates', function($rates, $package) {
-	$selected = WC()->session->get('selected_delivery_method');
+add_filter('woocommerce_package_rates', function ($rates, $package) {
+  $selected = WC()->session->get('selected_delivery_method');
 
-	// If not selected or not "home", remove shipping
-	if ($selected !== 'home') {
-		return [];
-	}
+  // If not selected or not "home", remove shipping
+  if ($selected !== 'home') {
+    return [];
+  }
 
-	return $rates;
+  return $rates;
 }, 10, 2);
 
 
 
-
+add_filter('wpcf7_autop_or_not', '__return_false');
