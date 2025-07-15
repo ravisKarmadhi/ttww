@@ -1,7 +1,12 @@
 footer {
-    .footer-slider-content{
+    .footer-slider-content {
         border-radius: 0px 0px 30px 30px;
+
+        @include media-breakpoint-down(lg) {
+            border-radius: 0px 0px 15px 15px;
+        }
     }
+
     .footer-img {
         height: 257px;
     }
@@ -14,10 +19,14 @@ footer {
         .footer-brand-logo {
             .logo-bg {
                 height: 72px;
-                width: 112px;
+                // width: 112px;
 
                 .brand-img {
                     height: 60px;
+                }
+
+                @include media-breakpoint-down(md) {
+                    width: 110px
                 }
             }
         }
@@ -27,6 +36,54 @@ footer {
                 &:last-child {
                     margin-right: 0 !important;
                 }
+            }
+        }
+
+        .footer-btn {
+            &:last-child {
+                margin-right: 0 !important;
+            }
+        }
+    }
+}
+
+@media (min-width:320px) and (max-width:992px) {
+    footer {
+        .email-content {
+            margin-bottom: 55px;
+        }
+
+        .logo-content {
+            margin-bottom: 40px;
+        }
+
+        .social-content {
+            margin-bottom: 50px;
+        }
+
+        .footer-inner-content {
+            flex-direction: column-reverse;
+        }
+    }
+}
+
+@media (min-width:320px) and (max-width:768px) {
+
+    .footer-links {
+        margin-bottom: 40px;
+    }
+}
+
+@media (min-width:475px) and (max-width:992px) {
+    .footer-brand-logo {
+        justify-content: flex-start !important;
+    }
+
+    .footer-links {
+
+        ul {
+            li {
+                margin-right: 30px !important;
             }
         }
     }

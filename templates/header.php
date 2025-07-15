@@ -70,7 +70,7 @@ $schedule = get_field('schedule', 'option');
             </div>
         </div>
     </div>
-    <div class="header-main tpt-20 tpb-20 bg-1B2995">
+    <div class="header-main bg-1B2995">
         <div class="position-relative">
             <div class="container">
                 <div class="row justify-content-between">
@@ -81,38 +81,33 @@ $schedule = get_field('schedule', 'option');
                             </a>
                         <?php endif; ?>
                     </div>
-                    <div class="menu-toggle d-lg-none d-flex justify-content-end align-items-center col-6">
+                    <div class="menu-toggle d-xl-none d-flex justify-content-end align-items-center col-6">
                         <div class="menu-bar-bg radius8 d-flex justify-content-center align-items-center">
                             <div class="menu-bar d-flex justify-content-center align-items-center">
-                                <a class="d-flex justify-content-center align-items-center" href="">
-                                    <img class="w-100" src="<?php echo get_template_directory_uri(); ?>/templates/icon/white-menu.svg" alt="">
-                                </a>
+                                <img class="w-100" src="<?php echo get_template_directory_uri(); ?>/templates/icon/white-menu.svg" alt="header-icon">
                             </div>
-                            <div class="close-bar d-none">
-                                <a href="">
-                                    <img class="w-100" src="<?php echo get_template_directory_uri(); ?>/templates/icon/white-closebar.svg" alt="">
-                                </a>
+                            <div class="close-bar d-flex justify-content-center align-items-center d-none">
+                                <img class="w-100" src="<?php echo get_template_directory_uri(); ?>/templates/icon/white-closebar.svg" alt="header-icon">
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-10 col-lg-11 navigation d-none d-lg-flex justify-content-end align-items-center tpt-60 tpb-60">
-                        <nav class="d-flex justify-content-between align-items-center">
-                            <ul class="ps-0 mb-0 list-none d-lg-flex d-block">
+                    <div class="col-xl-10 c navigation d-none d-xl-flex justify-content-end align-items-center">
+                        <nav class="d-xl-flex justify-content-between align-items-center tmb-65">
+                            <ul class="ps-0 mb-0 list-none d-xl-flex d-block">
                                 <?php foreach ($menu_link_group as $menu_link_group_single):
                                     $menu_link_group_menu_selection = $menu_link_group_single['menu_selection'];
                                     $menu_link_group_link = $menu_link_group_single['link'];
                                     $menu_link_group_mega_menu = $menu_link_group_single['mega_menu'];
 
                                 ?>
-
                                     <?php if ($menu_link_group_menu_selection == 'menu'): ?>
-                                        <div class="position-relative cursor-pointer dpt-30 dpb-30 tpt-0 tpb-0 pe-lg-4 tmb-30">
+                                        <div class="header-link position-relative cursor-pointer pe-lg-4 p-initial">
                                             <li class="mega-link">
-                                                <a class="menu-link sans-medium px-lg-3 py-lg-2 font16 radius5 space-0_16 leading20 res-font24 text-white text-capitalize text-decoration-none transition"
+                                                <a class="menu-link sans-medium px-lg-3 py-lg-2 font16 radius5 space-0_16 leading20 res-font24 res-leading30 text-white text-capitalize text-decoration-none transition"
                                                     href="<?php echo $menu_link_group_link['url']; ?>"><?php echo $menu_link_group_link['title']; ?>
                                                 </a>
                                                 <div
-                                                    class="mega-menu position-absolute radius10 px-4 dpt-20 dpb-10 bg-white start-0 transition">
+                                                    class="mega-menu position-absolute radius10 px-lg-4 dpt-20 dpb-10 tpt-0 bg-white start-0 transition p-initial">
                                                     <ul class="list-none ps-0 mb-0 w-100">
                                                         <?php foreach ($menu_link_group_mega_menu as $menu_link_group_mega):
                                                             $mega_menu_link = $menu_link_group_mega['mega_menu_link'];
@@ -131,24 +126,40 @@ $schedule = get_field('schedule', 'option');
                                     <?php endif; ?>
 
                                     <?php if ($menu_link_group_menu_selection == 'link'): ?>
-                                        <div class="position-relative cursor-pointer dpt-30 dpb-30 tpt-0 tpb-0 pe-lg-4 tmb-30">
+                                        <div class="header-link position-relative cursor-pointer pe-lg-4 p-initial">
                                             <li class="mega-link">
-                                                <a class="menu-link sans-medium px-lg-3 py-lg-2 font16 radius5 space-0_16 leading20 res-font24 text-white text-capitalize text-decoration-none transition"
+                                                <a class="menu-link sans-medium px-lg-3 py-lg-2 font16 radius5 space-0_16 leading20 res-font24 res-leading30 text-white text-capitalize text-decoration-none transition"
                                                     href="<?php echo $menu_link_group_link['url']; ?>"><?php echo $menu_link_group_link['title']; ?>
                                                 </a>
                                             </li>
                                         </div>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
-
-
                             </ul>
                         </nav>
-                        <div class="ms-lg-5 d-flex justify-content-lg-end justify-content-start align-items-center">
+                        <div class="header-btn ms-xl-5d-flex justify-content-xl-end justify-content-start align-items-center dmb-7 0">
                             <a class="btnA white-border-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition"
                                 href="<<?php echo $header_button['url']; ?>">
                                 <?php echo $header_button['title']; ?>
                             </a>
+                        </div>
+                        <div class="d-xl-none d-block">
+                            <ul class="list-none ps-0 mb-0">
+                                <?php if (!empty($top_header_link_group)): ?>
+                                    <?php foreach ($top_header_link_group as $single_top_links):
+                                        $single_top_link = $single_top_links['link'];
+                                    ?>
+                                        <?php if (!empty($single_top_link['url'])):
+                                            $target_2 = ($single_top_link['target'] == '_blank') ? "_blank" : ""; ?>
+                                            <li class="dmb-20">
+                                                <a class="sans font14 leading20 text-white text-decoration-none"
+                                                    target="<?php echo $target_2; ?>"
+                                                    href="<?php echo $single_top_link['url']; ?>"><?php echo $single_top_link['title']; ?></a>
+                                            </li>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </ul>
                         </div>
                     </div>
                 </div>
