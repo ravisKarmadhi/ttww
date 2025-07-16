@@ -23,17 +23,13 @@
 
 .project-section {
     .project-filter-section {
-        .handlebar--trigger {
-            .project-filter-btn {
-                height: 29px;
-                background-color: rgba($color: $color-858AB5, $alpha: 1) !important;
-            }
-
+        .project-filter-btn {
+            height: 29px;
+            background-color: rgba($color: $color-858AB5, $alpha: 1) !important;
             &.active {
-                .project-filter-btn {
-                    background-color: rgba($color: $white, $alpha: 1);
-                }
+                background-color: rgba($color: $white, $alpha: 1) !important;
             }
         }
+
     }
 }

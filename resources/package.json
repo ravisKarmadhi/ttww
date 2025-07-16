@@ -57,17 +57,17 @@
     "not dead"
   ],
   "dependencies": {
-      "@fancyapps/ui": "^5.0.20",
+    "@fancyapps/ui": "^5.0.20",
     "@popperjs/core": "^2.11.8",
     "animate.css": "^4.1.1",
     "aos": "^2.3.4",
     "bootstrap": "^5.3.1",
     "fancybox": "^3.0.1",
+    "handlebars": "^4.7.8",
     "jquery": "^3.7.0",
     "masonry-layout": "^4.2.2",
     "popper.js": "^1.16.1",
     "select2": "^4.1.0-rc.0",
-    "slick-carousel": "^1.8.1",
-    "handlebars": "^4.7.7"
+    "slick-carousel": "^1.8.1"
   }
 }

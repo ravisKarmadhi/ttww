@@ -1,56 +1,73 @@
+let isLoading = false;
+import Handlebars from 'handlebars';
+
 export class Filter {
     init() {
+        this.handlebarTrigger();
         this.ProjectFilter();
-        this.ProjectFilterBtn();
     }
-    ProjectFilter() {
-        $(document).ready(function () {
-            $(".filter-button").click(function () {
-                var value = $(this).attr('data-filter');
-                if (value == "all") {
-                    $('.filter').show('500');
-                }
-                else {
-                    $('.filter').not('.' + value).hide('1000');
-                    $('.filter').filter('.' + value).show('1000');
-                }
-            });
+    handlebarTrigger() {
+        var triggerOnClick = $(".load-more");
 
-            $(".filter-button").click(function () {
-                $(this).addClass("active").siblings().removeClass("active");
-            });
+        $("body").on("click", ".category-btn", function () {
+            $(".category-btn").removeClass("active");
+            $(this).addClass("active");
+            triggerOnClick.attr("data-items", "13");
+            window.filter.ProjectFilter();
+        });
 
+        triggerOnClick.on("click", function (e) {
+            e.preventDefault();
+            var loadMoreVal =
+                parseInt(triggerOnClick.attr("data-items")) + parseInt("13");
+            triggerOnClick.attr("data-items", loadMoreVal);
 
+            window.filter.ProjectFilter();
         });
     }
+    ProjectFilter() {
 
-    ProjectFilterBtn() {
-        // $(document).ready(function () {
-        //     $(".more-filter").addClass("d-none");
+        console.log(isLoading, "isLoading")
+        $(document).ready(function () {
+            var id = $('.category-btn.active').attr('data-category').toLowerCase();
+            var handlebarsCardsContainer = $('#projectCardsWrapper');
+            var loadMoreTrigger = $('.load-more');
+            var loadMoreAmount = parseInt(loadMoreTrigger.attr("data-items"));
 
-        //     $(".filter-btns .filter-btn").click(function () {
-        //         var $btn = $(this);
-        //         var $parent = $btn.closest(".filter-btns");
-        //         var $moreFilter = $parent.find(".more-filter");
+            var postBody = {
+                action: 'filter_insight_posts',
+                category: id,
+                posts_per_page: loadMoreAmount,
+            };
 
-        //         $btn.toggleClass("active");
+            if (!isLoading) {
+                isLoading = true;
 
-        //         $(".filter-btn").not($btn).removeClass("active");
-        //         $(".more-filter").not($moreFilter).removeClass("d-flex").addClass("d-none");
+                handlebarsCardsContainer.html("Loading...");
 
-        //         if ($btn.hasClass("active")) {
-        //             $moreFilter.removeClass("d-none").addClass("d-flex");
-        //         } else {
-        //             $moreFilter.removeClass("d-flex").addClass("d-none");
-        //         }
-        //     });
+                jQuery.post(ajaxurl, postBody, function (response) {
+                    if (response.success && response.data.posts.length > 0) {
+                        const posts = response.data.posts;
 
-        //     $(document).click(function (e) {
-        //         if (!$(e.target).closest(".filter-btns").length) {
-        //             $(".filter-btn").removeClass("active");
-        //             $(".more-filter").removeClass("d-flex").addClass("d-none");
-        //         }
-        //     });
-        // });
+                        const newsCardTemplateSource = $("#project-card-template").html();
+                        const newsTemplate = Handlebars.compile(newsCardTemplateSource);
+                        const newsHtml = newsTemplate({posts:posts});
+                        handlebarsCardsContainer.html(newsHtml);
+
+                        if (posts.length < loadMoreAmount) {
+                            loadMoreTrigger.hide();
+                        } else {
+                            loadMoreTrigger.show();
+                        }
+
+                    } else {
+                        handlebarsCardsContainer.html("No Posts Found");
+                        loadMoreTrigger.hide();
+                    }
+
+                    isLoading = false;
+                });
+            }
+        });
     }
 }

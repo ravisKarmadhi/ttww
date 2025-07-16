@@ -12,6 +12,7 @@ import { Accordion } from './parts/accordion.js';
 import { Privacy } from './parts/privacy.js';
 import { Header } from './parts/header.js';
 import { Select } from './parts/select.js';
+import { Filter } from './parts/filter.js';
 
 // export for others scripts to use
 window.$ = $;
@@ -51,6 +52,10 @@ $(function () {
   
   window.select = new Select();
   window.select.init();
+  
+  window.filter = new Filter();
+  window.filter.init();
+
 });
 
 // ===========================================================================

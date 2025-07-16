@@ -11,8 +11,6 @@ export class Plugins {
     this.HistorySlider();
     this.FooterSlider();
     this.ProductsSlider();
-
-    console.log('.history-slider');
   }
 
   UpcomingSlider() {
