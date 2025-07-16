@@ -125,6 +125,29 @@ export class Plugins {
         slidesToScroll: 1,
         arrows: false,
         autoplay: true,
+        responsive: [
+          {
+            breakpoint: 1192,
+            settings: {
+              slidesToShow: 5,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 4,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
       });
     });
   }
@@ -140,6 +163,29 @@ export class Plugins {
         fade: false,
         prevArrow: '.history-slider-section .prev-arrow',
         nextArrow: '.history-slider-section .next-arrow',
+        responsive: [
+          {
+            breakpoint: 1192,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 992,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 1,
+            },
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+            },
+          },
+        ],
       });
     });
   }
@@ -159,7 +205,6 @@ export class Plugins {
     });
   }
   FooterSlider() {
-    console.log('slider');
     $(document).ready(function () {
 
       $(".footer-slider").slick({
@@ -195,5 +240,4 @@ export class Plugins {
       });
     });
   }
-
 }

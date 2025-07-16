@@ -34,7 +34,7 @@ if ($related_products) : ?>
 			</div>
 		</div>
 		<div class="ps-p-p">
-			<div class="col-10 col-md-12 ">
+			<div class="col-10 col-md-12">
 				<div class="related-product-slider">
 					<?php foreach ($related_products as $related_product) :
 						$post_object = get_post($related_product->get_id());

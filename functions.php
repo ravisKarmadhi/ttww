@@ -338,3 +338,60 @@ add_filter('woocommerce_package_rates', function ($rates, $package) {
 
 
 add_filter('wpcf7_autop_or_not', '__return_false');
+
+
+function convert_youtube_to_embed($url)
+{
+
+  if (empty($url) || !is_string($url)) {
+    return $url;
+  }
+
+  $watch_pattern = '/^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/';
+
+  $short_pattern = '/^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/';
+
+  if (preg_match($watch_pattern, $url, $matches)) {
+    $video_id = $matches[1];
+    return 'https://www.youtube.com/embed/' . $video_id;
+  }
+
+  if (preg_match($short_pattern, $url, $matches)) {
+    $video_id = $matches[1];
+    return 'https://www.youtube.com/embed/' . $video_id;
+  }
+
+  if (strpos($url, 'youtube.com/embed/') !== false) {
+    return $url;
+  }
+
+  return $url;
+}
+
+function get_youtube_video_id($url)
+{
+
+  if (empty($url) || !is_string($url)) {
+    return false;
+  }
+
+  $watch_pattern = '/^(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/';
+
+  $short_pattern = '/^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]+)/';
+
+  $embed_pattern = '/^(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]+)/';
+
+  if (preg_match($watch_pattern, $url, $matches)) {
+    return $matches[1];
+  }
+
+  if (preg_match($short_pattern, $url, $matches)) {
+    return $matches[1];
+  }
+
+  if (preg_match($embed_pattern, $url, $matches)) {
+    return $matches[1];
+  }
+
+  return false;
+}

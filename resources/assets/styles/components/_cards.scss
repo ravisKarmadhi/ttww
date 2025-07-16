@@ -43,12 +43,6 @@
 }
 
 .two-cards {
-    height: 335px !important;
-
-    @include media-breakpoint-down(lg) {
-        height: 300px !important;
-    }
-
     .two-card {
         .two-card-layer {
             height: 140px;
@@ -117,7 +111,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        background-image: url('/wp-content/themes/ttww/templates/images/history-close.svg');
+        background-image: url('/wp-content/themes/ttww/templates/icon/history-close.svg');
         background-repeat: no-repeat;
         background-size: cover;
         width: 30px;
@@ -130,9 +124,17 @@
         top: 15px;
         left: 0;
         width: 30vw;
-        height: 1px;
+        height: 2px;
         background-color: $color-858AB5;
         z-index: -1;
+
+        @include media-breakpoint-down(xl) {
+            width: 35vw;
+        }
+
+        @include media-breakpoint-down(lg) {
+            width: 100vw;
+        }
     }
 
     .history-card {
