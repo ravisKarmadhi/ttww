@@ -112,6 +112,17 @@
                 height: 18px;
             }
         }
+
+        @include media-breakpoint-down(lg) {
+            height: 35px;
+            width: 35px;
+
+            .social-img {
+                img {
+                    height: 16px;
+                }
+            }
+        }
     }
 }
 
