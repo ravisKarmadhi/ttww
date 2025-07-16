@@ -966,6 +966,165 @@
                 </div>
             </section>
 
+        <?php elseif (get_row_layout() == "project_section"):
+            $heading = get_Sub_field("heading");
+        ?>
+            <section class="project-section">
+                <div class="container">
+                    <div class="dmb-50">
+                        <?php if (!empty($heading)): ?>
+                            <div class="garamond font89 leading95 space-1_78 text-white dmb-25">
+                                <?php echo $heading; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="project-filter-section filter--title d-flex">
+                            <?php
+                            $terms = get_terms([
+                                'taxonomy' => 'project_category',
+                                'hide_empty' => false,
+                            ]); ?>
+
+                            <?php
+                            $i = '0';
+                            foreach ($terms as $term): ?>
+                                <div class="project-filter-btns me-2 position-relative handlebar--trigger <?php if ($i == 0): echo 'active';
+                                                                                                            endif; ?>" data-id="<?php echo $term->slug; ?>">
+                                    <button
+                                        class="project-filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8">
+                                        <?php echo $term->name ?>
+                                    </button>
+                                </div>
+
+                            <?php $i++;
+                            endforeach; ?>
+                            <!-- <div class="filter-btns me-2 position-relative">
+                            <button
+                                class="filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8">
+                                More Filters
+                            </button>
+                            <div class="more-filter position-absolute z-3 dmt-10 d-none">
+                                <div class="more-filter-btn bg-white p-3 radius8 overflow-hidden">
+                                    <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Shrewsbury
+                                    </label>
+                                    <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Humber Arm
+                                    </label>
+                                    <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Longdon-on-Tern
+                                    </label>
+                                    <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Longdon-on-Tern
+                                    </label>
+                                    <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Shrewsbury
+                                    </label> <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Humber Arm
+                                    </label>
+                                    <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Longdon-on-Tern
+                                    </label>
+                                    <label
+                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                        <input type="checkbox" name="agree" class="position-absolute cursor-pointer" />
+                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                        Longdon-on-Tern
+                                    </label>
+                                </div>
+                            </div>
+                        </div> -->
+                        </div>
+                        <?php
+                        $args = array(
+                            'order' => 'DESC',
+                            'orderby' => 'date',
+                            'posts_per_page' => 4,
+                            'post_type' => 'projects_item',
+                        );
+                        $the_query = new WP_Query($args);
+                        ?>
+
+                        <div class="project-container dmt-55">
+                            <?php
+                            if ($the_query->have_posts()) :
+                                while ($the_query->have_posts()) : $the_query->the_post();
+                            ?>
+                                    <div class="project-cards dmb-35 cursor-pointer" data-bs-toggle="modal"
+                                        data-bs-target="#projectModal">
+                                        <div class="text-decoration-none project-card d-flex flex-column">
+                                            <div class="project-img position-relative radius10 overflow-hidden dmb-15">
+                                                <img src="<?php echo the_post_thumbnail_url(); ?>" alt="" class="w-100">
+                                                <div class="position-absolute bottom-0 start-0 px-3 dmb-15">
+                                                    <?php
+                                                    $categories = get_the_terms($post->id, 'project_category');
+                                                    $cats = [];
+                                                    foreach ($categories as $category) {
+                                                        $cats[] = '<div class="project-tag sans-medium font12 leading20 space-0_36 text-white radius5">' . $category->name . '</div>';
+                                                    }
+                                                    echo implode($cats);
+                                                    ?>
+                                                </div>
+                                            </div>
+                                            <div class="sans-medium font14 leading24 space-0_42 text-white">
+                                                <?php echo the_title(); ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                            <?php endwhile;
+                            endif;
+                            wp_reset_query(); ?>
+                        </div>
+                        <?php if ($the_query->found_posts >= 4) : ?>
+                            <div class="d-flex justify-content-center dmt-100">
+                                <button
+                                    class="btnA white-border-btn loadMore sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition" data-items="3">Load
+                                    more +</button>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </section>
+
+            <script id="handlebar-template" type="text/x-handlebars-template">
+                <div class="project-cards dmb-35 cursor-pointer" data-bs-toggle="modal" data-bs-target="#projectModal">
+                                <div class="text-decoration-none project-card d-flex flex-column">
+                                    <div class="project-img position-relative radius10 overflow-hidden dmb-15">
+                                        <img src="{{image}}" alt="{{title}}" class="w-100">
+                                        <div class="position-absolute bottom-0 start-0 px-3 dmb-15">
+                                            <div
+                                                class="project-tag sans-medium font12 leading20 space-0_36 text-white radius5">
+                                                                {{cats}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sans-medium font14 leading24 space-0_42 text-white">
+                                        {{title}}
+                                    </div>
+                                </div>
+                            </div>
+</script>
+
         <?php elseif (get_row_layout() == "spacing"):
             $desktop = get_sub_field("desktop");
             $tablet = get_sub_field("tablet");

@@ -394,4 +394,139 @@ function get_youtube_video_id($url)
   }
 
   return false;
+};
+
+//projects
+add_action('init', 'create_projects_post_type');
+function create_projects_post_type()
+{
+
+  $supports = array('title', 'editor', 'excerpt', 'custom-fields', 'thumbnail', 'page-attributes');
+  $item_name = 'projects_item';
+  $plural_name = 'Projects';
+  $singular_name = 'Project';
+
+  register_post_type(
+    $item_name,
+    array(
+      'labels' => array(
+        'name'               => __(ucfirst($plural_name)),
+        'singular_name'      => __(ucfirst($singular_name)),
+        'add_new'            => 'Add new ' . $singular_name,
+        'add_new_item'       => 'Add new ' . $singular_name,
+        'edit_item'          => 'Edit ' . $singular_name,
+        'new_item'           => 'New ' . $singular_name,
+        'all_items'          => 'All ' . $plural_name,
+        'view_item'          => 'View ' . $plural_name,
+        'search_items'       => 'Search ' . $plural_name,
+        'not_found'          => 'No ' . strtolower($plural_name) . ' found',
+        'not_found_in_trash' => 'No ' . strtolower($plural_name) . ' found in Trash',
+      ),
+      'public'        => true,
+      'has_archive'   => true,
+      'rewrite'       => array('slug' => 'project'),
+      'supports'      => $supports,
+      'menu_position' => 5,
+      'menu_icon'     => 'dashicons-portfolio',
+      'show_ui'       => true, // ✅ Add this
+      'show_in_menu'  => true, // ✅ Add this
+    )
+  );
+}
+
+add_action('init', 'register_project_categories', 0);
+
+function register_project_categories()
+{
+  $plural_name   = 'Projects';
+  $singular_name = 'Project';
+
+  $labels = array(
+    'name'              => _x($singular_name . ' Categories', 'taxonomy general name'),
+    'singular_name'     => _x($singular_name . ' Category', 'taxonomy singular name'),
+    'search_items'      => __('Search ' . $singular_name . ' Categories'),
+    'all_items'         => __('All ' . $singular_name . ' Categories'),
+    'parent_item'       => __('Parent ' . $singular_name . ' Category'),
+    'parent_item_colon' => __('Parent ' . $singular_name . ' Category:'),
+    'edit_item'         => __('Edit ' . $singular_name . ' Category'),
+    'update_item'       => __('Update ' . $singular_name . ' Category'),
+    'add_new_item'      => __('Add New ' . $singular_name . ' Category'),
+    'new_item_name'     => __('New ' . $singular_name . ' Category'),
+    'menu_name'         => __($singular_name . ' Categories'),
+  );
+
+  $args = array(
+    'hierarchical'      => true, // Like categories (set false for tags-like behavior)
+    'labels'            => $labels,
+    'show_ui'           => true,
+    'show_admin_column' => true,
+    'rewrite'           => array('slug' => 'project-category'),
+    'show_in_rest'      => true, // optional for Gutenberg support
+  );
+
+  register_taxonomy('project_category', array('projects_item'), $args);
+}
+
+
+add_action('wp_ajax_get_project_ajax', 'getprojectAJAX');
+add_action('wp_ajax_nopriv_get_project_ajax', 'getprojectAJAX');
+
+function getprojectAJAX()
+{
+  global $wpdb, $post;
+  //$offset = (int)$_POST['offset'];
+  $cat = $_POST['cat'];
+  $sort = $_POST['sort'];
+  $loadMore = $_POST['loadMoreAmount'];
+
+  if ($cat) {
+    $tax_array[] = array(
+      'taxonomy' => 'project_category',
+      'field' => 'id',
+      'terms' => $cat,
+      'operator' => 'IN',
+    );
+  }
+
+
+  $args = array(
+    'post_type' => 'projects_item',
+    'posts_per_page' => $loadMore,
+    'tax_query' => $tax_array,
+    'order' => 'DESC',
+    'orderby' => 'date',
+  );
+
+
+
+  $callback['projects_item'] = array();
+
+  $the_query = new WP_Query($args);
+
+  if ($the_query->have_posts()) :
+    while ($the_query->have_posts()) : $the_query->the_post();
+
+      $categories = get_the_terms($post->id, 'project_category');
+
+      $cats = '';
+      foreach ($categories as $category):
+        $cats .= $category->name . ', ';
+      endforeach;
+
+
+      $callback['projects_item'][] = array(
+        'title' => html_entity_decode(wp_trim_words(get_the_title(), 6, '...')),
+        'image' => get_the_post_thumbnail_url(get_the_ID(), 'large'),
+        'link' => get_the_permalink(),
+        'description' => wp_trim_words(get_the_content(), 15, '...'),
+        'ID' => get_the_ID(),
+        'cats' => $cats,
+      );
+    endwhile;
+  endif;
+
+
+  echo json_encode($callback);
+
+  wp_die();
 }
