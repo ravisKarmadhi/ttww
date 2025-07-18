@@ -567,9 +567,14 @@ function event_poses()
                 'description' => get_the_content(),
                 'link' => get_permalink($id),
                 'thumbnail' => get_the_post_thumbnail_url($id, 'medium'),
-                'date' => get_the_date('d'),
-                // 'month' => get_the_date('M'),
-                'year' => get_the_date('Y'), 
+
+
+
+
+                       'date' => tribe_get_start_date(null, false, 'd'),
+       'month' => tribe_get_start_date(null, false, 'M'),
+        
+       'year' => tribe_get_start_date(null, false, 'Y'),
             ];
         }
         wp_reset_postdata();
@@ -584,3 +589,4 @@ add_filter('tribe_events_single_template', 'custom_event_template_without_header
 function custom_event_template_without_header_footer($template) {
     return get_template_directory() . '/tribe-events/no-header-footer-template.php';
 }
+

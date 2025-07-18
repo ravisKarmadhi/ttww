@@ -15,3 +15,18 @@
         }
     }
 }
+
+.single-tribe_events{
+    #footer{
+        display:none !important;
+    }
+    #header{
+                display:none !important;
+    }
+    hr{
+        display:none !important;
+    }
+    #tribe-events-pg-template{
+        padding-top: 0 !important;
+    }
+}
