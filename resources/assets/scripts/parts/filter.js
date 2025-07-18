@@ -5,6 +5,8 @@ export class Filter {
     init() {
         this.handlebarTrigger();
         this.ProjectFilter();
+        this.EventTrigger();
+        this.EventFilter();
     }
     handlebarTrigger() {
         var triggerOnClick = $(".load-more");
@@ -26,8 +28,6 @@ export class Filter {
         });
     }
     ProjectFilter() {
-
-        console.log(isLoading, "isLoading")
         $(document).ready(function () {
             var id = $('.category-btn.active').attr('data-category').toLowerCase();
             var handlebarsCardsContainer = $('#projectCardsWrapper');
@@ -53,6 +53,69 @@ export class Filter {
                         const newsTemplate = Handlebars.compile(newsCardTemplateSource);
                         const newsHtml = newsTemplate({posts:posts});
                         handlebarsCardsContainer.html(newsHtml);
+
+                        if (posts.length < loadMoreAmount) {
+                            loadMoreTrigger.hide();
+                        } else {
+                            loadMoreTrigger.show();
+                        }
+
+                    } else {
+                        handlebarsCardsContainer.html("No Posts Found");
+                        loadMoreTrigger.hide();
+                    }
+
+                    isLoading = false;
+                });
+            }
+        });
+    }
+    EventTrigger(){
+         var triggerOnClick = $(".load-more-event");
+         console.log($('.event-btn'),"FDGFDGFDGDFg");
+         $("body").on("click", ".event-btn", function () {
+            $(".event-btn").removeClass("active");
+            console.log("DFDFDFD")
+            $(this).addClass("active");
+            triggerOnClick.attr("data-items", "12");
+            window.filter.EventFilter();
+        });
+
+        triggerOnClick.on("click", function (e) {
+            e.preventDefault();
+            var loadMoreVal =
+                parseInt(triggerOnClick.attr("data-items")) + parseInt("12");
+            triggerOnClick.attr("data-items", loadMoreVal);
+
+            window.filter.EventFilter();
+        });
+    }
+    EventFilter(){
+         $(document).ready(function () {
+            var category = $('.event-btn.active').attr('data-category').toLowerCase();
+            var handlebarsCardsContainer = $('#EventCardContainer');
+            var loadMoreTrigger = $('.load-more-event');
+            var loadMoreAmount = parseInt(loadMoreTrigger.attr("data-items"));
+
+            var postBody = {
+                action: 'event_poses',
+                category: category,
+                posts_per_page: loadMoreAmount,
+            };
+
+            if (!isLoading) {
+                isLoading = true;
+
+                handlebarsCardsContainer.html("Loading...");
+
+                jQuery.post(ajaxurl, postBody, function (response) {
+                    if (response.success && response.data.posts.length > 0) {
+                        const posts = response.data.posts;
+
+                        const eventCardTemplateSource = $("#event-card-template").html();
+                        const newsTemplate = Handlebars.compile(eventCardTemplateSource);
+                        const eventHtml = newsTemplate({posts:posts});
+                        handlebarsCardsContainer.html(eventHtml);
 
                         if (posts.length < loadMoreAmount) {
                             loadMoreTrigger.hide();

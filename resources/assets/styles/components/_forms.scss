@@ -348,24 +348,52 @@ input {
         padding-left: 34px;
 
         input {
+            opacity: 0;
+            height: 0;
+            width: 0;
+
             &:checked {
                 &+.checkmark {
                     background-color: $color-1B2995;
                     border-color: $color-858AB5;
+
+                     &::after {
+                        display: block;
+                    }
                 }
             }
         }
 
         .checkmark {
             width: 24px;
+            height: 24px;
+            transform: translateY(-50%);
             border: 1px solid $color-858AB5;
             border-radius: $radius4;
 
             &::after {
+                 content: "";
+                position: absolute;
+                display: none;
+                // left: 10px;
+                // top: 5px;
+                // width: 7px;
+                // height: 14px;
+                border: solid $white;
+                border-width: 0 2px 2px 0;
+                transform: rotate(45deg);
                 left: 8px;
                 top: 4px;
                 width: 6px;
                 height: 11px;
+            }
+        }
+    }
+    .filter-btn{
+        &.active{
+            background: $white !important;
+            .plus-icon{
+                transform: rotate(45deg);
             }
         }
     }

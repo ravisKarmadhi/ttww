@@ -59,3 +59,10 @@ $(function () {
 });
 
 // ===========================================================================
+
+
+jQuery(document).on("click", ".project-cards", function () {
+  var projectId = jQuery(this).data("id");
+  jQuery(".carousel-item").removeClass("active");
+  jQuery("#" + projectId).addClass("active");
+});

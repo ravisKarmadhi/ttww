@@ -1,17 +1,17 @@
-// .event-section {
-//     .filter-section {
-//         .filter-btns {
-//             height: 29px;
-//             background-color: rgba($color: $color-858AB5, $alpha: 0.2);
+.event-section {
+    .filter-section {
+        .event-btn {
+            height: 29px;
+            background-color: rgba($color: $color-858AB5, $alpha: 0.2);
 
-//             &.active {
-//                 background-color: rgba($color: $color-1B2995, $alpha: 1.0);
-//                 color: $white;
-//             }
-//         }
+            &.active {
+                background-color: rgba($color: $color-1B2995, $alpha: 1.0);
+                color: $white;
+            }
+        }
 
-//     }
-// }
+    }
+}
 
 .more-filter {
     .more-filter-btn {

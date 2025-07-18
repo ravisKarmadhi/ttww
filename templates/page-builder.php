@@ -977,53 +977,54 @@
                                 <?php echo $heading; ?>
                             </div>
                         <?php endif; ?>
-                    <div class="project-filter-section filter--title d-flex">
-                        <div class="project-filter-btns me-2 position-relative handlebar--trigger">
-                            <button class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 active" data-category="all">
-                                View all
-                            </button>
-                            <?php 
-                            $terms = get_terms([
-                                'taxonomy' => 'project_category',
-                                'hide_empty' => false,
-                            ]);
-                            $i = 0;
-                            foreach ($terms as $term): 
-                                if ($i < 2): ?>
-                                    <button
-                                        class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8" 
-                                        data-category="<?php echo esc_attr($term->slug); ?>">
-                                        <?php echo esc_html($term->name); ?>
+                        <div class="project-filter-section filter--title d-flex">
+                            <div class="project-filter-btns me-2 position-relative handlebar--trigger">
+                                <button class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 active" data-category="all">
+                                    View all
+                                </button>
+                                <?php 
+                                $terms = get_terms([
+                                    'taxonomy' => 'project_category',
+                                    'hide_empty' => false,
+                                ]);
+                                $i = 0;
+                                foreach ($terms as $term): 
+                                    if ($i < 4): ?>
+                                        <button
+                                            class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8" 
+                                            data-category="<?php echo esc_attr($term->slug); ?>">
+                                            <?php echo esc_html($term->name); ?>
+                                        </button>
+                                    <?php endif;
+                                    $i++;
+                                endforeach; ?>
+                            </div>
+
+                            <?php if (count($terms) > 4): ?>
+                                <div class="filter-btns me-2 position-relative">
+                                    <button class="filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 bg-858AB5">
+                                        More Filters <span class="plus-icon transition ms-1"> + </span>
                                     </button>
-                                <?php else: ?>
-                                    <!-- We'll render these later as checkboxes -->
-                                <?php endif;
-                                $i++;
-                            endforeach; ?>
+                                    <div class="more-filter position-absolute z-3 dmt-10 d-none">
+                                        <div class="more-filter-btn bg-white p-3 radius8 overflow-hidden category-btn">
+                                            <?php 
+                                            $i = 0;
+                                            foreach ($terms as $term): 
+                                                if ($i >= 4): ?>
+                                                    <label class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                                        <input type="checkbox" name="category-filter" class="position-absolute cursor-pointer category-checkbox" value="<?php echo esc_attr($term->slug); ?>" />
+                                                        <span class="checkmark position-absolute top-50 start-0"></span>
+                                                        <?php echo esc_html($term->name); ?>
+                                                    </label>
+                                                <?php endif;
+                                                $i++;
+                                            endforeach; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
                         </div>
 
-                        <div class="filter-btns me-2 position-relative">
-                            <button class="filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8">
-                                More Filters
-                            </button>
-                            <div class="more-filter position-absolute z-3 dmt-10 d-none">
-                                <div class="more-filter-btn bg-white p-3 radius8 overflow-hidden">
-                                    <?php 
-                                    $i = 0;
-                                    foreach ($terms as $term): 
-                                        if ($i >= 2): ?>
-                                            <label class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
-                                                <input type="checkbox" name="category-filter" class="position-absolute cursor-pointer category-checkbox" value="<?php echo esc_attr($term->slug); ?>" />
-                                                <span class="checkmark position-absolute top-50 start-0"></span>
-                                                <?php echo esc_html($term->name); ?>
-                                            </label>
-                                        <?php endif;
-                                        $i++;
-                                    endforeach; ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                         <div id="projectContainer" class="project-container dmt-55">
                             <div id="projectCardsWrapper" class="row row8 dmb-35 px-p-p tmb-45"></div>
@@ -1039,7 +1040,7 @@
 
             <script id="project-card-template" type="text/x-handlebars-template">
                 {{#each posts}}
-                <div class="project-cards dmb-35 cursor-pointer" data-bs-toggle="modal" data-bs-target="#projectModal">
+                <div class="project-cards dmb-35 cursor-pointer" data-bs-toggle="modal" data-bs-target="#projectModal" data-id="{{id}}">
                     <div class="text-decoration-none project-card d-flex flex-column">
                         <div class="project-img position-relative radius10 overflow-hidden dmb-15">
                             <img src="{{thumbnail}}" alt="{{title}}" class="w-100">
@@ -1058,12 +1059,141 @@
                     </div>
                 </div>
                 {{/each}}
+                <div class="modal project-modal fade" id="projectModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button type="button"
+                                class="d-inline-flex border-0 bg-transparent p-0 position-absolute top-0 end-0 dmt-15 pe-3"
+                                data-bs-dismiss="modal" aria-label="Close">
+                                <img src="<?php echo get_template_directory_uri() ?>/templates/icon/modal-close.svg" alt="modal-close">
+                            </button>
+                            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    {{#each posts}}
+                                        <div class="carousel-item" id={{id}}>
+                                            <div class="h-100 d-flex justify-content-between">
+                                                <div class="col-8 h-100 radius10 overflow-hidden">
+                                                    <img src="{{thumbnail}}" class="d-block w-100 h-100 object-cover"
+                                                        alt="{{title}}">
+                                                </div>
+                                                <div class="col-4 ps-5">
+                                                    <div class="ps-4">
+                                                        <div
+                                                            class="project-tag sans-medium font12 leading20 space-0_36 text-white radius5 d-inline-flex dmb-20">
+                                                            {{#each categories}}
+                                                                {{name}}{{#unless @last}}, {{/unless}}
+                                                            {{/each}}
+                                                        </div>
+                                                        <div class="garamond font36 leading55 text-1B2995 dmb-30">
+                                                            {{{title}}}
+                                                        </div>
+                                                        <div class="sans-normal font16 leading24 text-191919">
+                                                            {{{description}}}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {{/each}}
+                                </div>
+                                <div class="position-absolute bottom-0 w-100">
+                                    <div class="col-4 ms-auto ps-5">
+                                        <div class="ps-4">
+                                            <div class="carousel-arrows d-flex align-items-center">
+                                                <button
+                                                    class="prev-arrow border-0 radius8 d-flex align-items-center justify-content-center me-2"
+                                                    type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                                                    <img src="<?php echo get_template_directory_uri() ?>/templates/icon/Polygon.svg" alt="Polygon">
+                                                </button>
+                                                <button
+                                                    class="next-arrow border-0 radius8 d-flex align-items-center justify-content-center me-2"
+                                                    type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                                                    <img src="<?php echo get_template_directory_uri() ?>/templates/icon/Polygon.svg" alt="Polygon">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+            
+        <?php elseif(get_row_layout() == 'event_section'): 
+            $heading = get_sub_field('event_heading');    
+            $terms = get_terms('tribe_events_cat');
+        ?>
+            <section class="event-section">
+                <div class="container">
+                    <div class="dmb-50">
+                        <?php if(!empty($heading)): ?>
+                            <div class="garamond font89 leading95 space-1_78 text-1B2995 dmb-25">
+                                <?php echo $heading; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="filter-section">
+                            <button
+                                class="font14 leading26 space-0_42 event-btn text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 active" data-category="all">
+                                View all
+                            </button>
+                            <?php if ($terms && !is_wp_error($terms)) : ?>
+                                <?php foreach ($terms as $term) : ?>
+                                    <button class="font14 leading26 space-0_42 event-btn text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8" data-category="<?php echo $term->slug; ?>">
+                                        <?php echo $term->name; ?>
+                                    </button>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="row row8" id="EventCardContainer"></div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btnA border-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none transition load-more-event" data-items="12">Load more +</button>
+                    </div>
+                </div>
+            </section>
+
+            <script id="event-card-template" type="text/x-handlebars-template">
+                {{#each posts}}
+                    <div class="col-4 upcoming-cards dmb-95">
+                        <a href="{{link}}" class="upcoming-card text-decoration-none">
+                            <div class="upcoming-img radius10 position-relative overflow-hidden dmb-30">
+                                <img src="{{thumbnail}}" alt="{{{title}}}" class="w-100 h-100 object-cover">
+                                <div class="date-label position-absolute top-0 end-0">
+                                    <div class="date radius8 overflow-hidden">
+                                        <div class="d-flex align-items-center">
+                                                <div class="garamond font38 leading55 text-white">{{date}}</div>
+                                                <div class="ms-2">
+                                                    <div class="sans-normal font14 leading20 text-white">
+                                                        {{year}}
+                                                    </div>
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="pe-5">
+                                    <div class="garamond font22 leading26 text-1B2995 text-capitalize dmb-15">
+                                        {{{title}}}
+                                    </div>
+                                    <div class="sans-normal font14 leading20 text-191919 dmb-15">
+                                       {{description}}
+                                    </div>
+                                    <div class="arrow-icon d-inline-flex">
+                                        <img src="<?php echo get_template_directory_uri() ?>/templates/icon/polygon-arrow.svg" alt="polygon-arrow" class="w-100 h-100 object-cover">
+                                    </div>
+                            </div>
+                        </a>
+                    </div>
+                {{/each}}
             </script>
 
         <?php elseif (get_row_layout() == "spacing"):
+            $background_color = get_sub_field("background_color");
             $desktop = get_sub_field("desktop");
             $tablet = get_sub_field("tablet");
             $mobile = get_sub_field("mobile");
+            $curved = get_sub_field("curved");
             $desktop_mb = $desktop["margin_bottom"];
             $desktop_mb_main = !empty($desktop["margin_bottom"]) ? " dpb-" : "";
             $tablet_mb = $tablet["margin_bottom"];
@@ -1079,7 +1209,7 @@
                                 echo $tablet_mb;
                                 echo $mobile_mb_main;
                                 echo $mobile_mb;
-                                ?>"></div>
+                                ?> <?php echo $background_color == 'Blue' ? 'bg-1B2995' : 'bg-white' ?> <?php echo $curved == 'Yes' ? 'top-curverd' : ''  ?>"></div>
         <?php endif; ?>
 <?php
     endwhile;
