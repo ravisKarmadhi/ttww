@@ -1300,7 +1300,7 @@
                                       <?php echo $privacy_page_single_description; ?>
                                 </div>
                             </div>
-                               <?php endforeach; ?>
+                        <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
