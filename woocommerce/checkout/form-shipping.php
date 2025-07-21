@@ -73,59 +73,101 @@ defined('ABSPATH') || exit;
 </div>
 
 
+
+
+
 <?php
-$selected = WC()->session->get('custom_delivery_option');
-$checked = WC()->session->get('custom_delivery_option') == 'yes' ? 'checked' : '';
-?>
-<div class="delivery-method-options  dmt-60">
-	<label class="form-checkbox sans-normal delivery-checkbox-label font16 leading24 text-191919">
-		<input type="checkbox"  id="custom_shipping_checkbox" name="custom_shipping_checkbox" <?php echo $checked; ?>>
-		<span class="checkmark position-absolute top-50 start-0"></span>
-		Home Delivey -
-		<?php
-		WC()->cart->calculate_shipping();
-		$delivery_label = 'Delivery';
-		$delivery_cost = 0;
-		foreach (WC()->shipping->get_packages()[0]['rates'] as $rate) {
-			if (stripos($rate->get_label(), $delivery_label) !== false) {
-				$delivery_cost = $rate->get_cost();
-				break;
-			}
+function get_flat_rate_cost_for_current_user()
+{
+	$shipping_packages = WC()->cart->get_shipping_packages();
+	$package = $shipping_packages[0];
+
+	$zone = WC_Shipping_Zones::get_zone_matching_package($package);
+	if (!$zone) return false;
+
+	foreach ($zone->get_shipping_methods() as $method) {
+		if ($method->id === 'flat_rate') {
+			$cost = floatval($method->get_option('cost'));
+			return wc_price($cost);
 		}
-			echo wc_price($delivery_cost);
-		?>
-	</label>
+	}
+	return false;
+}
 
-</div>
+$flat_rate_cost = get_flat_rate_cost_for_current_user();
 
-<script>
-	jQuery(function($){
-    $('#custom_shipping_checkbox').on('change', function(){
-        var checked = $(this).is(':checked') ? 'yes' : 'no';
+$shipping_packages = WC()->cart->get_shipping_packages();
+$package = $shipping_packages[0];
+$zone = WC_Shipping_Zones::get_zone_matching_package($package);
 
-        $.ajax({
-            url: wc_checkout_params.ajax_url,
-            type: 'POST',
-            data: {
-                action: 'update_custom_shipping_option',
-                custom_shipping_option: checked,
-            },
-            success: function(){
-                $('body').trigger('update_checkout'); // Trigger recalculation
-            }
-        });
-    });
+if ($zone) :
+    $shipping_methods = $zone->get_shipping_methods();
+    $enabled_methods = array_filter($shipping_methods, fn($method) => $method->enabled === 'yes');
 
-    // On page load, send current checkbox state to keep session in sync
-    var checkedInit = $('#custom_shipping_checkbox').is(':checked') ? 'yes' : 'no';
-    $.ajax({
-        url: wc_checkout_params.ajax_url,
-        type: 'POST',
-        data: {
-            action: 'update_custom_shipping_option',
-            custom_shipping_option: checkedInit,
+    if (!empty($enabled_methods)) :
+
+        // If only one method, show checkbox; else show radios
+        if (count($enabled_methods) === 1) {
+            // Only one method - checkbox
+            $method = reset($enabled_methods);
+            $method_title = $method->get_title();
+            $cost_float = floatval($method->get_option('cost'));
+            $method_cost = wc_price($cost_float);
+            $method_id = esc_attr($method->id);
+            $input_name = 'home_delivery_method';
+            $input_id = 'home_delivery_method_' . $method_id;
+
+            // Get saved session value to pre-check
+            $selected_method = WC()->session->get('home_delivery_method');
+            $checked = ($selected_method === $method_id) ? 'checked' : '';
+        ?>
+            <div class="form-row form-row-wide">
+            <label class="woocommerce-form__label woocommerce-form__label-for-checkbox checkbox">
+                    <input
+                       type="checkbox"
+                        class="woocommerce-form__input woocommerce-form__input-checkbox input-checkbox"
+                        name="<?php echo $input_name; ?>"
+                        id="<?php echo $input_id; ?>"
+                        value="<?php echo $method_id; ?>"
+                        <?php echo $checked; ?>
+                    />
+                    <span><?php echo esc_html($method_title) . ' ' . $method_cost; ?></span>
+                </label>
+            </div>
+                    <?php
+        } else {
+            // Multiple methods - radios
+            ?>
+            <div class="form-row form-row-wide" id="home_delivery_radio_group">
+                <label class="woocommerce-form__label">
+                    <?php esc_html_e('Choose your preferred shipping method:', 'woocommerce'); ?>
+                </label>
+                <?php
+                $selected_method = WC()->session->get('home_delivery_method');
+                foreach ($enabled_methods as $key => $method) :
+                    $method_title = $method->get_title();
+                    $cost_float = floatval($method->get_option('cost'));
+                    $method_cost = wc_price($cost_float);
+                    $method_id = esc_attr($method->id);
+                    $input_name = 'home_delivery_method';
+                    $input_id = 'home_delivery_method_' . $method_id;
+                    ?>
+                    <div class="form-row form-row-wide">
+                        <label class="woocommerce-form__label woocommerce-form__label-for-radio radio">
+                            <input
+                                class="woocommerce-form__input woocommerce-form__input-radio input-radio"
+                                type="radio"
+                                name="<?php echo $input_name; ?>"
+                                id="<?php echo $input_id; ?>"
+                                value="<?php echo $key; ?>"
+                            />
+                            <span><?php echo esc_html($method_title) . ' ' . $method_cost; ?></span>
+            </label>
+                    </div>
+                <?php endforeach; ?>
+        </div>
+    <?php
         }
-    });
-});
-
-</script>
+    endif;
+endif;
+?>

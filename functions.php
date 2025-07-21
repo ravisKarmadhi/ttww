@@ -733,6 +733,7 @@ function update_custom_shipping_option() {
     }
 }
 
+
 add_filter('woocommerce_package_rates', 'conditionally_apply_shipping_charge', 10, 2);
 function conditionally_apply_shipping_charge( $rates, $package ) {
     $custom_delivery_option = WC()->session->get('custom_delivery_option');
@@ -754,3 +755,35 @@ function conditionally_apply_shipping_charge( $rates, $package ) {
         return $rates;
     }
 }
+
+
+
+add_action('woocommerce_checkout_update_order_review', function($post_data) {
+    parse_str($post_data, $output);
+    if (!empty($output['home_delivery_method'])) {
+        WC()->session->set('home_delivery_method', sanitize_text_field($output['home_delivery_method']));
+    } else {
+        WC()->session->__unset('home_delivery_method');
+    }
+});
+
+
+add_action('woocommerce_cart_calculate_fees', function() {
+    $method_id = WC()->session->get('home_delivery_method');
+    if (!$method_id) return;
+
+    $shipping_packages = WC()->cart->get_shipping_packages();
+    $package = $shipping_packages[0];
+    $zone = WC_Shipping_Zones::get_zone_matching_package($package);
+    if (!$zone) return;
+
+    foreach ($zone->get_shipping_methods() as $method) {
+        if ($method->id === $method_id && $method->enabled === 'yes') {
+            $cost = floatval($method->get_option('cost'));
+            if ($cost > 0) {
+                WC()->cart->add_fee(sprintf(__('Delivery: %s', 'woocommerce'),''), $cost);
+            }
+            break;
+        }
+    }
+});

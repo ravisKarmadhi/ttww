@@ -1219,53 +1219,7 @@
                         </div>
                     </div>
                     <div class="row row8" id="EventCardContainer">
-                        <?php
-                        if ($the_query->have_posts()) :
-                            while ($the_query->have_posts()) : $the_query->the_post();
-                        ?>
-                                <div class="col-4 upcoming-cards dmb-95">
-                                    <a href="<?php the_permalink(); ?>" class="upcoming-card text-decoration-none">
-                                        <div class="upcoming-img radius10 position-relative overflow-hidden dmb-30">
-                                            <img src="{{thumbnail}}" alt="<?php the_title(); ?>" class="w-100 h-100 object-cover">
-                                            <div class="date-label position-absolute top-0 end-0">
-
-
-                                                <div class="date radius8 overflow-hidden">
-                                                    <div class="d-flex align-items-center">
-                                                        <div class="garamond font38 leading55 res-font35 res-leading38 text-white">
-                                                            <?php echo tribe_get_start_date(null, false, 'd'); ?>
-                                                        </div>
-                                                        <div class="ms-2">
-                                                            <div class="sans-normal font14 leading20 text-white">
-                                                                <?php echo tribe_get_start_date(null, false, 'M'); ?>
-                                                            </div>
-                                                            <div class="sans-normal font14 leading20 text-white">
-                                                                <?php echo tribe_get_start_date(null, false, 'Y'); ?>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-
-                                            </div>
-                                        </div>
-                                        <div class="pe-5">
-                                            <div class="garamond font22 leading26 text-1B2995 text-capitalize dmb-15">
-                                                <?php the_title(); ?>
-                                            </div>
-                                            <div class="sans-normal font14 leading20 text-191919 dmb-15">
-                                                <?php the_content(); ?>
-                                            </div>
-                                            <div class="arrow-icon d-inline-flex">
-                                                <img src="<?php echo get_template_directory_uri() ?>/templates/icon/polygon-arrow.svg" alt="polygon-arrow" class="w-100 h-100 object-cover">
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                        <?php endwhile;
-                        endif;
-                        wp_reset_query(); ?>
+                    
                     </div>
                     <div class="d-flex justify-content-center">
                         <button class="btnA border-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none transition load-more-event "

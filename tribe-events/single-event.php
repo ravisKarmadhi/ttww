@@ -15,7 +15,8 @@ $top_event_content = get_field("top_event_content");
 $event_data = get_field("event_data");
 
 
-
+ $categories = get_the_terms($event_id, 'tribe_events_cat');
+ 
 ?>
 
 <div class="spacing dpb-200"></div>
@@ -38,10 +39,11 @@ $event_data = get_field("event_data");
             </div>
             <div class="col-7">
                 <div class="pe-5">
-                    <div
-                        class="label bg-858AB5-label sans-medium font14 leading20 space-0_42 text-1B2995 radius8 d-inline-flex align-items-center justify-content-center px-3 dmb-25">
-                        Filter One
+                    <?php if(!empty($categories)): foreach($categories as $category): ?>
+                    <div class="label bg-858AB5-label sans-medium font14 leading20 space-0_42 text-1B2995 radius8 d-inline-flex align-items-center justify-content-center px-3 dmb-25">
+                        <?php echo $category->name ?>
                     </div>
+                    <?php endforeach; endif; ?>
                     <div class="garamond font52 leading67 text-1B2995 text-capitalize dmb-10">
                         <?php echo get_the_title(); ?>
                     </div>
