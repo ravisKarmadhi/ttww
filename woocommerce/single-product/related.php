@@ -25,7 +25,7 @@ if ($related_products) : ?>
 	<section class="related products overflow-hidden">
 		<div class="d-flex align-items-end justify-content-between tmb-25 dmb-35 px-p-p">
 			<?php
-			$heading = apply_filters('woocommerce_product_related_products_heading', __('Related products', 'woocommerce'));
+			$heading = apply_filters('woocommerce_product_related_products_heading', __('Related items', 'woocommerce'));
 			if ($heading) : ?>
 				<h2 class="garamond font57 leading67 res-font30 res-leading38 text-1B2995"><?php echo esc_html($heading); ?></h2>
 			<?php endif; ?>

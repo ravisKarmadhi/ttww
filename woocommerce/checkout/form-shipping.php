@@ -75,12 +75,13 @@ defined('ABSPATH') || exit;
 
 <?php
 $selected = WC()->session->get('custom_delivery_option');
+$checked = WC()->session->get('custom_delivery_option') == 'yes' ? 'checked' : '';
 ?>
-<div class="delivery-method-options dmt-60">
-	<label class="form-checkbox sans-normal font16 leading24 text-191919">
-		<input type="checkbox" name="delivery_method" value="home" checked>
+<div class="delivery-method-options  dmt-60">
+	<label class="form-checkbox sans-normal delivery-checkbox-label font16 leading24 text-191919">
+		<input type="checkbox"  id="custom_shipping_checkbox" name="custom_shipping_checkbox" <?php echo $checked; ?>>
 		<span class="checkmark position-absolute top-50 start-0"></span>
-		Home
+		Home Delivey -
 		<?php
 		WC()->cart->calculate_shipping();
 		$delivery_label = 'Delivery';
@@ -91,8 +92,40 @@ $selected = WC()->session->get('custom_delivery_option');
 				break;
 			}
 		}
-		echo $delivery_label . ' ' . wc_price($delivery_cost) . '';
+			echo wc_price($delivery_cost);
 		?>
 	</label>
 
 </div>
+
+<script>
+	jQuery(function($){
+    $('#custom_shipping_checkbox').on('change', function(){
+        var checked = $(this).is(':checked') ? 'yes' : 'no';
+
+        $.ajax({
+            url: wc_checkout_params.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'update_custom_shipping_option',
+                custom_shipping_option: checked,
+            },
+            success: function(){
+                $('body').trigger('update_checkout'); // Trigger recalculation
+            }
+        });
+    });
+
+    // On page load, send current checkbox state to keep session in sync
+    var checkedInit = $('#custom_shipping_checkbox').is(':checked') ? 'yes' : 'no';
+    $.ajax({
+        url: wc_checkout_params.ajax_url,
+        type: 'POST',
+        data: {
+            action: 'update_custom_shipping_option',
+            custom_shipping_option: checkedInit,
+        }
+    });
+});
+
+</script>

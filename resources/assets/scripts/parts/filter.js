@@ -1,5 +1,5 @@
 let isLoading = false;
-import Handlebars from 'handlebars';
+import Handlebars from "handlebars";
 
 export class Filter {
     init() {
@@ -29,13 +29,13 @@ export class Filter {
     }
     ProjectFilter() {
         $(document).ready(function () {
-            var id = $('.category-btn.active').attr('data-category').toLowerCase();
-            var handlebarsCardsContainer = $('#projectCardsWrapper');
-            var loadMoreTrigger = $('.load-more');
+            var id = $(".category-btn.active").attr("data-category").toLowerCase();
+            var handlebarsCardsContainer = $("#projectCardsWrapper");
+            var loadMoreTrigger = $(".load-more");
             var loadMoreAmount = parseInt(loadMoreTrigger.attr("data-items"));
 
             var postBody = {
-                action: 'filter_insight_posts',
+                action: "filter_insight_posts",
                 category: id,
                 posts_per_page: loadMoreAmount,
             };
@@ -51,7 +51,7 @@ export class Filter {
 
                         const newsCardTemplateSource = $("#project-card-template").html();
                         const newsTemplate = Handlebars.compile(newsCardTemplateSource);
-                        const newsHtml = newsTemplate({posts:posts});
+                        const newsHtml = newsTemplate({ posts: posts });
                         handlebarsCardsContainer.html(newsHtml);
 
                         if (posts.length < loadMoreAmount) {
@@ -59,7 +59,6 @@ export class Filter {
                         } else {
                             loadMoreTrigger.show();
                         }
-
                     } else {
                         handlebarsCardsContainer.html("No Posts Found");
                         loadMoreTrigger.hide();
@@ -70,14 +69,13 @@ export class Filter {
             }
         });
     }
-    EventTrigger(){
-         var triggerOnClick = $(".load-more-event");
-         console.log($('.event-btn'),"FDGFDGFDGDFg");
-         $("body").on("click", ".event-btn", function () {
+    EventTrigger() {
+        var triggerOnClick = $(".load-more-event");
+        $("body").on("click", ".event-btn", function () {
             $(".event-btn").removeClass("active");
-            console.log("DFDFDFD")
             $(this).addClass("active");
             triggerOnClick.attr("data-items", "12");
+            triggerOnClick.show();
             window.filter.EventFilter();
         });
 
@@ -90,44 +88,57 @@ export class Filter {
             window.filter.EventFilter();
         });
     }
-    EventFilter(){
-         $(document).ready(function () {
-            var category = $('.event-btn.active').attr('data-category').toLowerCase();
-            var handlebarsCardsContainer = $('#EventCardContainer');
-            var loadMoreTrigger = $('.load-more-event');
-            var loadMoreAmount = parseInt(loadMoreTrigger.attr("data-items"));
+    EventFilter() {
+        $(document).ready(function () {
+            var category = $(".event-btn.active").attr("data-category").toLowerCase();
+            var template = "";
+            var handlebarsCardsContainer = $("#EventCardContainer");
+            var loadMoreTrigger = $(".load-more-event");
 
+            var loadMoreAmount = parseInt(loadMoreTrigger.attr("data-items"));
+            var offset = 10;
             var postBody = {
-                action: 'event_poses',
+                action: "event_poses",
                 category: category,
-                posts_per_page: loadMoreAmount,
+                loadMoreAmount: loadMoreAmount,
             };
 
             if (!isLoading) {
                 isLoading = true;
 
-                handlebarsCardsContainer.html("Loading...");
-
                 jQuery.post(ajaxurl, postBody, function (response) {
-                    if (response.success && response.data.posts.length > 0) {
-                        const posts = response.data.posts;
+                    handlebarsCardsContainer.html("Loading...");
+                    var _response = JSON.parse(response);
 
-                        const eventCardTemplateSource = $("#event-card-template").html();
-                        const newsTemplate = Handlebars.compile(eventCardTemplateSource);
-                        const eventHtml = newsTemplate({posts:posts});
-                        handlebarsCardsContainer.html(eventHtml);
+                    if (
+                        typeof _response["handlebars-events"] != "undefined" &&
+                        _response["handlebars-events"].length > 0
+                    ) {
+                        handlebarsCardsContainer.html("");
 
-                        if (posts.length < loadMoreAmount) {
+                        var handlebars = _response["handlebars-events"];
+                        handlebars.map((item) => {
+                            var handlebarsTemplateSource = document.getElementById(
+                                "event-card-template"
+                            ).innerHTML;
+                            template = Handlebars.compile(handlebarsTemplateSource);
+
+                            var result = template(item);
+
+                            handlebarsCardsContainer.append(result);
+                        });
+
+                        loadMoreTrigger.attr("data-items", _response["loadMoreNumber"]);
+
+                        if (_response["noMorePosts"] === true) {
                             loadMoreTrigger.hide();
                         } else {
                             loadMoreTrigger.show();
                         }
-
                     } else {
                         handlebarsCardsContainer.html("No Posts Found");
                         loadMoreTrigger.hide();
                     }
-
                     isLoading = false;
                 });
             }

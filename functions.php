@@ -68,31 +68,30 @@ if (function_exists('acf_add_options_page')) {
 }
 
 
-
+// 
 
 add_filter('woocommerce_default_address_fields', 'override_address_fields');
 function override_address_fields($address_fields)
 {
   $address_fields['first_name']['placeholder'] = 'First Name…';
   $address_fields['last_name']['placeholder'] = 'Last Name…';
-  $address_fields['address_1']['placeholder'] = 'Address Line 1…';
-  $address_fields['address_2']['placeholder'] = 'Address Line 2…';
-  $address_fields['state']['placeholder'] = 'State...';
+  $address_fields['address_1']['placeholder'] = 'Street name….';
   $address_fields['city']['placeholder'] = 'City...';
+  $address_fields['state']['placeholder'] = 'State...';
   return $address_fields;
 }
 
 add_filter('woocommerce_checkout_fields', function ($fields) {
 
-  $fields['billing']['billing_postcode']['placeholder'] = __('Postcode*…', 'woocommerce');
-  $fields['billing']['billing_phone']['placeholder'] = __('Mobile number*…', 'woocommerce');
+  $fields['billing']['billing_postcode']['placeholder'] = __('Postcode…', 'woocommerce');
+  $fields['billing']['billing_phone']['placeholder'] = __('Phone number…', 'woocommerce');
   $fields['billing']['billing_email']['placeholder'] = __('Email Address…', 'woocommerce');
   $fields['billing']['billing_company']['placeholder'] = __('Company…', 'woocommerce');
   $fields['billing']['billing_city']['required'] = false;
 
   // Shipping fields
-  $fields['shipping']['shipping_postcode']['placeholder'] = __('Postcode*…', 'woocommerce');
-  $fields['shipping']['shipping_phone']['placeholder'] = __('Mobile number*…', 'woocommerce'); // If phone is needed
+  $fields['shipping']['shipping_postcode']['placeholder'] = __('Postcode…', 'woocommerce');
+  $fields['shipping']['shipping_phone']['placeholder'] = __('Phone number…', 'woocommerce'); // If phone is needed
   $fields['shipping']['shipping_email']['placeholder'] = __('Email Address…', 'woocommerce'); // If email is needed
   $fields['shipping']['shipping_company']['placeholder'] = __('Company…', 'woocommerce');
   $fields['shipping']['shipping_city']['required'] = false;
@@ -106,19 +105,18 @@ add_filter('woocommerce_checkout_fields', 'remove_unwanted_billing_fields');
 function remove_unwanted_billing_fields($fields)
 {
   unset($fields['billing']['billing_company']);
-  unset($fields['billing']['billing_state']);
-  unset($fields['billing']['billing_city']);
+  unset($fields['billing']['billing_address_2']);
+  // unset($fields['billing']['billing_state']);
+  // unset($fields['billing']['billing_city']);
 
   // Shipping
   unset($fields['shipping']['shipping_company']);
-  unset($fields['shipping']['shipping_state']);
-  unset($fields['shipping']['shipping_city']);
-
+  unset($fields['shipping']['shipping_address_2']);
+  // unset($fields['shipping']['shipping_state']);
+  // unset($fields['shipping']['shipping_city']);
 
   return $fields;
 }
-
-
 
 function custom_woocommerce_checkout_fields($fields)
 {
@@ -126,34 +124,74 @@ function custom_woocommerce_checkout_fields($fields)
   $fields['billing']['billing_house_number'] = array(
     'type' => 'text',
     'value' => '',
-    'placeholder' => __('House Number*…', 'text-domain'),
+    'placeholder' => __('House Number…', 'text-domain'),
     'required' => true,
-    // 'class' => array('col-lg-6'),
+    'class' => array('col-lg-6'),
     'clear' => true,
-    'priority' => 80,
+    'priority' => 40,
     'custom_attributes' => array(
       'name' => 'billing_house_number'
     ),
   );
 
+  $fields['billing']['billing_state'] = array(
+    'class' => array('col-lg-6'),
+  );
+
+  $fields['billing']['billing_city'] = array(
+    'class' => array('col-lg-6'),
+  );
+
+  $fields['billing']['billing_phone'] = array(
+    'class' => array('col-lg-6'),
+    'priority' => 80,
+    'placeholder' => __('Phone number…', 'text-domain'),
+  );
+  
+  $fields['billing']['billing_address_1']['class'] = __('col-12', 'woocommerce');
+  $fields['billing']['billing_country']['class'] = __('col-lg-6', 'woocommerce');
+  $fields['billing']['billing_first_name']['class'] = __('col-lg-6', 'woocommerce');
+  $fields['billing']['billing_last_name']['class'] = __('col-lg-6', 'woocommerce');
+  $fields['billing']['billing_postcode']['class'] = __('col-lg-6', 'woocommerce');
+
   // Shipping house number
   $fields['shipping']['shipping_house_number'] = array(
     'type' => 'text',
     'value' => '',
-    'placeholder' => __('House Number*…', 'text-domain'),
+    'placeholder' => __('House Number…', 'text-domain'),
     'required' => true,
-    // 'class' => array('col-lg-6'),
+    'class' => array('col-lg-6'),
     'clear' => true,
-    'priority' => 80,
+    'priority' => 40,
     'custom_attributes' => array(
       'name' => 'shipping_house_number'
     ),
   );
 
 
-  $fields['billing']['billing_email'] = array('priority' => 30,);
+  $fields['shipping']['shipping_state'] = array(
+    'class' => array('col-lg-6'),
+  );
 
-  $fields['shipping']['shipping_email'] = array('priority' => 30,);
+  $fields['shipping']['shipping_city'] = array(
+    'class' => array('col-lg-6'),
+  );
+
+  $fields['shipping']['shipping_phone'] = array(
+    'class' => array('col-lg-6'),
+    'priority' => 80,
+    'placeholder' => __('Phone number…', 'text-domain'),
+  );
+  
+  $fields['shipping']['shipping_address_1']['class'] = __('col-12', 'woocommerce');
+  $fields['shipping']['shipping_country']['class'] = __('col-lg-6', 'woocommerce');
+  $fields['shipping']['shipping_first_name']['class'] = __('col-lg-6', 'woocommerce');
+  $fields['shipping']['shipping_last_name']['class'] = __('col-lg-6', 'woocommerce');
+  $fields['shipping']['shipping_postcode']['class'] = __('col-lg-6', 'woocommerce');
+
+  $fields['billing']['billing_email'] = array('priority' => 101,'placeholder' => __('Email Address…', 'text-domain'), 'class' => array('col-12'));
+
+  $fields['shipping']['shipping_email'] = array('priority' => 101,'placeholder' => __('Email Address…', 'text-domain'),'class' => array('col-12'));
 
   return $fields;
 }
@@ -531,56 +569,87 @@ function filter_insight_posts()
 add_action('wp_ajax_event_poses', 'event_poses');
 add_action('wp_ajax_nopriv_event_poses', 'event_poses');
 
-function event_poses()
-{
-    $category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : 'all';
-    $posts_per_page = isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 1;
+function event_poses() {
+    global $wpdb, $post;
 
-    $args = [
-        'post_type' => 'tribe_events',
-        'posts_per_page' => $posts_per_page,
-        'orderby' => 'date',
-        'order' => 'DESC',
+    // Retrieve AJAX posted variables
+    $cat = $_POST['category'];
+    $sort = $_POST['sort'];
+    $loadMore = $_POST['loadMoreAmount'];
+    $offset = $_POST['offset'];
+
+    // Taxonomy query array
+    $tax_array = array();
+    if ($cat !== 'all') {
+        $tax_array[] = array(
+            'taxonomy' => 'tribe_events_cat',
+            'field'    => 'slug',
+            'terms'    => $cat,
+            'operator' => 'IN',
+        );
+    }
+
+    // WP_Query arguments
+    $args = array(
+        'post_type'      => 'tribe_events',
+        'posts_per_page' => $loadMore,
+        'tax_query'      => $tax_array,
+        'offset'         => $offset,
+        'order'          => 'DESC',
+        'orderby'        => 'date',
         'post_status' => 'publish',
+    );
+
+    // Initialize return array
+    $callback['handlebars-events'] = array();
+
+    // Execute query
+    $the_query = new WP_Query($args);
+
+    // Check if posts are available
+    if ($the_query->have_posts()) :
+        while ($the_query->have_posts()) : $the_query->the_post();
+
+            // Retrieve categories for the post
+            $categories = get_the_terms($post->id, 'tribe_events_cat');
+            $cats = '';
+            foreach ($categories as $category) {
+                $cats .= $category->name . ', ';
+            }
+
+            $image = get_template_directory_uri(  ) . '/assets/images/image-placeholder.jpg';
+
+            if(has_post_thumbnail( $post->id )){
+                $image = get_the_post_thumbnail_url(get_the_ID(), 'medium');
+            }
+
+            // Construct data for each post
+            $callback['handlebars-events'][] = array(
+              'title' => get_the_title(),
+              'description' => get_the_content(),
+              'link' => get_permalink($id),
+              'thumbnail' => get_the_post_thumbnail_url($id, 'medium'),
+              'date' => tribe_get_start_date(null, false, 'd'),
+              'month' => tribe_get_start_date(null, false, 'M'),
+              'year' => tribe_get_start_date(null, false, 'Y'),
+            );
+
+        endwhile;
+    endif;
+
+   $count_args = [
+        'post_type'      => 'tribe_events',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'fields'         => 'ids',
+        'tax_query'      => $tax_array,
     ];
+    $count_query = new WP_Query($count_args);
+    $total_count = $count_query->found_posts;
 
-    if ($category !== 'all') {
-        $args['tax_query'] = [
-            [
-                'taxonomy' => 'tribe_events_cat',
-                'field' => 'slug',
-                'terms' => $category,
-            ],
-        ];
-    }
-
-    $query = new WP_Query($args);
-    $posts = [];
-
-    if ($query->have_posts()) {
-        while ($query->have_posts()) {
-            $query->the_post();
-            $id = get_the_ID();
-       
-            $posts[] = [
-                'title' => get_the_title(),
-                'description' => get_the_content(),
-                'link' => get_permalink($id),
-                'thumbnail' => get_the_post_thumbnail_url($id, 'medium'),
-
-
-
-
-                       'date' => tribe_get_start_date(null, false, 'd'),
-       'month' => tribe_get_start_date(null, false, 'M'),
-        
-       'year' => tribe_get_start_date(null, false, 'Y'),
-            ];
-        }
-        wp_reset_postdata();
-    }
-
-    wp_send_json_success(['posts' => $posts]);
+    $callback['noMorePosts'] = ($loadMore + $perPage >= $total_count);
+    echo json_encode($callback);
+    wp_die();
 }
 
 
@@ -590,3 +659,98 @@ function custom_event_template_without_header_footer($template) {
     return get_template_directory() . '/tribe-events/no-header-footer-template.php';
 }
 
+// 
+
+add_action('wp_ajax_load_more_products', 'load_more_products');
+add_action('wp_ajax_nopriv_load_more_products', 'load_more_products');
+
+function load_more_products() {
+	$paged = isset($_POST['page']) ? intval($_POST['page']) : 1;
+	$category = isset($_POST['category']) ? sanitize_text_field($_POST['category']) : '';
+
+	$args = array(
+		'post_type' => 'product',
+		'posts_per_page' => 12,
+		'paged' => $paged,
+		'post_status' => 'publish',
+		'orderby' => 'date',
+		'order' => 'DESC',
+	);
+
+	if (!empty($category) && $category !== 'all') {
+		$args['tax_query'] = array(
+			array(
+				'taxonomy' => 'product_cat',
+				'field'    => 'slug',
+				'terms'    => $category,
+			)
+		);
+	}
+
+	$loop = new WP_Query($args);
+	ob_start();
+
+	if ($loop->have_posts()) :
+		while ($loop->have_posts()) : $loop->the_post();
+			wc_get_template_part('content', 'product');
+		endwhile;
+	endif;
+
+	$html = ob_get_clean();
+
+	$response = array(
+		'html' => $html,
+		'has_more' => ($loop->max_num_pages > $paged),
+	);
+
+	wp_send_json($response);
+}
+
+function enqueue_custom_shop_scripts() {
+    wp_enqueue_script('shop-js', get_template_directory_uri() . '/js/shop.js', array('jquery'), null, true);
+    wp_localize_script('shop-js', 'ajax_params', array('ajax_url' => admin_url('admin-ajax.php')));
+}
+add_action('wp_enqueue_scripts', 'enqueue_custom_shop_scripts');
+
+// 
+add_filter('woocommerce_add_to_cart_redirect', 'custom_redirect_to_checkout');
+
+function custom_redirect_to_checkout($url) {
+    return wc_get_checkout_url();
+}
+
+
+add_action('wp_ajax_update_custom_shipping_option', 'update_custom_shipping_option');
+add_action('wp_ajax_nopriv_update_custom_shipping_option', 'update_custom_shipping_option');
+
+function update_custom_shipping_option() {
+    if ( isset($_POST['custom_shipping_option']) ) {
+        $value = sanitize_text_field($_POST['custom_shipping_option']);
+        WC()->session->set('custom_delivery_option', $value);
+        wp_send_json_success('Session updated');
+    } else {
+        wp_send_json_error('No data');
+    }
+}
+
+add_filter('woocommerce_package_rates', 'conditionally_apply_shipping_charge', 10, 2);
+function conditionally_apply_shipping_charge( $rates, $package ) {
+    $custom_delivery_option = WC()->session->get('custom_delivery_option');
+
+    if ( $custom_delivery_option === 'yes' ) {
+        // Checkbox checked, shipping rates remain as is
+        return $rates;
+    } else {
+        // Checkbox unchecked, make all shipping rates cost zero
+        foreach ( $rates as $rate_key => $rate ) {
+            $rates[$rate_key]->cost = 0;
+
+            if ( isset( $rates[$rate_key]->taxes ) && is_array( $rates[$rate_key]->taxes ) ) {
+                foreach ( $rates[$rate_key]->taxes as $tax_id => $tax ) {
+                    $rates[$rate_key]->taxes[$tax_id] = 0;
+                }
+            }
+        }
+        return $rates;
+    }
+}

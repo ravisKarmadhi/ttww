@@ -9,24 +9,29 @@ export class Parts {
 
 	DeliveryMethod() {
 		$(document).ready(function ($) {
-			function updateShippingVisibility() {
-				const selected = $('input[name="delivery_method"]:checked').val();
+			function updateShippingOption() {
+        var isChecked = $('input[name="delivery_method"]').is(':checked') ? 1 : 0;
 
-				if (selected === 'home') {
-					$('.shipping-section').slideDown();
-				} else {
-					$('.shipping-section').slideUp();
-				}
+        $.ajax({
+            type: 'POST',
+            url: wc_checkout_params.ajax_url,
+            data: {
+                action: 'update_shipping_option',
+                delivery_option: isChecked,
+            },
+            success: function(response) {
+                // Trigger checkout update after session is updated
+                $('body').trigger('update_checkout');
+            }
+        });
+    }
 
-				// Important: Trigger WooCommerce to recalculate totals
-				$('body').trigger('update_checkout');
-			}
+    $('input[name="delivery_method"]').on('change', function(){
+        updateShippingOption();
+    });
 
-			// Bind event
-			$(document).on('change', 'input[name="delivery_method"]', updateShippingVisibility);
-
-			// On page load
-			updateShippingVisibility();
+    // On page load
+    updateShippingOption();
 		});
 	}
 
