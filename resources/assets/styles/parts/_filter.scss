@@ -23,9 +23,16 @@
 
 .project-section {
     .project-filter-section {
+        .project-filter-btns {
+            @include media-breakpoint-down(lg) {
+                overflow-x: auto;
+            }
+        }
+
         .project-filter-btn {
             height: 29px;
             background-color: rgba($color: $color-858AB5, $alpha: 1) !important;
+
             &.active {
                 background-color: rgba($color: $white, $alpha: 1) !important;
             }

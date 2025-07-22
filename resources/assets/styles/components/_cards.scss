@@ -103,6 +103,28 @@
 .project-container {
     column-count: 3;
     column-gap: 16px;
+
+    @include media-breakpoint-down(lg) {
+        column-count: 3;
+        column-gap: 0px;
+    }
+
+    @include media-breakpoint-down(md) {
+        column-count: 1;
+        column-gap: 15px;
+    }
+
+    .project-img {
+        @include media-breakpoint-down(md) {
+            height: 275px;
+        }
+
+        img {
+            @include media-breakpoint-down(md) {
+                height: 100%;
+            }
+        }
+    }
 }
 
 .history-cards {

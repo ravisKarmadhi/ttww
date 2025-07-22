@@ -71,7 +71,7 @@
             $link = get_sub_field("link");
         ?>
             <!-- center-content-section -->
-            <section class="center-content-section position-relative bg-white z-3">
+            <section class="center-content-section position-relative bg-white z-3 overflow-hidden">
                 <div class="container">
                     <div class="col-lg-6 mx-auto">
                         <?php if (!empty($heading)): ?>
@@ -105,7 +105,7 @@
         ?>
             <!-- left-right-section -->
             <?php if ($image_position == 'left'): ?>
-                <section class="left-right-section position-relative bg-white z-3">
+                <section class="left-right-section position-relative bg-white z-3 overflow-hidden">
                     <div class="container">
                         <div class="row align-items-center">
                             <div class="col-lg-7 pe-lg-2 tmb-25">
@@ -192,7 +192,7 @@
                     </div>
                 </section>
             <?php else: ?>
-                <section class="left-right-section position-relative bg-white z-3">
+                <section class="left-right-section position-relative bg-white z-3 overflow-hidden">
                     <div class="container">
                         <div class="row flex-row-reverse align-items-center">
                             <div class="col-lg-7 ps-lg-2 tmb-25">
@@ -287,7 +287,7 @@
 
         ?>
             <!-- upcoming-slider-section -->
-            <section class="upcoming-slider-section position-relative bg-white z-3">
+            <section class="upcoming-slider-section position-relative bg-white z-3 overflow-hidden">
                 <div class="container">
                     <div class="d-flex align-items-end justify-content-between tmb-35 dmb-45">
                         <div class="col-lg-6 pe-lg-5">
@@ -385,7 +385,7 @@
             $single_banner = get_sub_field("single_banner");
         ?>
             <!-- two-card-section -->
-            <section class="banners-card-section position-relative bg-white z-3">
+            <section class="banners-card-section position-relative bg-white z-3 overflow-hidden">
                 <div class="container">
                     <div class="row row8">
                         <?php if (!empty($single_banner)):
@@ -397,11 +397,11 @@
                                 $single_banner_item_modal_content_group = $single_banner_item['modal_content_group'];
                         ?>
                                 <div class="col-lg-6">
-                                    <div class="two-cards tmb-15">
+                                    <div class="two-cards w-100 tmb-15">
                                         <?php if ($single_banner_item_link_slection == "link"): ?>
                                             <a href=" <?php echo $single_banner_item_links['url']; ?>"
                                                 class="two-card text-decoration-none w-100 h-100 d-inline-flex">
-                                                <div class="card-hover h-100 radius15 overflow-hidden position-relative">
+                                                <div class="card-hover w-100 h-100 radius15 overflow-hidden position-relative">
                                                     <img src="<?php echo $single_banner_item_image['sizes']['medium']; ?>" alt=""
                                                         class="w-100 h-100 object-cover img">
                                                     <div class="two-card-layer position-absolute bottom-0 start-0 w-100 z-2"> </div>
@@ -423,7 +423,7 @@
                                             <a data-bs-toggle="offcanvas" href="#offcanvasExample-<?php echo $key; ?>" role="button"
                                                 aria-controls="offcanvasExample-<?php echo $key; ?>"
                                                 class="two-card text-decoration-none w-100 h-100 d-inline-flex">
-                                                <div class="card-hover h-100 radius15 overflow-hidden position-relative">
+                                                <div class="card-hover w-100 h-100 radius15 overflow-hidden position-relative">
                                                     <img src="<?php echo $single_banner_item_image['sizes']['medium']; ?>" alt=""
                                                         class="w-100 h-100 object-cover img">
                                                     <div class="two-card-layer position-absolute bottom-0 start-0 w-100 z-2">
@@ -494,7 +494,7 @@
             $links = get_sub_field("links");
         ?>
             <!-- sub-hero-section -->
-            <section class="sub-hero-section">
+            <section class="sub-hero-section overflow-hidden">
                 <div class="container h-100">
                     <div class="h-100 position-relative overflow-hidden radius15">
                         <?php if ($background_type == "image"): ?>
@@ -556,7 +556,7 @@
             $show_timing = get_sub_field("show_timing");
         ?>
             <!-- location-section -->
-            <section id="locationSection" class="location-section">
+            <section id="locationSection" class="location-section overflow-hidden">
                 <div class="container">
                     <div class="row align-items-center">
                         <div class="col-lg-7 pe-lg-2 tmb-25">
@@ -645,7 +645,7 @@
             $heading = get_sub_field("heading");
         ?>
             <!-- get-in-touch-section -->
-            <section id="getInTouchSection" class="get-in-touch-section position-relative">
+            <section id="getInTouchSection" class="get-in-touch-section position-relative overflow-hidden">
                 <div class="container">
                     <div class="col-lg-8 mx-auto">
                         <?php if (!empty($heading)): ?>
@@ -669,7 +669,7 @@
             $buttons = get_sub_field("buttons");
         ?>
             <!-- left-right-hero-section -->
-            <section class="left-right-hero-section">
+            <section class="left-right-hero-section overflow-hidden">
                 <div class="container">
                     <div class="row flex-lg-row flex-column flex-column-reverse align-items-center">
                         <div class="col-lg-6">
@@ -723,7 +723,7 @@
             $two_card_group = get_sub_field("two_card_group");
         ?>
             <!-- two-card-section -->
-            <section class="two-card-section position-relative bg-white z-3">
+            <section class="two-card-section position-relative bg-white z-3 overflow-hidden">
                 <div class="container">
                     <div class="row row8">
                         <?php if (!empty($two_card_group)):
@@ -732,10 +732,10 @@
                                 $one_card_group_link = $one_card_group["link"];
                         ?>
                                 <div class="col-lg-6">
-                                    <div class="two-cards tmb-15">
+                                    <div class="two-cards w-100 tmb-15">
                                         <a href="<?php echo $one_card_group_link['url']; ?>"
                                             class="two-card text-decoration-none w-100 h-100 d-inline-flex">
-                                            <div class="card-hover h-100 radius15 overflow-hidden position-relative">
+                                            <div class="card-hover w-100 h-100 radius15 overflow-hidden position-relative">
                                                 <img src="<?php echo $one_card_group_image['sizes']['fullscreen']; ?>" alt=""
                                                     class="w-100 h-100 object-cover img">
                                                 <div class="two-card-layer position-absolute bottom-0 start-0 w-100 z-2">
@@ -768,7 +768,7 @@
             $buttons = get_sub_field("buttons");
         ?>
             <!-- banner-section -->
-            <section class="banner-section">
+            <section class="banner-section overflow-hidden">
                 <div class="container">
                     <div class="banner-img radius15 overflow-hidden position-relative">
                         <?php if (!empty($banner_image)): ?>
@@ -813,7 +813,7 @@
             $logo_slider_group = get_Sub_field("logo_slider_group");
         ?>
             <!-- brand-logo-section -->
-            <section class="brand-logo-section">
+            <section class="brand-logo-section position-relative overflow-hidden">
                 <?php if (!empty($heading)): ?>
                     <div class="font30 leading36 text-191919 text-center tmb-35 dmb-55">
                         <?php echo $heading; ?>
@@ -842,9 +842,9 @@
             <!-- history-slider-section -->
             <section class="history-slider-section position-relative overflow-hidden">
                 <div class="container">
-                    <div class="d-flex align-items-end justify-content-between dmb-65">
+                    <div class="d-flex align-items-end justify-content-between dmb-65 tmb-50">
                         <?php if (!empty($heading)): ?>
-                            <div class="garamond font57 leading67 text-1B2995">
+                            <div class="garamond font57 leading67 res-font30 res-leading38 text-1B2995">
                                 <?php echo $heading; ?>
                             </div>
                         <?php endif; ?>
@@ -857,7 +857,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-10 col-md-12 col-xl-10 pe-4 pe-lg-0 pe-xl-3">
+                    <div class="col-12 col-md-12 col-xl-10 pe-5 pe-lg-0 pe-xl-3">
                         <div class="history-slider">
                             <?php if (!empty($history_card_group)):
                                 foreach ($history_card_group as $history_card):
@@ -893,7 +893,7 @@
             $news_post = get_Sub_field("news_post");
         ?>
             <!-- upcoming-slider-section -->
-            <section class="upcoming-slider-section position-relative bg-white z-3">
+            <section class="upcoming-slider-section position-relative bg-white z-3 overflow-hidden">
                 <div class="container">
                     <div class="d-flex align-items-end justify-content-between tmb-35 dmb-45">
                         <?php if (!empty($heading)): ?>
@@ -967,7 +967,7 @@
             $full_image_slider_group = get_Sub_field("full_image_slider_group");
         ?>
             <!-- full-image-slider-section -->
-            <section class="full-image-slider-section">
+            <section class="full-image-slider-section position-relative overflow-hidden">
                 <div class="container px-p-0">
                     <div class="full-image-slider-data position-relative">
                         <div class="full-image-slider">
@@ -1023,18 +1023,18 @@
         <?php elseif (get_row_layout() == "project_section"):
             $heading = get_Sub_field("heading");
         ?>
-            <section class="project-section">
-                <div class="container">
-                    <div class="dmb-50">
+            <section class="project-section overflow-hidden">
+                <div class="container px-p-0">
+                    <div class="tmb-0 dmb-50">
                         <?php if (!empty($heading)): ?>
-                            <div class="garamond font89 leading95 space-1_78 text-white dmb-25">
+                            <div class="garamond font89 leading95 space-1_78 res-font40 res-leading55 res-space-0_72 text-white dmb-25 px-p-p">
                                 <?php echo $heading; ?>
                             </div>
                         <?php endif; ?>
-                        <div class="project-filter-section filter--title d-flex">
-                            <div class="project-filter-btns me-2 position-relative handlebar--trigger">
+                        <div class="project-filter-section filter--title d-flex ps-p-p">
+                            <div class="project-filter-btns position-relative d-flex handlebar--trigger">
                                 <button
-                                    class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 active"
+                                    class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 text-nowrap border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 me-2 active"
                                     data-category="all">
                                     View all
                                 </button>
@@ -1045,51 +1045,51 @@
                                 ]);
                                 $i = 0;
                                 foreach ($terms as $term):
-                                    if ($i < 4): ?>
+                                    if ($i < 3): ?>
                                         <button
-                                            class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8"
+                                            class="category-btn project-filter-btn font14 leading26 space-0_42 text-1B2995 text-nowrap border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 me-2"
                                             data-category="<?php echo esc_attr($term->slug); ?>">
                                             <?php echo esc_html($term->name); ?>
                                         </button>
                                 <?php endif;
                                     $i++;
                                 endforeach; ?>
-                            </div>
 
-                            <?php if (count($terms) > 4): ?>
-                                <div class="filter-btns me-2 position-relative">
-                                    <button
-                                        class="filter-btn font14 leading26 space-0_42 text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 bg-858AB5">
-                                        More Filters <span class="plus-icon transition ms-1"> + </span>
-                                    </button>
-                                    <div class="more-filter position-absolute z-3 dmt-10 d-none">
-                                        <div class="more-filter-btn bg-white p-3 radius8 overflow-hidden category-btn">
-                                            <?php
-                                            $i = 0;
-                                            foreach ($terms as $term):
-                                                if ($i >= 4): ?>
-                                                    <label
-                                                        class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
-                                                        <input type="checkbox" name="category-filter"
-                                                            class="position-absolute cursor-pointer category-checkbox"
-                                                            value="<?php echo esc_attr($term->slug); ?>" />
-                                                        <span class="checkmark position-absolute top-50 start-0"></span>
-                                                        <?php echo esc_html($term->name); ?>
-                                                    </label>
-                                            <?php endif;
-                                                $i++;
-                                            endforeach; ?>
+                                <?php if (count($terms) > 3): ?>
+                                    <div class="filter-btns me-2 position-relative">
+                                        <button
+                                            class="filter-btn font14 leading26 space-0_42 text-1B2995 text-nowrap border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 bg-858AB5">
+                                            More Filters <span class="plus-icon transition ms-1"> + </span>
+                                        </button>
+                                        <div class="more-filter position-absolute z-3 dmt-10 d-none">
+                                            <div class="more-filter-btn bg-white p-3 radius8 overflow-hidden category-btn">
+                                                <?php
+                                                $i = 0;
+                                                foreach ($terms as $term):
+                                                    if ($i >= 3): ?>
+                                                        <label
+                                                            class="form-checkbox sans-normal font14 leading24 space-0_42 text-1B2995 d-inline-flex align-items-center text-nowrap position-relative cursor-pointer dmb-10">
+                                                            <input type="checkbox" name="category-filter"
+                                                                class="position-absolute cursor-pointer category-checkbox"
+                                                                value="<?php echo esc_attr($term->slug); ?>" />
+                                                            <span class="checkmark position-absolute top-50 start-0"></span>
+                                                            <?php echo esc_html($term->name); ?>
+                                                        </label>
+                                                <?php endif;
+                                                    $i++;
+                                                endforeach; ?>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            <?php endif; ?>
+                                <?php endif; ?>
+                            </div>
                         </div>
 
 
-                        <div id="projectContainer" class="project-container dmt-55">
-                            <div id="projectCardsWrapper" class="row row8 dmb-35 px-p-p tmb-45"></div>
+                        <div id="projectContainer" class="project-container tmt-50 dmt-55">
+                            <div id="projectCardsWrapper" class="dmb-35 px-p-p tmb-45"></div>
                         </div>
-                        <div class="d-flex justify-content-center dmt-100">
+                        <div class="d-flex justify-content-center tmt-25 dmt-100">
                             <button
                                 class="load-more btnA white-border-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none justify-content-center align-items-center transition"
                                 data-items="13">Load
@@ -1101,9 +1101,9 @@
 
             <script id="project-card-template" type="text/x-handlebars-template">
                 {{#each posts}}
-                    <div class="project-cards dmb-35 cursor-pointer" data-bs-toggle="modal" data-bs-target="#projectModal" data-id="{{id}}">
+                    <div class="project-cards dmb-35 tmb-40 cursor-pointer" data-bs-toggle="modal" data-bs-target="#projectModal" data-id="{{id}}">
                         <div class="text-decoration-none project-card d-flex flex-column">
-                            <div class="project-img position-relative radius10 overflow-hidden dmb-15">
+                            <div class="project-img position-relative radius10 overflow-hidden dmb-15 tmb-20">
                                 <img src="{{thumbnail}}" alt="{{title}}" class="w-100">
                                 <div class="position-absolute bottom-0 start-0 px-3 dmb-15">
                                     <div
@@ -1132,20 +1132,20 @@
                                 <div class="carousel-inner">
                                     {{#each posts}}
                                         <div class="carousel-item" id={{id}}>
-                                            <div class="h-100 d-flex justify-content-between">
-                                                <div class="col-8 h-100 radius10 overflow-hidden">
+                                            <div class="h-100 d-flex flex-lg-row flex-column justify-content-lg-between">
+                                                <div class="carousel-img col-12 col-lg-8 h-100 radius10 res-radius0 overflow-hidden tmb-30">
                                                     <img src="{{thumbnail}}" class="d-block w-100 h-100 object-cover"
                                                         alt="{{title}}">
                                                 </div>
-                                                <div class="col-4 ps-5">
-                                                    <div class="ps-4">
+                                                <div class="col-lg-4 ps-lg-5 px-p-p">
+                                                    <div class="ps-lg-4">
                                                         <div
-                                                            class="project-tag sans-medium font12 leading20 space-0_36 text-white radius5 d-inline-flex dmb-20">
+                                                            class="project-tag sans-medium font12 leading20 space-0_36 text-white radius5 d-inline-flex tmb-10 dmb-20">
                                                             {{#each categories}}
                                                                 {{name}}{{#unless @last}}, {{/unless}}
                                                             {{/each}}
                                                         </div>
-                                                        <div class="garamond font36 leading55 text-1B2995 dmb-30">
+                                                        <div class="garamond font36 leading55 res-font30 res-leading36 text-1B2995 tmb-15 dmb-30">
                                                             {{{title}}}
                                                         </div>
                                                         <div class="sans-normal font16 leading24 text-191919">
@@ -1158,8 +1158,8 @@
                                     {{/each}}
                                 </div>
                                 <div class="position-absolute bottom-0 w-100">
-                                    <div class="col-4 ms-auto ps-5">
-                                        <div class="ps-4">
+                                    <div class="col-lg-4 ms-auto ps-lg-5 px-p-p">
+                                        <div class="ps-lg-4">
                                             <div class="carousel-arrows d-flex align-items-center">
                                                 <button
                                                     class="prev-arrow border-0 radius8 d-flex align-items-center justify-content-center me-2"
@@ -1193,7 +1193,7 @@
 
             $the_query = new WP_Query($args);
         ?>
-            <section class="event-section">
+            <section class="event-section overflow-hidden">
                 <div class="container">
                     <div class="dmb-50">
                         <?php if (!empty($heading)): ?>
@@ -1219,7 +1219,7 @@
                         </div>
                     </div>
                     <div class="row row8" id="EventCardContainer">
-                    
+
                     </div>
                     <div class="d-flex justify-content-center">
                         <button class="btnA border-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none transition load-more-event "
@@ -1274,7 +1274,7 @@
             $privacy_page_group = get_sub_field('privacy_page_group');
 
         ?>
-            <section class="privcy-policy bg-1B2995 dpt-225 dpb-210">
+            <section class="privcy-policy bg-1B2995 dpt-225 dpb-210 overflow-hidden">
                 <div class="container">
                     <div class="row justify-content-between">
                         <div class="col-lg-2 d-flex flex-column">
@@ -1323,7 +1323,7 @@
             $location = get_sub_field('location');
             $social_icon_group = get_sub_field('social_icon_group');
         ?>
-            <section class="contact-us-section bg-1B2995 position-relative z-3">
+            <section class="contact-us-section bg-1B2995 position-relative z-3 overflow-hidden">
                 <div class="container">
                     <div class="row justify-content-between">
                         <div class="col-4">
@@ -1382,7 +1382,7 @@
             $description = get_Sub_field('description');
             $button = get_Sub_field('button');
         ?>
-            <section class="banner-location-section bg-1B2995">
+            <section class="banner-location-section bg-1B2995 overflow-hidden">
                 <div class="container">
                     <div class="location-img radius15 overflow-hidden position-relative">
                         <?php if (!empty($image)): ?>
@@ -1415,7 +1415,7 @@
             $heading = get_sub_field('heading');
             $help_card_group = get_sub_field('help_card_group');
         ?>
-            <section class="help-card-section position-relative z-3 bg-white dpt-75">
+            <section class="help-card-section position-relative z-3 bg-white dpt-75 overflow-hidden">
                 <div class="container">
                     <?php if (!empty($heading)): ?>
                         <div class="d-flex justify-content-center align-items-center garamond font57 leading55 text-1B2995 dmb-45">
