@@ -29,13 +29,13 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 }
 
 ?>
-<div class="bg-white">
+<div class="bg-white dd">
 	<div class="container">
-		<form name="checkout" method="post" class="checkout woocommerce-checkout row justify-content-between dpt-230 dpb-210 tpt-145 tpb-45" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
+		<form name="checkout" method="post" class="checkout woocommerce-checkout row justify-content-between dpt-230 dpb-210 tpt-175 tpb-45" action="<?php echo esc_url(wc_get_checkout_url()); ?>" enctype="multipart/form-data" aria-label="<?php echo esc_attr__('Checkout', 'woocommerce'); ?>">
 
-			<div class="col-lg-6 pe-3">
+			<div class="col-lg-6 col-12 pe-lg-3">
 				<?php if ($checkout->get_checkout_fields()) : ?>
-					<div class="" id="customer_details">
+					<div class="customer_details" id="customer_details">
 						<div class="">
 							<?php do_action('woocommerce_checkout_billing'); ?>
 						</div>
@@ -49,7 +49,7 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 
 				<?php endif; ?>
 			</div>
-			<div class="col-lg-6  radius40 dpt-55 dpb-30 tpt-40 dpb-40 payment-box">
+			<div class="col-lg-6  radius40 dpb-30 tpt-40 dpb-40 payment-box">
 				<div class="col-lg-11 ms-auto ps-lg-5">
 					<?php do_action('woocommerce_checkout_before_order_review_heading'); ?>
 
@@ -58,9 +58,9 @@ if (! $checkout->is_registration_enabled() && $checkout->is_registration_require
 
 					<div id="order_review" class="woocommerce-checkout-review-order d-flex align-items-center justify-content-between border-bottom border-BCBCBC dpb-25 dmb-20">
 						<div class="order-title d-flex justify-content-between align-items-center w-100">
-							<div class="garamond font36 leading38 text-1B2995 text-capitalize" id="order_review_heading"><?php esc_html_e('Your order', 'woocommerce'); ?></div>
+							<div class="garamond font36 leading38 res-font30 res-leading38 text-1B2995 text-capitalize" id="order_review_heading"><?php esc_html_e('Your order', 'woocommerce'); ?></div>
 							<div class="">
-								<a href="/cart/" class="sans-normal font21 text-2F2F2F">
+								<a href="/cart/" class="sans-normal font16 leading24 text-191919">
 									Amend
 								</a>
 							</div>

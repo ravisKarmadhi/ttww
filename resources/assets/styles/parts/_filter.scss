@@ -1,5 +1,10 @@
 .event-section {
     .filter-section {
+
+        @include media-breakpoint-down(lg) {
+            overflow-x: auto;
+        }
+
         .event-btn {
             height: 29px;
             background-color: rgba($color: $color-858AB5, $alpha: 0.2);

@@ -18,9 +18,9 @@ do_action('woocommerce_before_cart'); ?>
 	<div class="cart-section">
 		<div class="container">
 			<div class="row justify-content-between dpt-200 dpb-150 tpt-175 tpb-100 bg-white custom-row">
-				<div class="col-lg-7">
-					<div class="col-lg-10 col-12">
-						<form class="woocommerce-cart-form" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
+				<div class="col-lg-12">
+					<div class="row justify-content-between">
+						<form class="woocommerce-cart-form col-lg-6 col-12" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
 							<?php wp_nonce_field('woocommerce-cart', 'woocommerce-cart-nonce'); ?>
 							<?php do_action('woocommerce_before_cart_table'); ?>
 
@@ -30,8 +30,8 @@ do_action('woocommerce_before_cart'); ?>
 								</div>
 								<div class="d-flex align-items-center dpt-20">
 									<div class="product-name col-8"><?php esc_html_e('', 'woocommerce'); ?></div>
-									<div class="product-quantity col-2 text-center sans-normal font16 leading20 text-191919"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
-									<div class="product-subtotal col-2 text-center sans-normal font16 leading20 text-191919"><?php esc_html_e('Price', 'woocommerce'); ?></div>
+									<div class="product-quantity col-2 text-end sans-normal font16 leading20 text-191919"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
+									<div class="product-subtotal col-2 text-end sans-normal font16 leading20 text-191919"><?php esc_html_e('Price', 'woocommerce'); ?></div>
 								</div>
 
 								<?php do_action('woocommerce_before_cart_contents'); ?>
@@ -43,53 +43,60 @@ do_action('woocommerce_before_cart'); ?>
 									if ($_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters('woocommerce_cart_item_visible', true, $cart_item, $cart_item_key)) :
 										$product_permalink = apply_filters('woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink($cart_item) : '', $cart_item, $cart_item_key);
 								?>
-										<div class="woocommerce-cart-form__cart-item d-flex align-items-center tmb-20 dmb-30 <?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
-											<div class="product-thumbnail col-8 d-flex align-items-center">
-												<?php
-												$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
-												if (!$product_permalink) {
-													echo $thumbnail;
-												} else {
-													printf('<a class="cart-img radius8 overflow-hidden me-2 me-lg-4" href="%s">%s</a>', esc_url($product_permalink), $thumbnail);
-												}
+										<div class="woocommerce-cart-form__cart-item tmb-20 dmb-30 <?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
 
-												if (!$product_permalink) {
-													echo wp_kses_post($product_name . '&nbsp;');
-												} else {
-													echo wp_kses_post(apply_filters('woocommerce_cart_item_name', sprintf('<a class="sans-normal font20 leading26 res-font16 text-191919 text-decoration-none" href="%s">%s</a>', esc_url($product_permalink), $_product->get_name()), $cart_item, $cart_item_key));
-												}
+											<!-- Product Image -->
+											<div class="row justify-content-between align-items-center dmb-15">
+												<div class="col-xl-2 cart-img radius8 overflow-hidden col-4">
+													<?php
+													$thumbnail = apply_filters('woocommerce_cart_item_thumbnail', $_product->get_image(), $cart_item, $cart_item_key);
+													echo sprintf('<a class="h-100" href="%s">%s</a>', esc_url($product_permalink), $thumbnail);
+													?>
+												</div>
 
-												do_action('woocommerce_after_cart_item_name', $cart_item, $cart_item_key);
-												echo wc_get_formatted_cart_item_data($cart_item);
+												<!-- Product Name -->
+												<div class="col-xl-4 col-lg-3 col-sm-4 col-8 ms-4">
+													<?php
+													echo wp_kses_post(apply_filters(
+														'woocommerce_cart_item_name',
+														sprintf('<a class="sans-normal font16 leading24 text-191919 text-decoration-none" href="%s">%s</a>', esc_url($product_permalink), $_product->get_name()),
+														$cart_item,
+														$cart_item_key
+													));
+													echo wc_get_formatted_cart_item_data($cart_item);
 
-												if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
-													echo wp_kses_post(apply_filters('woocommerce_cart_item_backorder_notification', '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>', $product_id));
-												}
-												?>
-											</div>
+													if ($_product->backorders_require_notification() && $_product->is_on_backorder($cart_item['quantity'])) {
+														echo '<p class="backorder_notification">' . esc_html__('Available on backorder', 'woocommerce') . '</p>';
+													}
+													?>
+												</div>
 
-											<div class="product-quantity col-2" data-title="<?php esc_attr_e('Quantity', 'woocommerce'); ?>">
-												<?php
-												woocommerce_quantity_input(
-													array(
-														'input_name'   => "cart[{$cart_item_key}][qty]",
-														'input_value'  => $cart_item['quantity'],
-														'max_value'    => $_product->get_max_purchase_quantity(),
-														'min_value'    => $_product->is_sold_individually() ? 1 : 0,
-														'product_name' => $_product->get_name(),
-													),
-													$_product,
-													true
-												);
-												?>
-											</div>
+												<!-- Quantity -->
+												<div class="col-xl-6 col-lg-6 col-sm-4 d-flex justify-content-end mt-3 mt-md-0">
+													<?php
+													woocommerce_quantity_input(
+														array(
+															'input_name'   => "cart[{$cart_item_key}][qty]",
+															'input_value'  => $cart_item['quantity'],
+															'max_value'    => $_product->get_max_purchase_quantity(),
+															'min_value'    => $_product->is_sold_individually() ? 1 : 0,
+															'product_name' => $_product->get_name(),
+														),
+														$_product,
+														true
+													);
+													?>
+												</div>
 
-											<div class="product-subtotal col-2 text-end text-md-center" data-title="<?php esc_attr_e('Subtotal', 'woocommerce'); ?>">
-												<?php
-												echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key);
-												?>
+												<!-- Subtotal -->
+												<div class="col-md-3 col-6 text-end mt-3 mt-md-0">
+													<?php
+													echo apply_filters('woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal($_product, $cart_item['quantity']), $cart_item, $cart_item_key);
+													?>
+												</div>
 											</div>
 										</div>
+
 								<?php endif;
 								endforeach; ?>
 
@@ -135,7 +142,7 @@ do_action('woocommerce_before_cart'); ?>
 								<div class="coupon col-lg-11 col-xl-9 tmt-25 dmt-40 tmb-45 mb-4">
 									<div class="pe-lg-5">
 										<div class="position-relative">
-											<input type="text" name="coupon_code" class="coupon-input radius8 w-100 px-3" id="coupon_code" value="" placeholder="<?php esc_attr_e('Enter promo code', 'woocommerce'); ?>" />
+											<input type="text" name="coupon_code" class="coupon-input sans-medium font18 leading24 text-191919 radius8 w-100 px-3" id="coupon_code" value="" placeholder="<?php esc_attr_e('Enter promo code', 'woocommerce'); ?>" />
 											<div class="position-absolute top-center end-0">
 												<button type="submit" class="btnA bg-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition me-2" name="apply_coupon" value="<?php esc_attr_e('Apply coupon', 'woocommerce'); ?>">
 													<?php esc_html_e('Apply coupon', 'woocommerce'); ?>
@@ -148,23 +155,21 @@ do_action('woocommerce_before_cart'); ?>
 							<?php endif; ?>
 						</form>
 					</div>
-				</div>
-
-				<?php do_action('woocommerce_before_cart_collaterals'); ?>
-
-				<div class="col-lg-5">
-					<div class="cart-collaterals dpt-65 px-4 px-lg-5 dpb-40 radius40 res-radius20">
-						<?php
-						/**
-						 * Cart collaterals hook.
-						 *
-						 * @hooked woocommerce_cross_sell_display
-						 * @hooked woocommerce_cart_totals - 10
-						 */
-						do_action('woocommerce_cart_collaterals');
-						?>
+					<div class="col-lg-5 col-12">
+						<div class="cart-collaterals dpt-65 px-4 px-lg-5 dpb-40 radius40 res-radius20">
+							<?php
+							/**
+							 * Cart collaterals hook.
+							 *
+							 * @hooked woocommerce_cross_sell_display
+							 * @hooked woocommerce_cart_totals - 10
+							 */
+							do_action('woocommerce_cart_collaterals');
+							?>
+						</div>
 					</div>
 				</div>
+				<?php do_action('woocommerce_before_cart_collaterals'); ?>
 			</div>
 			<?php do_action('woocommerce_after_cart'); ?>
 		</div>

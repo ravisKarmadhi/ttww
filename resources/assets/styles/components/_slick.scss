@@ -154,6 +154,11 @@
         .next-arrow {
             img {
                 transform: rotate(180deg);
+
+                @include media-breakpoint-down(lg) {
+                    height: 14px;
+                    width: 13px;
+                }
             }
         }
     }

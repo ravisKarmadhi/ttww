@@ -9,13 +9,13 @@ if (post_password_required()) {
 	return;
 }
 ?>
-<div class="spacing dpb-170 tpb-125 bg-white position-relative z-3"></div>
+<div class="spacing dpb-155 tpb-175 bg-white position-relative z-3"></div>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('single-product-custom-layout bg-white position-relative z-3', $product); ?>>
 	<div class="container px-p-0">
 		<div class="row px-p-p">
 
 			<!-- Product Images (Left Column) -->
-			<div class="col-lg-6 col-12 product-images position-relative tmb-25">
+			<div class="col-lg-6 col-12 product-images radius5 overflow-hidden position-relative tmb-25">
 				<?php
 				/**
 				 * Hook: woocommerce_before_single_product_summary.
@@ -92,7 +92,7 @@ if (post_password_required()) {
 		</div>
 	</div>
 
-	<div class="spacing tmb-95 dmb-100"></div>
+	<div class="spacing tmb-40 dmb-100"></div>
 
 	<?php
 	/**

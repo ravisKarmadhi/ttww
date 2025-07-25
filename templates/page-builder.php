@@ -20,7 +20,7 @@
                 <div class="container">
                     <div class="col-lg-7 tmb-65 dmb-50">
                         <?php if (!empty($heading)): ?>
-                            <div class="garamond font89 leading95 space-1_78 res-font40 res-leading55 text-white tmb-30 dmb-25">
+                            <div class="garamond font89 leading95 space-1_78 res-font40 res-leading55 text-white tmb-30 dmb-25 tmb-10">
                                 <?php echo $heading; ?>
                             </div>
                         <?php endif; ?>
@@ -1124,21 +1124,21 @@
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <button type="button"
-                                class="d-inline-flex border-0 bg-transparent p-0 position-absolute top-0 end-0 dmt-15 pe-3"
+                                class="modal-btn d-inline-flex border-0 bg-transparent p-0 position-absolute z-3 top-0 end-0 dmt-15 pe-3"
                                 data-bs-dismiss="modal" aria-label="Close">
                                 <img src="<?php echo get_template_directory_uri() ?>/templates/icon/modal-close.svg" alt="modal-close">
                             </button>
-                            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                            <div id="carouselExampleInterval" class="carousel slide res-h-100" data-bs-ride="carousel">
                                 <div class="carousel-inner">
                                     {{#each posts}}
                                         <div class="carousel-item" id={{id}}>
                                             <div class="h-100 d-flex flex-lg-row flex-column justify-content-lg-between">
-                                                <div class="carousel-img col-12 col-lg-8 h-100 radius10 res-radius0 overflow-hidden tmb-30">
+                                                <div class="carousel-img col-12 col-lg-6 col-xl-8 h-100 radius10 res-radius0 overflow-hidden tmb-30">
                                                     <img src="{{thumbnail}}" class="d-block w-100 h-100 object-cover"
                                                         alt="{{title}}">
                                                 </div>
-                                                <div class="col-lg-4 ps-lg-5 px-p-p">
-                                                    <div class="ps-lg-4">
+                                                <div class="col-xl-4 ps-xl-5 ps-lg-5 px-p-p res-h-100">
+                                                    <div class="ps-xl-2 ps-lg-0">
                                                         <div
                                                             class="project-tag sans-medium font12 leading20 space-0_36 text-white radius5 d-inline-flex tmb-10 dmb-20">
                                                             {{#each categories}}
@@ -1157,8 +1157,8 @@
                                         </div>
                                     {{/each}}
                                 </div>
-                                <div class="position-absolute bottom-0 w-100">
-                                    <div class="col-lg-4 ms-auto ps-lg-5 px-p-p">
+                                <div class="position-absolute bottom-0 w-100 tpb-80">
+                                    <div class="col-xl-4 col-lg-6 ps-4 ms-auto ps-xl-4 px-p-p">
                                         <div class="ps-lg-4">
                                             <div class="carousel-arrows d-flex align-items-center">
                                                 <button
@@ -1194,23 +1194,23 @@
             $the_query = new WP_Query($args);
         ?>
             <section class="event-section overflow-hidden">
-                <div class="container">
+                <div class="container px-p-0">
                     <div class="dmb-50">
                         <?php if (!empty($heading)): ?>
-                            <div class="garamond font89 leading95 space-1_78 text-1B2995 dmb-25">
+                            <div class="garamond font89 leading95 space-1_78 res-font40 res-space-0_8 res-leading50 text-1B2995 px-p-p dmb-25">
                                 <?php echo $heading; ?>
                             </div>
                         <?php endif; ?>
-                        <div class="filter-section">
+                        <div class="project- filter-section filter-section filter--title text-nowrap d-flex ps-p-p">
                             <button
-                                class="font14 leading26 space-0_42 event-btn text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 active"
+                                class="font14 leading26 space-0_42 event-btn text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 me-2 active"
                                 data-category="all">
                                 View all
                             </button>
                             <?php if ($terms && !is_wp_error($terms)): ?>
                                 <?php foreach ($terms as $term): ?>
                                     <button
-                                        class="font14 leading26 space-0_42 event-btn text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8"
+                                        class="font14 leading26 space-0_42 event-btn text-1B2995 border-0 px-4 d-inline-flex align-items-center justify-content-center radius8 me-2"
                                         data-category="<?php echo $term->slug; ?>">
                                         <?php echo $term->name; ?>
                                     </button>
@@ -1218,7 +1218,7 @@
                             <?php endif; ?>
                         </div>
                     </div>
-                    <div class="row row8" id="EventCardContainer">
+                    <div class="row row8 px-p-p" id="EventCardContainer">
 
                     </div>
                     <div class="d-flex justify-content-center">
@@ -1229,9 +1229,9 @@
             </section>
 
             <script id="event-card-template" type="text/x-handlebars-template">
-                <div class="col-4 upcoming-cards dmb-95">
+                <div class="col-xl-4 col-lg-6 col-sm-6 col-12 upcoming-cards dmb-95 tmb-55">
                         <a href="{{link}}" class="upcoming-card text-decoration-none">
-                            <div class="upcoming-img radius10 position-relative overflow-hidden dmb-30">
+                            <div class="upcoming-img radius10 position-relative overflow-hidden dmb-30 tmb-25">
                                 <img src="{{thumbnail}}" alt="{{{title}}}" class="w-100 h-100 object-cover">
                                 <div class="date-label position-absolute top-0 end-0">
 
@@ -1254,7 +1254,7 @@
                                     
                                 </div>
                             </div>
-                            <div class="pe-5">
+                            <div class="pe-5 me-lg-0 me-5">
                                     <div class="garamond font22 leading26 text-1B2995 text-capitalize dmb-15">
                                         {{{title}}}
                                     </div>
@@ -1274,16 +1274,16 @@
             $privacy_page_group = get_sub_field('privacy_page_group');
 
         ?>
-            <section class="privcy-policy bg-1B2995 dpt-225 dpb-210 overflow-hidden">
+            <section class="privacy-policy bg-1B2995 dpt-225 dpb-210 tpt-175 tpb-100">
                 <div class="container">
-                    <div class="row justify-content-between">
-                        <div class="col-lg-2 d-flex flex-column">
-                            <div class="left-inner-content position-sticky top-0">
-                                <ul class="list-none ps-0 mb-0" id="privacy-links">
+                    <div class="row justify-co ntent-between">
+                        <div class="col-xl-2 col-lg-3 tmb-65">
+                            <div class="position-sticky left-inner-content p-initial">
+                                <ul class="list-none ps-0 mb-0 d-flex flex-lg-column" id="privacy-links">
                                     <?php foreach ($privacy_page_group as $key => $privacy_page_single):
                                         $privacy_page_single_heading = $privacy_page_single['heading'];
                                     ?>
-                                        <li class="dmb-20">
+                                        <li class="dmb-20 tmb-0 me-lg-0 me-3">
                                             <a class="garamond font20 leading20 radius8 py-1 px-2 text-white opacity-50 d-inline-flex text-decoration-none transition"
                                                 href="#privacy-<?php echo $key; ?>">
                                                 <?php echo $privacy_page_single_heading ?>
@@ -1293,14 +1293,15 @@
                                 </ul>
                             </div>
                         </div>
+
                         <div class="col-lg-8">
                             <?php foreach ($privacy_page_group as $key => $privacy_page_single):
                                 $privacy_page_single_heading = $privacy_page_single['heading'];
                                 $privacy_page_single_description = $privacy_page_single['description'];
 
                             ?>
-                                <div class="single-content dpt-95" id="privacy-<?php echo $key; ?>">
-                                    <div class="garamond font42 leading55 text-white dmb-20">
+                                <div class="single-content dpt-95 tpt-70" id="privacy-<?php echo $key; ?>">
+                                    <div class="garamond font42 leading55 res-font35 res-leading38 text-white text-capitalize dmb-20 tmb-15">
                                         <?php echo $privacy_page_single_heading; ?>
                                     </div>
                                     <div class="sans-normal font16 leading24 text-white dmb-25">
@@ -1323,40 +1324,40 @@
             $location = get_sub_field('location');
             $social_icon_group = get_sub_field('social_icon_group');
         ?>
-            <section class="contact-us-section bg-1B2995 position-relative z-3 overflow-hidden">
+            <section class="contact-us-section bg-1B2995 position-relative z-3 overflow-hidden dpb-105 tpb-90">
                 <div class="container">
                     <div class="row justify-content-between">
-                        <div class="col-4">
+                        <div class="col-lg-4 col-12">
                             <?php if (!empty($prefix)): ?>
-                                <div class="label-bg sans-medium font14 space-0_42 leading24 radius8 d-inline-block py-1 px-3 text-white dmb-5">
+                                <div class="label-bg sans-medium font14 space-0_42 leading24 radius8 d-inline-block py-1 px-3 text-white dmb-5 tmb-15">
                                     <?php echo $prefix; ?>
                                 </div>
                             <?php endif; ?>
-                            <div class="dmb-25">
-                                <div class="">
+                            <div class="dmb-25 tmb-10">
+                                <div class="tmb-10">
                                     <?php if (!empty($number)): ?>
-                                        <a class="garamond font42 leading55 text-white text-decoration-none" href="tel:<?php echo $number; ?>">
+                                        <a class="garamond font42 leading55 res-font30 res-leading38 text-white text-decoration-none" href="tel:<?php echo $number; ?>">
                                             <?php echo $number; ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
-                                <div class="">
+                                <div class="tmb-10">
                                     <?php if (!empty($email)): ?>
-                                        <a class="garamond font42 leading55 text-white text-decoration-none" href="mailto:<?php echo $email; ?>">
+                                        <a class="garamond font42 leading55 res-font30 res-leading38 text-white text-decoration-none" href="mailto:<?php echo $email; ?>">
                                             <?php echo $email; ?>
                                         </a>
                                     <?php endif; ?>
                                 </div>
                             </div>
                             <?php if (!empty($location)): ?>
-                                <div class="dpb-105">
+                                <div class="dpb-105 tpb-40">
                                     <a href="<?php echo $location['url']; ?>" target="_blank" class="sans-normal font16 leading24 text-white text-decoration-none">
                                         <?php echo $location['title']; ?>
                                     </a>
                                 </div>
                             <?php endif; ?>
                             <?php if (!empty($social_icon_group)): ?>
-                                <div class="social-img-content d-flex dmb-55">
+                                <div class="social-img-content d-flex dmb-55 tmb-60">
                                     <?php foreach ($social_icon_group as $social_data):
                                     ?>
                                         <a href="<?php echo $social_data['link'] ?>" target="_blank" class="social-bg radius8 d-flex justify-content-center align-items-center me-2">
@@ -1368,7 +1369,7 @@
                                 </div>
                             <?php endif; ?>
                         </div>
-                        <div class="ps-3 col-7">
+                        <div class="ps-lg-3 col-lg-7 col-12">
                             <div class="contact-form">
                                 <?php echo do_shortcode('[contact-form-7 id="fdbced9" title="Contact Form"]') ?>
                             </div>
@@ -1386,12 +1387,12 @@
                 <div class="container">
                     <div class="location-img radius15 overflow-hidden position-relative">
                         <?php if (!empty($image)): ?>
-                            <img src="<?php echo $image['sizes']['medium'] ?>" alt="<?php echo $image['title']; ?>">
+                            <img class="w-100 h-100 object-cover" src="<?php echo $image['sizes']['medium'] ?>" alt="<?php echo $image['title']; ?>">
                         <?php endif; ?>
-                        <div class="position-absolute top-0 start-0 h-100 px-5 d-flex align-items-center">
-                            <div class="px-5 banner-content bg-white radius10 dpt-40 dpb-40">
+                        <div class="position-absolute top-0 start-0 h-100 px-lg-5 px-3 d-flex align-items-lg-center align-items-end tpb-15">
+                            <div class="px-lg-5 px-4 banner-content bg-white radius10 dpt-40 dpb-40">
                                 <?php if (!empty($heading)): ?>
-                                    <div class="garamond font42 leading55 text-1B2995 mb-2">
+                                    <div class="garamond font42 leading55 res-font30 res-leading38 text-1B2995 mb-2">
                                         <?php echo $heading; ?>
                                     </div>
                                 <?php endif; ?>
@@ -1415,10 +1416,10 @@
             $heading = get_sub_field('heading');
             $help_card_group = get_sub_field('help_card_group');
         ?>
-            <section class="help-card-section position-relative z-3 bg-white dpt-75 overflow-hidden">
+            <section class="help-card-section position-relative z-3 bg-white dpt-75 tpt-60 overflow-hidden">
                 <div class="container">
                     <?php if (!empty($heading)): ?>
-                        <div class="d-flex justify-content-center align-items-center garamond font57 leading55 text-1B2995 dmb-45">
+                        <div class="d-flex justify-content-center align-items-center garamond font57 leading55 res-font30 res-leading38 text-1B2995 dmb-45 tmb-30">
                             <?php echo $heading; ?>
                         </div>
                     <?php endif; ?>
@@ -1429,13 +1430,13 @@
                                 $heading = $help_card_data['heading'];
                                 $link = $help_card_data['link'];
                             ?>
-                                <div class="col-4 help-card position-relative">
+                                <div class="col-xl-4 col-lg-4 col-sm-6 col-12 help-card position-relative tmb-15">
                                     <div class="radius15 h-100 overflow-hidden">
                                         <img class="w-100 h-100 object-cover" src="<?php echo $image['sizes']['medium'] ?>" alt="<?php echo $image['title'] ?>">
-                                        <div class="position-absolute bottom-0 w-100">
-                                            <div class="d-flex justify-content-between ms-4 me-5 mb-4">
+                                        <div class="position-absolute start-0 bottom-0 w-100">
+                                            <div class="d-flex justify-content-between ms-4 me-4 mb-4">
                                                 <?php if (!empty($heading)): ?>
-                                                    <div class="garamond font38 leading36 text-white text-capitalize">
+                                                    <div class="garamond font38 leading36 res-font28 res-leading38 text-white text-capitalize">
                                                         <?php echo $heading; ?>
                                                     </div>
                                                 <?php endif; ?>

@@ -9,6 +9,10 @@ footer {
 
     .footer-img {
         height: 257px;
+
+        @include media-breakpoint-down(lg) {
+            height: 110px;
+        }
     }
 
     .footer-logo {
@@ -16,6 +20,7 @@ footer {
     }
 
     .footer-main {
+
         .footer-brand-logo {
             .logo-bg {
                 height: 72px;

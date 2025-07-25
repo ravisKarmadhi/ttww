@@ -7,6 +7,10 @@
 .banner-location-section {
     .location-img {
         height: 336px;
+
+        @include media-breakpoint-down(lg){
+            height: 400px;
+        }
     }
 
     .location-pin {
@@ -18,8 +22,12 @@
 
 .help-card-section {
     border-radius: 30px 30px 0px 0px;
-
+    
     .help-card {
         height: 323px;
+    }
+    
+    @include media-breakpoint-down(lg){
+        border-radius: 15px 15px 0px 0px;
     }
 }

@@ -56,7 +56,7 @@ defined('ABSPATH') || exit;
 
 
 		<?php foreach (WC()->cart->get_fees() as $fee) : ?>
-			<div class="fee">
+			<div class="fee d-flex justify-content-between dmb-15">
 				<div><?php echo esc_html($fee->name); ?></div>
 				<div data-title="<?php echo esc_attr($fee->name); ?>"><?php wc_cart_totals_fee_html($fee); ?></div>
 			</div>
@@ -94,7 +94,7 @@ defined('ABSPATH') || exit;
 
 	</div>
 
-	<div class="wc-proceed-to-checkout">
+	<div class="wc-proceed-to-checkout d-flex justify-content-center">
 		<?php do_action('woocommerce_proceed_to_checkout'); ?>
 	</div>
 

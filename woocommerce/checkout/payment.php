@@ -22,8 +22,8 @@ if (! wp_doing_ajax()) {
 	do_action('woocommerce_review_order_before_payment');
 }
 ?>
-<div id="payment" class="woocommerce-checkout-payment dmt-100">
-	<div class="garamond font36 leading38 text-1B2995 text-capitalize">
+<div id="payment" class="woocommerce-checkout-payment dmt-100 tmt-75">
+	<div class="garamond font36 leading55 text-1B2995 font30 leading38">
 		Payment details
 	</div>
 	<?php if (WC()->cart->needs_payment()) : ?>

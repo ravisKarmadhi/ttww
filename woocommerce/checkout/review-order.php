@@ -21,9 +21,9 @@ defined('ABSPATH') || exit;
 <div class="shop_table woocommerce-checkout-review-order-table">
 	<div>
 		<div class="d-flex justify-content-end align-items-center row tmb-45 dmb-30">
-			<div class="product-name col-9 col-lg-8 sans-normal font17 leading26 text-191919 text-capitalize"><?php esc_html_e('product', 'woocommerce'); ?></div>
-			<div class="product-total col-1 col-lg-2 sans-normal font17 leading26 text-191919 text-capitalize text-center"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
-			<div class="product-total col-2 sans-normal font17 leading26 text-191919 text-capitalize text-end"><?php esc_html_e('Price', 'woocommerce'); ?></div>
+			<div class="product-name col-9 col-lg-8 sans-normal font14 leading26 text-191919 text-capitalize"><?php esc_html_e('product', 'woocommerce'); ?></div>
+			<div class="product-total col-1 col-lg-2 sans-normal font14 leading26 text-191919 text-capitalize text-center"><?php esc_html_e('Qty', 'woocommerce'); ?></div>
+			<div class="product-total col-2 sans-normal font14 leading26 text-191919 text-capitalize text-end"><?php esc_html_e('Price', 'woocommerce'); ?></div>
 		</div>
 	</div>
 	<div class="main-producr-your-order tmb-55 dmb-45">
@@ -51,7 +51,7 @@ defined('ABSPATH') || exit;
 
 						</div>
 
-						<div class="sans-normal font16 leading26 text-191919 pe-2 pe-lg-0">
+						<div class="sans-normal font16 leading26 text-191919 pe-5 pe-lg-0">
 							<?php echo wp_kses_post(apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key)) . '&nbsp;'; ?>
 						</div>
 
@@ -75,17 +75,39 @@ defined('ABSPATH') || exit;
 		?>
 	</div>
 	<div class="border-top border-BCBCBC dpt-50 ">
-		<div class="shipping-section">
+		<!-- <div class="shipping-section">
 			<?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
 				<?php do_action('woocommerce_review_order_before_shipping'); ?>
 				<?php wc_cart_totals_shipping_html(); ?>
 				<?php do_action('woocommerce_review_order_after_shipping'); ?>
 			<?php endif; ?>
+		</div> -->
+
+		<div class="shipping-section">
+			<?php foreach (WC()->shipping()->get_packages() as $i => $package) : ?>
+    <?php
+    $chosen_method = WC()->session->get('chosen_shipping_methods')[$i] ?? '';
+    $package_methods = $package['rates'];
+    ?>
+    <?php foreach ($package_methods as $method_id => $method) : ?>
+        <?php if ($method_id === $chosen_method) : ?>
+            <div class="fee d-flex justify-content-between dmb-15">
+                <div class="sans-medium font16 leading20 text-707070">
+                    Delivery
+                </div>
+                <div class="sans-medium font16 leading20 text-182132">
+                    <?php echo wc_price($method->cost); ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    <?php endforeach; ?>
+<?php endforeach; ?>
+
 		</div>
 		<?php foreach (WC()->cart->get_fees() as $fee) : ?>
-			<div class="fee d-flex">
-				<div><?php echo esc_html($fee->name); ?></div>
-				<div><?php wc_cart_totals_fee_html($fee); ?></div>
+			<div class="fee d-flex justify-content-between dmb-15">
+				<div class="sans-medium font16 leading20 text-707070"><?php echo esc_html($fee->name); ?></div>
+				<div class="sans-medium font16 leading20 text-182132"><?php wc_cart_totals_fee_html($fee); ?></div>
 			</div>
 		<?php endforeach; ?>
 		<?php if (wc_tax_enabled() && ! WC()->cart->display_prices_including_tax()) : ?>
@@ -121,8 +143,8 @@ defined('ABSPATH') || exit;
 
 		<?php do_action('woocommerce_review_order_before_order_total'); ?>
 		<div class="order-total d-flex justify-content-between dmb-15">
-			<div class="sans-normal font16 leading26 text-182132"><?php esc_html_e('Total', 'woocommerce'); ?></div>
-			<div class="sans-normal font16 leading26 text-182132"><?php wc_cart_totals_order_total_html(); ?></div>
+			<div class="sans-medium font20 leading26 text-182132"><?php esc_html_e('Total', 'woocommerce'); ?></div>
+			<div class="sans-medium font20 leading26 text-182132"><?php wc_cart_totals_order_total_html(); ?></div>
 		</div>
 		<?php do_action('woocommerce_review_order_after_order_total'); ?>
 

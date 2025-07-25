@@ -159,7 +159,7 @@ input {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
     border: 0px !important;
-    background-color: #dcdde9 !important;
+    // background-color: #dcdde9 !important;
 
     .select2-results {
         .select2-results__options {
@@ -185,7 +185,7 @@ input {
     border-radius: $radius5;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    background-color: #3a499f;
+    background-color: #3a499f !important;
 
     .select2-results {
         .select2-results__options {
@@ -197,78 +197,87 @@ input {
     }
 }
 
-.form-checkbox {
-    width: 100%;
+.checkbox-container {
     height: 30px;
 
+    @include media-breakpoint-down(lg) {
+        width: 100%;
+    }
+
     .wpcf7-form-control-wrap {
+        width: 100%;
         height: 100%;
+        display: inline-flex;
+        justify-content: center;
+
+        @include media-breakpoint-down(lg) {
+            display: block;
+        }
 
         .wpcf7-checkbox {
-            height: 100%;
-
             .wpcf7-list-item {
-                width: 100%;
-                display: flex;
-                justify-content: center;
                 margin: 0px !important;
+            }
 
-                @include media-breakpoint-down(lg) {
-                    justify-content: flex-start;
-                }
+            input {
+                height: 100% !important;
+            }
 
-                label {
-                    height: 30px;
-                    user-select: none;
-                    padding-left: 44px;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
+            input[type="checkbox"] {
+                opacity: 0;
+                position: absolute;
+                cursor: pointer;
 
-                    input {
-                        opacity: 0;
-                        height: 0;
-                        width: 0;
-
-                        &:checked {
-                            &+.checkmark {
-                                background-color: $black;
-                                border-color: $black;
-
-                                &::after {
-                                    display: block;
-                                }
-                            }
-                        }
-                    }
-
-                    .checkmark {
-                        transform: translateY(-50%);
-                        height: 100%;
-                        width: 30px;
-                        background-color: transparent;
-                        border: 1px solid $black;
-                        border-radius: $radius4;
-                        transition: all 0.2s ease-in-out;
-
+                &:checked {
+                    &+.wpcf7-list-item-label {
                         &::after {
                             content: "";
                             position: absolute;
-                            display: none;
                             left: 11px;
-                            top: 5px;
+                            top: 45%;
+                            transform: translateY(-50%) rotate(45deg);
                             width: 7px;
-                            height: 14px;
+                            height: 13px;
                             border: solid $white;
                             border-width: 0 2px 2px 0;
-                            transform: rotate(45deg);
                         }
                     }
+                }
+            }
+
+            label {
+                position: relative;
+                padding-left: 45px;
+                cursor: pointer;
+                user-select: none;
+                display: inline-flex;
+                align-items: center;
+                color: #fff;
+                font-size: $font16;
+                line-height: 29px;
+                font-family: "dmsans-regular";
+                text-wrap: nowrap;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    transform: translateY(0);
+                    height: 29px;
+                    width: 29px;
+                    border: 1px solid $white;
+                    border-radius: 4px;
+                    background-color: transparent;
+                    box-sizing: border-box;
                 }
             }
         }
     }
 
+    .wpcf7-spinner {
+        display: none;
+    }
 
 }
 
@@ -357,7 +366,7 @@ input {
                     background-color: $color-1B2995;
                     border-color: $color-858AB5;
 
-                     &::after {
+                    &::after {
                         display: block;
                     }
                 }
@@ -372,7 +381,7 @@ input {
             border-radius: $radius4;
 
             &::after {
-                 content: "";
+                content: "";
                 position: absolute;
                 display: none;
                 // left: 10px;
@@ -389,12 +398,199 @@ input {
             }
         }
     }
-    .filter-btn{
-        &.active{
+
+    .filter-btn {
+        &.active {
             background: $white !important;
-            .plus-icon{
+
+            .plus-icon {
                 transform: rotate(45deg);
             }
         }
+    }
+}
+
+.woocommerce-input-wrapper {
+    .select2-container {
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+        position: relative;
+        vertical-align: middle;
+        z-index: 999 !important;
+        cursor: pointer;
+
+        &.select2-container--open {
+            .selection {
+                .select2-selection--single {
+                    border-bottom-left-radius: 0px;
+                    border-bottom-right-radius: 0px;
+                }
+            }
+
+            .select2-selection__arrow {
+                transform: rotate(180deg) !important;
+            }
+        }
+
+        .selection {
+            width: 100%;
+            display: inline-block;
+
+            .select2-selection--single {
+                width: 100%;
+                height: 57px;
+                display: flex;
+                align-items: center;
+                font-size: $font16;
+                border-radius: $radius5;
+                padding-left: 22px;
+                padding-right: 22px;
+                color: rgba($color: $white, $alpha: 0.3);
+                background-color: rgba(133, 138, 181, 0.2);
+                border: 0px !important;
+
+                .select2-selection__rendered {
+                    color: $color-191919;
+                    padding: 0px !important;
+                }
+
+                .select2-selection__arrow {
+                    right: 22px;
+                    top: 23px;
+                    width: 14px;
+                    height: 11px;
+                    background-image: url("/wp-content/themes/ttww/templates/icon/blue-polygon.svg");
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    background-size: 14px 11px;
+                    position: absolute;
+                    cursor: pointer;
+                    transition: all 0.5s ease-in-out;
+                    transform: rotate(0deg);
+
+                    b {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pmpro_form_field-select {
+    position: absolute !important;
+    background-color: #e6e7ee !important;
+    border: 1px solid transparent !important;
+
+    ul {
+        li {
+            padding: 10px 24px !important;
+            font-family: "dmsans-regular";
+            font-weight: 400;
+            font-size: 14px;
+        }
+    }
+
+    .select2-results__option--highlighted {
+        background-color: $color-1B2995 !important;
+        color: $white !important;
+    }
+}
+
+.blue-checkbox-container {
+
+    height: 22px;
+
+    input {
+        height: 100%;
+        width: 100%;
+        z-index: 999;
+        cursor: pointer;
+
+        &:checked~.checkbox::after {
+            display: block;
+        }
+
+        &:checked~.checkbox {
+            display: block;
+            background-color: $color-1B2995;
+        }
+    }
+
+
+    .checkbox {
+        height: 31px;
+        width: 31px;
+        background-color: transparent;
+        border: 1px solid $color-1B2995;
+        cursor: pointer;
+        border-radius: 4px;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 11px;
+            left: 7px;
+            border: solid #fff;
+            border-width: 0px 0px 3px 3px;
+            height: 8px;
+            width: 15px;
+            transform: rotate(310deg);
+            display: none;
+        }
+    }
+}
+
+
+// .p-Input-input {
+//     background-color: rgba(133, 138, 181, 0.2) !important;
+//     border-radius: 5px !important;
+//     padding-left: 24px !important;
+//     padding-right: 24px !important;
+//     font-family: "dmsans-regular" !important;
+//     font-size: 16px;
+//     line-height: 24px;
+//     color: #191919;
+// }
+
+// .p-HeightObserverProvider {
+//     .p-CardNumberInput {
+//         .p-Input {
+//             input {
+//                 background-color: rgba(133, 138, 181, 0.2) !important;
+//                 border-radius: 5px !important;
+//                 padding-left: 24px !important;
+//                 padding-right: 24px !important;
+//                 font-family: "dmsans-regular" !important;
+//                 font-size: 16px;
+//                 line-height: 24px;
+//                 color: #191919;
+//             }
+//         }
+//     }
+// }
+
+// .Input {
+//     background-color: rgba(133, 138, 181, 0.2) !important;
+//     border-radius: 5px !important;
+//     padding-left: 24px !important;
+//     padding-right: 24px !important;
+//     font-family: "dmsans-regular" !important;
+//     font-size: 16px;
+//     line-height: 24px;
+//     color: #191919;
+// }
+
+.p-Input {
+    .p-Input-input:not(.p-Input--matchFloatingLabelHeight):not(.p-PhoneInput) {
+        background-color: rgba(133, 138, 181, 0.2) !important;
+        border-radius: 5px !important;
+        padding-left: 24px !important;
+        padding-right: 24px !important;
+        font-family: "dmsans-regular" !important;
+        font-size: 16px;
+        line-height: 24px;
+        color: #191919;
     }
 }

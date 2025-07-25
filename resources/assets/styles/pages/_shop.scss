@@ -1,0 +1,37 @@
+.product-section-main {
+    .product-filter {
+        .product-filter-btn {
+            background-color: rgba($color: $color-1B2995, $alpha: 0.2);
+
+            &.active {
+                background-color: $color-1B2995;
+                color: $white !important;
+            }
+        }
+
+        @include media-breakpoint-down(lg) {
+            overflow-x: auto;
+        }
+    }
+}
+
+.product-images {
+
+    .woocommerce-product-gallery {
+        .woocommerce-product-gallery__image {
+            a {
+                height: 615px;
+
+                img {
+                    height: 100% !important;
+                    width: 100% !important;
+                    object-fit: cover;
+                }
+
+                @include media-breakpoint-down(lg) {
+                    height: 300px;
+                }
+            }
+        }
+    }
+}

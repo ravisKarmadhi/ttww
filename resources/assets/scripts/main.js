@@ -14,6 +14,7 @@ import { Header } from './parts/header.js';
 import { Select } from './parts/select.js';
 import { Filter } from './parts/filter.js';
 import { Shop } from './parts/shop.js';
+import { Checkout } from './parts/checkout.js';
 
 // export for others scripts to use
 window.$ = $;
@@ -59,6 +60,9 @@ $(function () {
 
   window.shop = new Shop();
   window.shop.init();
+
+  window.checkout = new Checkout();
+  window.checkout.init();
 
 });
 

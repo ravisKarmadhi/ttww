@@ -7,13 +7,13 @@ export class Parts {
   }
 
   DeliveryMethod() {
-jQuery(function($) {
-  // For radios or checkboxes named home_delivery_method
-  $('form.checkout').on('change', 'input[name="home_delivery_method"]', function() {
-    console.log('Shipping method changed, triggering update_checkout');
-    $('body').trigger('update_checkout');
-  });
-});
+    jQuery(function ($) {
+      // For radios or checkboxes named home_delivery_method
+      $('form.checkout').on('change', 'input[name="home_delivery_method"]', function () {
+        console.log('Shipping method changed, triggering update_checkout');
+        $('body').trigger('update_checkout');
+      });
+    });
 
   }
 
@@ -37,6 +37,7 @@ jQuery(function($) {
         e.stopPropagation();
 
         if ($(".more-filter").hasClass("d-none")) {
+          console.log("clicked");
           $(".more-filter").removeClass("d-none");
           $(this).addClass("active");
           $(".category-btn").removeClass("active");

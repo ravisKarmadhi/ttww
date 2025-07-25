@@ -22,7 +22,7 @@ if (! defined('ABSPATH')) {
 
 if ($related_products) : ?>
 
-	<section class="related products overflow-hidden">
+	<section class="related-products overflow-hidden">
 		<div class="d-flex align-items-end justify-content-between tmb-25 dmb-35 px-p-p">
 			<?php
 			$heading = apply_filters('woocommerce_product_related_products_heading', __('Related items', 'woocommerce'));
@@ -33,8 +33,8 @@ if ($related_products) : ?>
 				<a href="" class="btnA bg-1B2995-btn sans-medium font16 space-0_48 leading26 rounded-pill text-decoration-none d-inline-flex justify-content-center align-items-center transition">Back to all</a>
 			</div>
 		</div>
-		<div class="ps-p-p">
-			<div class="col-10 col-md-12">
+		<div class="ps-p-p"> 
+			<div class="col-10 col-md -12 col-lg-12">
 				<div class="related-product-slider">
 					<?php foreach ($related_products as $related_product) :
 						$post_object = get_post($related_product->get_id());

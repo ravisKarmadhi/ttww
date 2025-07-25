@@ -720,70 +720,82 @@ function custom_redirect_to_checkout($url) {
 }
 
 
-add_action('wp_ajax_update_custom_shipping_option', 'update_custom_shipping_option');
-add_action('wp_ajax_nopriv_update_custom_shipping_option', 'update_custom_shipping_option');
+// add_action('wp_ajax_update_custom_shipping_option', 'update_custom_shipping_option');
+// add_action('wp_ajax_nopriv_update_custom_shipping_option', 'update_custom_shipping_option');
 
-function update_custom_shipping_option() {
-    if ( isset($_POST['custom_shipping_option']) ) {
-        $value = sanitize_text_field($_POST['custom_shipping_option']);
-        WC()->session->set('custom_delivery_option', $value);
-        wp_send_json_success('Session updated');
-    } else {
-        wp_send_json_error('No data');
-    }
+// function update_custom_shipping_option() {
+//     if ( isset($_POST['custom_shipping_option']) ) {
+//         $value = sanitize_text_field($_POST['custom_shipping_option']);
+//         WC()->session->set('custom_delivery_option', $value);
+//         wp_send_json_success('Session updated');
+//     } else {
+//         wp_send_json_error('No data');
+//     }
+// }
+
+
+// add_filter('woocommerce_package_rates', 'conditionally_apply_shipping_charge', 10, 2);
+// function conditionally_apply_shipping_charge( $rates, $package ) {
+//     $custom_delivery_option = WC()->session->get('custom_delivery_option');
+
+//     if ( $custom_delivery_option === 'yes' ) {
+//         // Checkbox checked, shipping rates remain as is
+//         return $rates;
+//     } else {
+//         // Checkbox unchecked, make all shipping rates cost zero
+//         foreach ( $rates as $rate_key => $rate ) {
+//             $rates[$rate_key]->cost = 0;
+
+//             if ( isset( $rates[$rate_key]->taxes ) && is_array( $rates[$rate_key]->taxes ) ) {
+//                 foreach ( $rates[$rate_key]->taxes as $tax_id => $tax ) {
+//                     $rates[$rate_key]->taxes[$tax_id] = 0;
+//                 }
+//             }
+//         }
+//         return $rates;
+//     }
+// }
+
+// add_action('woocommerce_checkout_update_order_review', function($post_data) {
+//     parse_str($post_data, $output);
+//     if (!empty($output['home_delivery_method'])) {
+//         WC()->session->set('home_delivery_method', sanitize_text_field($output['home_delivery_method']));
+//     } else {
+//         WC()->session->__unset('home_delivery_method');
+//     }
+// });
+
+// add_action('woocommerce_cart_calculate_fees', function() {
+//     $method_id = WC()->session->get('home_delivery_method');
+//     if (!$method_id) return;
+
+//     $shipping_packages = WC()->cart->get_shipping_packages();
+//     $package = $shipping_packages[0];
+//     $zone = WC_Shipping_Zones::get_zone_matching_package($package);
+//     if (!$zone) return;
+
+//     foreach ($zone->get_shipping_methods() as $method) {
+//         if ($method->id === $method_id && $method->enabled === 'yes') {
+//             $cost = floatval($method->get_option('cost'));
+//             if ($cost > 0) {
+//                 WC()->cart->add_fee(sprintf(__('Delivery: %s', 'woocommerce'),''), $cost);
+//             }
+//             break;
+//         }
+//     }
+// });
+
+
+// Delivery charge
+
+
+add_action('wp_ajax_toggle_home_delivery', 'handle_toggle_home_delivery');
+add_action('wp_ajax_nopriv_toggle_home_delivery', 'handle_toggle_home_delivery');
+
+function handle_toggle_home_delivery() {
+    $enabled = isset($_POST['enable']) && $_POST['enable'] == 1 ? true : false;
+    WC()->session->set('enable_home_delivery', $enabled);
+    wp_send_json_success();
 }
 
 
-add_filter('woocommerce_package_rates', 'conditionally_apply_shipping_charge', 10, 2);
-function conditionally_apply_shipping_charge( $rates, $package ) {
-    $custom_delivery_option = WC()->session->get('custom_delivery_option');
-
-    if ( $custom_delivery_option === 'yes' ) {
-        // Checkbox checked, shipping rates remain as is
-        return $rates;
-    } else {
-        // Checkbox unchecked, make all shipping rates cost zero
-        foreach ( $rates as $rate_key => $rate ) {
-            $rates[$rate_key]->cost = 0;
-
-            if ( isset( $rates[$rate_key]->taxes ) && is_array( $rates[$rate_key]->taxes ) ) {
-                foreach ( $rates[$rate_key]->taxes as $tax_id => $tax ) {
-                    $rates[$rate_key]->taxes[$tax_id] = 0;
-                }
-            }
-        }
-        return $rates;
-    }
-}
-
-
-
-add_action('woocommerce_checkout_update_order_review', function($post_data) {
-    parse_str($post_data, $output);
-    if (!empty($output['home_delivery_method'])) {
-        WC()->session->set('home_delivery_method', sanitize_text_field($output['home_delivery_method']));
-    } else {
-        WC()->session->__unset('home_delivery_method');
-    }
-});
-
-
-add_action('woocommerce_cart_calculate_fees', function() {
-    $method_id = WC()->session->get('home_delivery_method');
-    if (!$method_id) return;
-
-    $shipping_packages = WC()->cart->get_shipping_packages();
-    $package = $shipping_packages[0];
-    $zone = WC_Shipping_Zones::get_zone_matching_package($package);
-    if (!$zone) return;
-
-    foreach ($zone->get_shipping_methods() as $method) {
-        if ($method->id === $method_id && $method->enabled === 'yes') {
-            $cost = floatval($method->get_option('cost'));
-            if ($cost > 0) {
-                WC()->cart->add_fee(sprintf(__('Delivery: %s', 'woocommerce'),''), $cost);
-            }
-            break;
-        }
-    }
-});

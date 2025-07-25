@@ -1,10 +1,21 @@
 #billing_first_name_field,
-#billing_last_name_field,
-#billing_house_number_field,
-#billing_postcode_field,
 #shipping_first_name_field,
-#shipping_last_name_field,
+#billing_country_field,
+#billing_first_name_field,
+#shipping_city_field,
 #shipping_house_number_field,
+#shipping_state_field,
+#shipping_city_field,
+#shipping_phone_field,
+#shipping_country_field,
+#billing_phone_field,
+#billing_city_field,
+#billing_last_name_field,
+#billing_postcode_field,
+#billing_house_number_field,
+#shipping_last_name_field,
+#billing_state_field,
+#billing_postcode_field,
 #shipping_postcode_field {
     width: 49%;
 
@@ -14,26 +25,28 @@
 }
 
 #billing_first_name_field,
-#billing_house_number_field,
 #shipping_first_name_field,
-#shipping_house_number_field {
+#billing_country_field,
+#shipping_city_field,
+#billing_phone_field,
+#shipping_phone_field,
+#shipping_country_field,
+#billing_city_field {
     float: left;
+    clear: none;
 }
 
 #billing_last_name_field,
 #billing_postcode_field,
+#billing_house_number_field,
 #shipping_last_name_field,
-#shipping_postcode_field {
-    float: right;
-}
-
+#billing_state_field,
+#shipping_house_number_field,
+#shipping_state_field,
 #billing_postcode_field,
 #shipping_postcode_field {
+    float: right;
     clear: none;
-}
-
-#billing_country_field {
-    margin-top: 50px;
 }
 
 label {
@@ -52,8 +65,8 @@ label {
 }
 
 #billing_email_field {
-    padding-bottom: 50px !important;
-    border-bottom: 1px solid rgba(104, 87, 125, .14) !important;
+    // padding-bottom: 50px !important;
+    // border-bottom: 1px solid rgba(104, 87, 125, .14) !important;
 }
 
 .woocommerce-input-wrapper {
@@ -232,6 +245,76 @@ label {
                     transform: rotate(45deg);
                 }
             }
+        }
+    }
+}
+
+//checkout
+
+.customer_details {
+    .home-shipping-content {
+        .switch-btn-bg {
+            height: 15px;
+            width: 29px;
+
+            .switch-btn {
+                height: 11px;
+                width: 11px;
+                margin: 2px 0px 0px 2px;
+            }
+        }
+    }
+
+    .home-delivery-content {
+        height: 60px;
+        border: 1px solid $color-858AB5;
+        margin-top: 55px !important;
+    }
+}
+
+.cart-section {
+    .cart-img {
+        height: 110px;
+        width: 75px;
+
+        img {
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .cart-collaterals {
+        background-color: rgba(133, 138, 181, 0.2);
+        border-radius: 30px;
+    }
+
+    .coupon {
+        input {
+            height: 75px;
+            border: 1px solid $color-1B2995;
+        }
+    }
+}
+
+// .StripeElement{
+//     display: none !important;
+// }
+
+#Field-numberInput,
+#Field-expiryInput,
+#Field-cvcInput {}
+
+.wc-upe-form {
+    .p-Input {
+        input {
+            background-color: rgba(133, 138, 181, 0.2) !important;
+            border-radius: 5px !important;
+            padding-left: 24px !important;
+            padding-right: 24px !important;
+            font-family: "dmsans-regular" !important;
+            font-size: 16px;
+            line-height: 24px;
+            color: #191919;
         }
     }
 }

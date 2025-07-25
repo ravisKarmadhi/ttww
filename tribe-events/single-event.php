@@ -19,38 +19,38 @@ $event_data = get_field("event_data");
  
 ?>
 
-<div class="spacing dpb-200"></div>
+<div class="spacing dpb-200 tpb-190"></div>
 
 <!-- single-event-section -->
 <section class="single-event-section">
     <div class="container">
-        <div class="row">
-            <div class="col-3">
+        <div class="row justify-content-xl-start justify-content-lg-between jusrti">
+            <div class="col-xl-3 col-lg-3 col-sm-12 col-12 tmb-50">
                 <div class="single-event-links position-sticky top-0 d-flex flex-column justify-content-between">
                     <a href="/events" class="sans-medium font16 leading26 text-191919 text-capitalize">
                         Back To All
                     </a>
                     <div>
-                        <div class="sans-medium font16 leading26 text-191919 text-capitalize">
+                        <div class="d-lg-block d-none sans-medium font16 leading26 text-191919 text-capitalize">
                             <?php echo do_shortcode('[ssba]'); ?>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-7">
-                <div class="pe-5">
+            <div class="col-xl-7 col-lg-9 col-sm-12 col-12">
+                <div class="pe-lg-5">
                     <?php if(!empty($categories)): foreach($categories as $category): ?>
-                    <div class="label bg-858AB5-label sans-medium font14 leading20 space-0_42 text-1B2995 radius8 d-inline-flex align-items-center justify-content-center px-3 dmb-25">
+                    <div class="label bg-858AB5-label sans-medium font14 leading20 space-0_42 res-leading26 text-1B2995 radius8 d-inline-flex align-items-center justify-content-center px-3 dmb-25 tmb-10">
                         <?php echo $category->name ?>
                     </div>
                     <?php endforeach; endif; ?>
-                    <div class="garamond font52 leading67 text-1B2995 text-capitalize dmb-10">
+                    <div class="garamond font52 leading67 text-1B2995 res-font35 res-leading55 text-capitalize dmb-10">
                         <?php echo get_the_title(); ?>
                     </div>
-                    <div class="sans-normal font22 leading26 text-191919 dmb-20 pe-2">
+                    <div class="sans-normal font22 leading26 res-font18 res-leading26 text-191919 dmb-20 pe-2">
                         <?php echo get_the_content(); ?>
                     </div>
-                    <div class="sans-normal font16 leading24 text-191919 dmb-45">
+                    <div class="sans-normal font16 leading24 text-191919 dmb-45 tmb-35">
                         <?php echo $top_event_content; ?>
                     </div>
                 </div>
@@ -74,9 +74,9 @@ $event_data = get_field("event_data");
     </div>
 </section>
 
-<div class="dpt-240"></div>
+<div class="dpt-240 tpt-90"></div>
 
-            <section class="upcoming-slider-section position-relative bg-white z-3">
+            <section class="upcoming-slider-section position-relative overflow-hidden bg-white z-3">
                 <div class="container">
                     <div class="d-flex align-items-end justify-content-between tmb-35 dmb-45">
                         <div class="col-lg-6 pe-lg-5">

@@ -11,10 +11,10 @@ $footer_link_group = get_field('footer_link_group', 'option');
 ?>
 
 <footer class="footer">
-    <div class="footer-slider-content bg-white position-relative z-3 overflow-hidden dpb-55">
+    <div class="footer-slider-content bg-white position-relative z-3 overflow-hidden dpb-55 tpb-35">
         <div class="container">
             <div class="d-flex justify-content-center align-items-center dmb-25">
-                <a class="sans-medium font30 space-0_9 leading20 text-center text-decoration-none text-1B2995"
+                <a class="sans-medium font30 space-0_9 leading20 res-font25 res-space-0_72 res-leading30 text-center text-decoration-none text-1B2995"
                     href="  <?php echo $instagram_link['url'] ?>" target="_blank">
                     <?php echo $instagram_link['title'] ?>
                 </a>
